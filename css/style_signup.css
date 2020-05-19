@@ -97,6 +97,10 @@ h1 {
   margin-left: .25em;
 }
 
+.social {
+  display: flex;
+  padding: 5px;
+}
 
 
 /*Overwrite browsers css for autofill*/

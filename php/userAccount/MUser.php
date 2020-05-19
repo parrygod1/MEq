@@ -92,7 +92,7 @@ class MUser {
         }
     }
 
-    public function autentificaGoogle($username, $photo) {
+    public function autentificaSocial($username, $photo) {
         $sql = 'SELECT id FROM users WHERE username = :username';
         $stmt = BD::obtine_conexiune()->prepare($sql);
         $stmt -> execute ([

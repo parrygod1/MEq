@@ -1,7 +1,7 @@
 <?php 
 require_once "MUser.php";
 require_once "CUser.php";
-require_once 'vendor/autoload.php';
+require_once 'google/vendor/autoload.php';
 require_once "User.php";
     class VUser extends User {
         private $username_err, $password_err, $confirm_password_err;
@@ -48,7 +48,12 @@ require_once "User.php";
 
 
                 <h4 style="text-align: center">OR</h4>
-                <a href="<?php echo $this->google_client->createAuthUrl()?>"><img src="google.png" style="border-radius: 8px; width: 90%; margin-left: 15px;"/></a>
+                <div class="social">
+
+                <a href="<?php echo $this->google_client->createAuthUrl()?>"><img src="google/google.png" style="border-radius: 8px; float: left; width: 125px; padding-right: 3px"/></a>
+                <a href="<?php echo $this->facebook_login_url?>"><img src="facebook/facebook2.jpg" style="border-radius: 8px; float: left; width: 125px"></a>
+
+                </div>
             </div>
             </body>
             </html>
@@ -84,7 +89,12 @@ require_once "User.php";
                 </form>
 
                 <h4 style="text-align: center">OR</h4>
-                <a href="<?php echo $this->google_client->createAuthUrl()?>"><img src="google.png" style="border-radius: 8px; width: 90%; margin-left: 15px;"/></a>
+                <div class="social">
+
+                    <a href="<?php echo $this->google_client->createAuthUrl()?>"><img src="google/google.png" style="border-radius: 8px; float: left; width: 125px; padding-right: 3px"/></a>
+                    <a href="<?php echo $this->facebook_login_url?>"><img src="facebook/facebook2.jpg" style="border-radius: 8px; float: left; width: 125px"></a>
+
+                </div>
             </div>
             </body>
             </html>

@@ -104,7 +104,26 @@ require_once "User.php";
                         $photo = $data['picture'];
                     }
                 }
-                $this->model->autentificaGoogle($username, $photo);
+                else {
+                    $access_token = $this->facebook_helper->getAccessToken();
+
+                    $this->facebook->setDefaultAccessToken($access_token);
+
+                    $graph_response = $this->facebook->get("/me?fields=name,email", $access_token);
+
+                    $facebook_user_info = $graph_response->getGraphUser();
+
+                    if(!empty($facebook_user_info['id']))
+                    {
+                        $photo = 'http://graph.facebook.com/'.$facebook_user_info['id'].'/picture';
+                    }
+
+                    if(!empty($facebook_user_info['name']))
+                    {
+                        $username = str_replace(' ', '', $facebook_user_info['name']);
+                    }
+                }
+                $this->model->autentificaSocial($username, $photo);
             }
             else {
                 if (empty(trim($_POST["username"]))) {
