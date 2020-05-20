@@ -17,7 +17,7 @@ class VProfile {
             ?>
                 <img src="<?php echo $row['IMAGE_PATH'] ?>">
 
-                <?php if($this->idUser === $_SESSION['userid']) { ?>
+                <?php if(isset($_SESSION['userid']) && $this->idUser === $_SESSION['userid']) { ?>
                     <button class="button-regular" id="avatar-button">Change avatar</button>
                 <?php } ?>
 
@@ -44,7 +44,7 @@ class VProfile {
                     <h2><?php echo "Publications: " . $row['DOC'];?></h2>
                 </div>
 
-                <?php if($this->idUser === $_SESSION['userid']) { ?>
+                <?php if(isset($_SESSION['userid']) && $this->idUser === $_SESSION['userid']) { ?>
                     <button class="button-regular" id="delete-user-button">Delete your account</button>
                 <?php } ?>
             </div>

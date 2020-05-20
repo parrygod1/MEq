@@ -12,7 +12,7 @@ class User {
 
         $this->google_client->setClientSecret('A7gm63efTbaSaak-kvsB6LFG');
 
-        $this->google_client->setRedirectUri('http://localhost/MEq/php/userAccount/login.php');
+        $this->google_client->setRedirectUri('https://meqx.go.ro/php/userAccount/login.php');
 
         $this->google_client->addScope('email');
 
@@ -26,7 +26,7 @@ class User {
 
         $this->facebook_helper = $this->facebook->getRedirectLoginHelper();
         $this->facebook_permissions = ['email'];
-        $this->facebook_login_url = $this->facebook_helper->getLoginUrl('https://meqx.go.ro/meqtest/php/userAccount/login.php', $this->facebook_permissions);
+        $this->facebook_login_url = $this->facebook_helper->getLoginUrl('https://meqx.go.ro/php/userAccount/login.php', $this->facebook_permissions);
     }
 
 }

@@ -31,11 +31,7 @@ function searchForData(value, isLoadMoreMode) {
 		if (ajax.readyState === 4 && ajax.status === 200) {
 			var json = JSON.parse(ajax.responseText);
 			if (json === false) {
-				if (isLoadMoreMode) {
-					alert('No more to load');
-				} else {
-					noPosts();
-				}
+				noPosts();	
 			} else {
 				showPosts(json);
 			}
@@ -75,10 +71,21 @@ function createElement(data){
 	shortDescDiv.innerText = data['DESCRIPTION'];
     descDiv.appendChild(shortDescDiv);
 
+
+	let info = document.createElement("div");
+	info.setAttribute('class', 'post-info')
+	
 	let postDate = document.createElement("div");
 	postDate.className = "post-date";
 	postDate.innerText = "Posted on " + data['CREATED_AT'];
-	descDiv.appendChild(postDate);
+	info.appendChild(postDate);
+
+	let views = document.createElement("div");
+	views.className = "post-views";
+	views.innerText = "Views:  " + data['VIEWS'];
+	info.appendChild(views);
+
+	descDiv.appendChild(info);
 
     mainDiv.appendChild(descDiv);
 	content.appendChild(mainDiv);
@@ -97,4 +104,23 @@ function noPosts() {
 	resultContainer.innerHTML = "No Posts";
 }
 
-searchForData('*first*');
+function enableSearch() {
+	textBox.setAttribute('style', 'display: initial');
+	clearResult();
+}
+
+function disableSearch(){
+	textBox.setAttribute('style', 'display: none');
+}
+
+function searchTop(){
+	disableSearch();
+	searchForData('*top*');
+}
+
+function searchNew(){
+	disableSearch();
+	searchForData('*new*');
+}
+
+searchNew();

@@ -22,8 +22,8 @@ require_once "User.php";
         private function adaugaUser() {
             if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-                if(empty(trim($_POST["username"]))){
-                    $username_err = "Please enter a username.";
+                if(isset($_POST["username"]) && empty(trim($_POST["username"]))){
+                    $this->username_err = "Please enter a username.";
                 }
                 else {
                     $sql = "SELECT id FROM users WHERE username = :username";
@@ -35,43 +35,42 @@ require_once "User.php";
                     if($stmt -> execute ([ 'username' => $param_username ])) {
 
                         if($stmt->rowCount()){
-                            $username_err = "This username is already taken.";
+                            $this->username_err = "This username is already taken.";
                         }
                         else {
-                            $username = trim($_POST["username"]);
+                            $this->username = trim($_POST["username"]);
                         }
                     }
                     else echo "Oops! Something went wrong. Please try again later.";
                 }
             }
 
-            if(empty(trim($_POST["password"]))){
-                $password_err = "Please enter a password.";
+            if(isset($_POST["password"]) && empty(trim($_POST["password"]))){
+                $this->password_err = "Please enter a password.";
             }
-            else if(strlen(trim($_POST["password"])) < 6) {
-                $password_err = "Password must have at least 6 characters.";
+            else if(isset($_POST["password"]) && strlen(trim($_POST["password"])) < 6) {
+                $this->password_err = "Password must have at least 6 characters.";
             }
-            else {
-                $password = trim($_POST["password"]);
-            }
-
-            if(empty(trim($_POST["confirm_password"]))) {
-                $confirm_password_err = "Please confirm password.";
+            else if(isset($_POST["password"])) {
+                $this->password = trim($_POST["password"]);
             }
 
-            else {
-                $confirm_password = trim($_POST["confirm_password"]);
-                if(empty($password_err) && ($password != $confirm_password)) {
-                    $confirm_password_err = "Password did not match.";
+            if(isset($_POST["confirm_password"]) && empty(trim($_POST["confirm_password"]))) {
+                $this->confirm_password_err = "Please confirm password.";
+            }
+            else if(isset($_POST["confirm_password"])){
+                $this->confirm_password = trim($_POST["confirm_password"]);
+                if(empty($this->password_err) && ($this->password != $this->confirm_password)) {
+                    $this->confirm_password_err = "Password did not match.";
                 }
             }
 
 
-            if(empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
-                $this->model->adaugaUser($username, $password);
+            if(empty($this->username_err) && empty($this->password_err) && empty($this->confirm_password_err)) {
+                $this->model->adaugaUser($this->username, $this->password);
             }
 
-            $this->view = new VUser($username_err, $password_err, $confirm_password_err);
+            $this->view = new VUser($this->username_err, $this->password_err, $this->confirm_password_err);
             $this->view->oferaVizualizareRegister();
         }
 
@@ -96,12 +95,12 @@ require_once "User.php";
 
                     if(!empty($data['given_name']) && !empty($data['family_name']))
                     {
-                        $username = $data['family_name'].$data['given_name'];
+                        $this->username = $data['family_name'].$data['given_name'];
                     }
 
                     if(!empty($data['picture']))
                     {
-                        $photo = $data['picture'];
+                        $this->photo = $data['picture'];
                     }
                 }
                 else {
@@ -115,71 +114,71 @@ require_once "User.php";
 
                     if(!empty($facebook_user_info['id']))
                     {
-                        $photo = 'http://graph.facebook.com/'.$facebook_user_info['id'].'/picture';
+                        $this->photo = 'http://graph.facebook.com/'.$facebook_user_info['id'].'/picture';
                     }
 
                     if(!empty($facebook_user_info['name']))
                     {
-                        $username = str_replace(' ', '', $facebook_user_info['name']);
+                        $this->username = str_replace(' ', '', $facebook_user_info['name']);
                     }
                 }
-                $this->model->autentificaSocial($username, $photo);
+                $this->model->autentificaSocial($this->username, $this->photo);
             }
             else {
-                if (empty(trim($_POST["username"]))) {
-                    $username_err = "Please enter username.";
-                } else {
-                    $username = trim($_POST["username"]);
+                if (isset($_POST["username"]) && empty(trim($_POST["username"]))) {
+                    $this->username_err = "Please enter username.";
+                } else if (isset($_POST["username"])) {
+                    $this->username = trim($_POST["username"]);
                 }
 
-                if (empty(trim($_POST["password"]))) {
-                    $password_err = "Please enter your password.";
-                } else {
-                    $password = trim($_POST["password"]);
+                if (isset($_POST["password"]) && empty(trim($_POST["password"]))) {
+                    $this->password_err = "Please enter your password.";
+                } else if (isset($_POST["password"])) {
+                    $this->password = trim($_POST["password"]);
                 }
 
 
-                if (empty($username_err) && empty($password_err)) {
-                    $valid = $this->model->autentificaUser($username, $password);
+                if (empty($this->username_err) && empty($this->password_err)) {
+                    $valid = $this->model->autentificaUser($this->username, $this->password);
                 }
                 //}
-                if (!empty($valid))
-                    $valid === "password" ? $password_err = "The password you entered was not valid." : $username_err = "No account found with that username.";
+                if (!empty($valid) && (isset($_POST["username"]) || isset($_POST["password"])))
+                    $valid === "password" ? $this->password_err = "The password you entered was not valid." : $this->username_err = "No account found with that username.";
 
-                $this->view = new VUser($username_err, $password_err);
+                $this->view = new VUser($this->username_err, $this->password_err, null);
                 $this->view->oferaVizualizareLogin();
             }
             
         }
 
         public function resetPassword() {
-            if(empty(trim($_POST["password"]))){
-                $password_err = "Please enter new password.";     
+            if(isset($_POST["password"]) && empty(trim($_POST["password"]))){
+                $this->password_err = "Please enter new password.";     
             } 
-            else if(strlen(trim($_POST["password"])) < 6) {
-                $password_err = "Password must have at least 6 characters.";
+            else if(isset($_POST["password"]) && strlen(trim($_POST["password"])) < 6) {
+                $this->password_err = "Password must have at least 6 characters.";
             }
-            else {
-                $password = trim($_POST["password"]);
+            else if(isset($_POST["password"])) {
+                $this->password = trim($_POST["password"]);
             }
             
-            if(empty(trim($_POST["confirm_password"]))) {
-                $confirm_password_err = "Please confirm new password.";     
+            if(isset($_POST["confirm_password"]) && empty(trim($_POST["confirm_password"]))) {
+                $this->confirm_password_err = "Please confirm new password.";     
             } 
 
-            else {
-                $confirm_password = trim($_POST["confirm_password"]);
-                if(empty($password_err) && ($password != $confirm_password)) {
-                    $confirm_password_err = "Password did not match.";
+            else if(isset($_POST["confirm_password"])) {
+                $this->confirm_password = trim($_POST["confirm_password"]);
+                if(empty($this->password_err) && ($this->password != $this->confirm_password)) {
+                    $this->confirm_password_err = "Password did not match.";
                 }
             }
 
 
-            if(empty($username_err) && empty($confirm_password_err)) {
-                $this->model->resetPassword($password);
+            if(empty($this->username_err) && empty($this->confirm_password_err)) {
+                $this->model->resetPassword($this->password);
             }
             
-            $this->view = new VUser($username_err, null, $confirm_password_err);
+            $this->view = new VUser($this->username_err, $this->password_err, $this->confirm_password_err);
             $this->view->oferaVizualizareReset();
         }
 

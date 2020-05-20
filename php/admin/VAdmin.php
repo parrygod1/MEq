@@ -14,7 +14,7 @@ class VAdmin {
         <div id="admin-panel">
             <div class="side-bar" id="js-side-bar">
                 <form action="" method="POST" enctype="multipart/form-data">
-                    <ul id="admin-nav">
+                    <ul id="side-nav">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                         <li><a href="adminPublications.php">Publications</a> </li>
                         <li><a href="adminUsers.php">Give admin</a> </li>
@@ -59,7 +59,7 @@ class VAdmin {
         <div id="admin-panel">
             <div class="side-bar" id="js-side-bar">
                 <form action="" method="POST" enctype="multipart/form-data">
-                    <ul id="admin-nav">
+                    <ul id="side-nav">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                         <li><a href="adminPublications.php">Publications</a> </li>
                         <li><a href="adminUsers.php">Give admin</a> </li>

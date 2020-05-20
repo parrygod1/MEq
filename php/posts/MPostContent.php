@@ -5,12 +5,21 @@ ob_start();
 class MPostContent{
     public function getPostContent($id_document){ 
         $sql = 'SELECT d.ID, d.CONTENT, d.NAME, d.PUBLIC, q.CONTENT as QUIZCONTENT from documents d 
-        left join quizzes q on q.id_document = d.id where d.id =' . $id_document;
-        $stmt = BD::obtine_conexiune()->prepare($sql);
-        $stmt -> execute ([
+        left join quizzes q on q.id_document = d.id where d.id =:id';
+        $stmt1 = BD::obtine_conexiune()->prepare($sql);
+        $stmt1 -> execute ([
             'id' => $id_document
         ]);
-        return $stmt;
+        
+        if($stmt1->rowcount() > 0){
+            $sql2 = 'UPDATE documents SET VIEWS=(select views from documents where id=:id)+1 where id = :id';
+            $stmt2 = BD::obtine_conexiune()->prepare($sql2);
+            $stmt2 -> execute ([
+                'id' => $id_document
+            ]);
+        }
+
+        return $stmt1;
     } 
 
     public function insertDocument($title, $content, $quiz, $user_id)

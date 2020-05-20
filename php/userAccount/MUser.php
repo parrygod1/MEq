@@ -77,18 +77,20 @@ class MUser {
     }
 
     public function resetPassword($password_) {
-        $temp_id = $_SESSION["userid"];
+        if (isset($_SESSION['userid'])) {
+            $temp_id = $_SESSION["userid"];
 
-        $sql = 'UPDATE users SET password = :password where id = :id';
-        $stmt = BD::obtine_conexiune()->prepare($sql);
+            $sql = 'UPDATE users SET password = :password where id = :id';
+            $stmt = BD::obtine_conexiune()->prepare($sql);
 
-        $param_password = password_hash($password_, PASSWORD_DEFAULT); 
+            $param_password = password_hash($password_, PASSWORD_DEFAULT);
 
-        if($stmt -> execute ([ 
-            'id' => $temp_id,
-            'password' => $param_password ])) {
-
-                header("location: ../welcome.php");
+            if ($stmt->execute([
+                'id' => $temp_id,
+                'password' => $param_password
+            ])){
+                header("location: ../../index.html");
+            }
         }
     }
 
@@ -98,7 +100,7 @@ class MUser {
         $stmt -> execute ([
             'username' => $username
         ]);
-        if($number_of_rows = $stmt->fetchColumn() == 0) {
+        if($stmt->fetchColumn() == 0) {
             $query = 'select max(id) as maxid from users';
             $stmt2 = BD::obtine_conexiune()->prepare($query);
 

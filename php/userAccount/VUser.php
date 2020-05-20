@@ -51,7 +51,7 @@ require_once "User.php";
                 <div class="social">
 
                 <a href="<?php echo $this->google_client->createAuthUrl()?>"><img src="google/google.png" style="border-radius: 8px; float: left; width: 125px; padding-right: 3px"/></a>
-                <a href="<?php echo $this->facebook_login_url?>"><img src="facebook/facebook2.jpg" style="border-radius: 8px; float: left; width: 125px"></a>
+                <a href="<?php echo $this->facebook_login_url?>"><img src="facebook/facebook.png" style="border-radius: 8px; float: left; width: 125px"></a>
 
                 </div>
             </div>
@@ -84,7 +84,7 @@ require_once "User.php";
                 <span class="help-block"><?php echo $this->password_err; ?></span>
                 <input type="submit" name="" value="Login">
                 
-                <a href="#">Forgot your password?</a><br>
+                <a href="reset.php">Forgot your password?</a><br>
                 <a href="register.php">Don't have an account?</a>
                 </form>
 
@@ -92,7 +92,7 @@ require_once "User.php";
                 <div class="social">
 
                     <a href="<?php echo $this->google_client->createAuthUrl()?>"><img src="google/google.png" style="border-radius: 8px; float: left; width: 125px; padding-right: 3px"/></a>
-                    <a href="<?php echo $this->facebook_login_url?>"><img src="facebook/facebook2.jpg" style="border-radius: 8px; float: left; width: 125px"></a>
+                    <a href="<?php echo $this->facebook_login_url?>"><img src="facebook/facebook2.png" style="border-radius: 8px; float: left; width: 125px"></a>
 
                 </div>
             </div>
