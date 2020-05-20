@@ -17,8 +17,7 @@ class VAdmin {
                     <ul id="side-nav">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                         <li><a href="adminPublications.php">Publications</a> </li>
-                        <li><a href="adminUsers.php">Give admin</a> </li>
-                        <li><a href="admin.php">Permissions</a> </li>
+                        <li><a href="adminUsers.php">Users</a> </li>
                     </ul>
                 </form>
             </div>
@@ -62,8 +61,7 @@ class VAdmin {
                     <ul id="side-nav">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                         <li><a href="adminPublications.php">Publications</a> </li>
-                        <li><a href="adminUsers.php">Give admin</a> </li>
-                        <li><a href="admin.php">Permissions</a> </li>
+                        <li><a href="adminUsers.php">Users</a> </li>
                     </ul>
                 </form>
             </div>

@@ -90,9 +90,9 @@ function createElement(data){
     box.setAttribute('class', 'admin-box');
 
     let content = '<a class="profile-link" href="profilepage.php?id=' + data['ID'] + '"><div class="admin-box-top">' + data['USERNAME'] +
-										'</div></a><div class="admin-box-panel"> id: ' + data['ID'] + '<div><button onclick="postData(\'admin\',' + data['ID'] + 
-										')">Give admin</button> <button onclick="postData(\'ban\',' + data['ID'] + 
-										')">Ban</button> <button onclick="postData(\'unban\',' + data['ID'] + ')">Unban</button></div></div>';
+										'</div></a><div class="admin-box-panel"> id: ' + data['ID'] + '<div><button class="actionbtn" id="admin-btn" onclick="postData(\'admin\',' + data['ID'] + 
+										')">Give admin</button> <button class="actionbtn" id="ban-btn" onclick="postData(\'ban\',' + data['ID'] + 
+										')">Ban</button> <button id="unban-btn" class="actionbtn" onclick="postData(\'unban\',' + data['ID'] + ')">Unban</button></div></div>';
 
     box.innerHTML = content;
     resultContainer.appendChild(box);

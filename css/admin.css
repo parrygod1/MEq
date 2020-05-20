@@ -103,6 +103,48 @@
     color: #fb2525;
 }
 
+.actionbtn {
+	cursor:pointer;
+	color:#ffffff;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 12px;
+    text-decoration:none;
+    text-shadow: 1px 1px black;
+}
+
+#admin-btn {
+    background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+    background-color:#007dc1;
+    border:1px solid #124d77;
+}
+
+#admin-btn:hover {
+    background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+	background-color:#0061a7;
+}
+
+#ban-btn {
+    background:linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+    background-color:#d0451b;
+    border: 1px solid black;
+}
+
+#ban-btn:hover {
+    background:linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+	background-color:#bc3315;
+}
+
+#unban-btn {
+    background:linear-gradient(to bottom, #74ad5a 5%, #68a54b 100%);
+	background-color:#74ad5a;
+	border:1px solid #3b6e22;
+}
+
+#unban-btn:hover {
+    background:linear-gradient(to bottom, #68a54b 5%, #74ad5a 100%);
+	background-color:#68a54b;
+}
 
 @media only screen and (max-width: 767px) {
     
