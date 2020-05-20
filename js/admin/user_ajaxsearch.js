@@ -33,13 +33,18 @@ function postData(action, id) {
 	ajax = new XMLHttpRequest(); //php response will be in this variable
 	ajax.onreadystatechange = function() {
 		if (ajax.readyState === 4 && ajax.status === 200) {
-			console.log("yes");
+			if(ajax.responseText.length > 0){
+				alert(ajax.responseText);
+			} else {
+				alert('Action failed');
+			}
 		}
   }
 
 	if(action !== '' && id !== ''){
-		ajax.open('POST', postURI + 'action=' + action + '&id=' + id , true);
-		ajax.send();
+		ajax.open('POST', postURI, true);
+		ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		ajax.send('action=' + action + '&id=' + id);
 	} 
 }
 
