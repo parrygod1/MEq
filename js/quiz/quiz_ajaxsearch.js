@@ -1,5 +1,6 @@
-var requestURI = '/meq/php/search/search_query.php?title=';
+var requestQuizURI = '/php/quiz/quiz_search.php?title=';
 
+var toggle = null; //bool to see if we are actually searching
 var textBox = document.getElementById('searchbar');
 resultContainer = document.getElementById('content');
 
@@ -7,21 +8,24 @@ var ajax = null;
 var page = 0;
 
 textBox.onkeyup = function() {
-	var val = this.value;
-	val = val.replace(/^\s|\s $/, "");
+    if(toggle == true){
+    	var val = this.value;
+    	val = val.replace(/^\s|\s $/, "");
 
-	if (val !== "") {	
-		searchForData(val);
-	} else {
-		clearResult();
-	}
+    	if (val !== "") {	
+    		searchForData(val);
+    	} else {
+    		clearResult();
+        }
+    }
+    toggle = false;
 }
 
-function searchForData(value) {
+function searchForQuiz(value) {
 	if (ajax && typeof ajax.abort === 'function') {
 		ajax.abort(); // abort previous requests
 	}
-	
+
 	clearResult();
 
 	ajax = new XMLHttpRequest(); //php response will be in this variable
@@ -29,13 +33,13 @@ function searchForData(value) {
 		if (ajax.readyState === 4 && ajax.status === 200) {
 			var json = JSON.parse(ajax.responseText);
 			if (json === false) {
-				noPosts();	
+				noQuiz();	
 			} else {
-				showPosts(json);
+				showQuizzes(json);
 			}
 		}
     }
-    ajax.open('GET', requestURI +  value +  '&page=' +  page , true);
+    ajax.open('GET', requestQuizURI +  value +  '&page=' +  page , true);
 	ajax.send();
 }
 
@@ -61,14 +65,13 @@ function createElement(data){
     let link = document.createElement("a");
     link.className = "post-title";
     link.href = 'postpage.php?id=' + data['ID'];
-    link.innerText = data['NAME'];
+    link.innerText = data['QUIZ_TITLE'];
     descDiv.appendChild(link);
 
     let shortDescDiv = document.createElement("div");
     shortDescDiv.className = "post-shortdesc";
 	shortDescDiv.innerText = data['DESCRIPTION'];
     descDiv.appendChild(shortDescDiv);
-
 
 	let info = document.createElement("div");
 	info.setAttribute('class', 'post-info')
@@ -98,27 +101,16 @@ function clearResult() {
 	page = 0;
 }
 
-function noPosts() {
-	resultContainer.innerHTML = "No Posts";
+function noQuiz() {
+	searchNewQuiz();
 }
 
-function enableSearch() {
-	textBox.setAttribute('style', 'display: initial');
-	clearResult();
-}
-
-function disableSearch(){
-	textBox.setAttribute('style', 'display: none');
-}
-
-function searchTop(){
-	disableSearch();
-	searchForData('*top*');
-}
-
-function searchNew(){
-	disableSearch();
+function searchNewQuiz(){
 	searchForData('*new*');
 }
 
-searchNew();
+function enableQuizSearch(){
+    textBox.setAttribute('style', 'display: initial');
+	clearResult();
+    toggle = true;
+}

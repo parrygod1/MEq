@@ -9,7 +9,7 @@ $pageid = null;
 if(isset($_GET["id"])){
         $pageid = $_GET["id"];
         $quizcontent = '';
-        $sql = 'SELECT q.CONTENT, d.NAME from quizzes q join documents d on q.id_document = :id and d.id = :id';
+        $sql = 'SELECT CONTENT, QUIZ_TITLE from quizzes where id = :id';
         $stmt = BD::obtine_conexiune()->prepare($sql);
         $stmt -> execute ([
             'id' => $pageid

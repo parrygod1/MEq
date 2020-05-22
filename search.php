@@ -22,7 +22,8 @@
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                     <li><a href="javascript:searchNew()">New</a> </li>
                     <li><a href="javascript:searchTop()">Top</a> </li>
-                    <li><a href="javascript:enableSearch()">Search</a> </li>
+                    <li><a href="javascript:enablePostSearch()">Search</a></li>
+                    <li><a href="javascript:enableQuizSearch()">Quizzes</a></li>
                 </ul>
             </div>
             <span class="side-bar-mobile" id="js-side-bar-mobile" onclick="toggleSidebar()">
@@ -30,7 +31,7 @@
             </span>
             <div class="admin-content">
                 <div class="search-container">      
-                    <input type="text" id="searchbar" name="fname" placeholder="Search for posts...">
+                    <input type="text" id="searchbar" name="fname" placeholder="Enter a title...">
                 </div>
 
                 <div id="content">
@@ -45,6 +46,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script src="js/mathjax-reset.js"></script>
 <script src="js/posts/doc_ajaxsearch.js"></script>
+<!--<script src="js/quiz/quiz_ajaxsearch.js"></script>-->
 <script src="js/admin/adminPanel.js"></script>
 
 </body>

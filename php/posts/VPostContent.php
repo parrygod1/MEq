@@ -32,7 +32,7 @@ class VPostContent
             if($row['QUIZCONTENT'] != null && $row['QUIZCONTENT'] != '[]'){
                 echo '<p style="text-align: center; font-size: 30px; margin-top: 2%;">Think you got it? Then try solving the problems! </p>
                     <div style="text-align: center; align-content: center;">
-                        <button class="button-regular" type="button" onclick="window.location.href=(\'quiz.php?id=' . $row['ID'] . '\');">Practice</button>
+                        <button class="button-regular" type="button" onclick="window.location.href=(\'quiz.php?id=' . $row['QUIZID'] . '\');">Practice</button>
                     </div>';
             }
         }
