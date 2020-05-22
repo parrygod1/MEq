@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/../db_utils/database_conn.php";
 require_once __DIR__ . "/UserRoles.php";
+require_once __DIR__ . "/configDomain.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -195,8 +196,8 @@ class MUser {
             $mail->addAddress($email);
 
             $mail->isHTML(true);
-            $mail->Subject = 'Reset your password - MEq';
-            $msg = "Hello " . $array['username'] . "! Click on this <a href=\"http://localhost/MEq/php/userAccount/reset.php?action=resetPass&token=" . $token . "\">link</a> to reset your password on MEq. <br><br><br><br> Have a good day! <br><br>  Regards, <br>MEq team.";
+            $mail->Subject = 'Reset your password - MEqX';
+            $msg = "Hello, " . $array['username'] . "! Click on this <a href=\"" . DomainPath::DOMAINPROTOCOL . "://" . DomainPath::MAINDOMAIN . "/php/userAccount/reset.php?action=resetPass&token=" . $token . "\">link</a> to reset your password on MEqX. <br><br><br><br> Have a good day! <br><br>  Regards, <br>MEqX team.";
             $msg = wordwrap($msg, 70);
 
             $mail->Body = $msg;

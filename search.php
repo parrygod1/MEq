@@ -22,7 +22,7 @@
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                     <li><a href="javascript:searchNew()">New</a> </li>
                     <li><a href="javascript:searchTop()">Top</a> </li>
-                    <li><a href="javascript:enablePostSearch()">Search</a></li>
+                    <li><a href="javascript:enableSearch()">Search</a></li>
                     <li><a href="javascript:enableQuizSearch()">Quizzes</a></li>
                 </ul>
             </div>

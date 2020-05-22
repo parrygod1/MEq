@@ -1,10 +1,10 @@
 <?php
-//Config file for db connection
+require_once 'configDomain.php';
 
-define('DB_SERVER', 'localhost:8111');
+//Config file for db connection
+define('DB_SERVER', DomainPath::DATABASEDOMAIN);
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_NAME', 'meq');
- 
 
 ?>
