@@ -4,7 +4,7 @@ ob_start();
 
 class MPostContent{
     public function getPostContent($id_document){ 
-        $sql = 'SELECT d.ID, d.CONTENT, d.NAME, d.PUBLIC, q.CONTENT as QUIZCONTENT from documents d 
+        $sql = 'SELECT d.ID, d.CONTENT, d.NAME, d.PUBLIC, q.ID as QUIZID, q.CONTENT as QUIZCONTENT from documents d 
         left join quizzes q on q.id_document = d.id where d.id =:id';
         $stmt1 = BD::obtine_conexiune()->prepare($sql);
         $stmt1 -> execute ([
@@ -39,14 +39,13 @@ class MPostContent{
                 $row = $stmt1->fetch(PDO::FETCH_ASSOC);
                 $id_document = $row['maxi'];
             }
-            $sql2 = 'INSERT INTO quizzes (id_document, quiz_title, content) values (:id_document, "Quiz", :content)';
+            $sql2 = 'INSERT INTO quizzes (id_document, quiz_title, content) values (:id_document, :title, :content)';
             $stmt2 = BD::obtine_conexiune()->prepare($sql2);
-            $test = false;
             if ($stmt2->execute([
                 'id_document' => $id_document,
-                'content' => $quiz
+                'content' => $quiz,
+                'title' => $title
             ])) {
-                $test = true;
                 header("location: search.php");
             }
         }

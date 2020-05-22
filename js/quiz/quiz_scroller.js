@@ -24,7 +24,7 @@ function getData(value){
 			if (json === false || json === null) {
                 noData();
 			} else {
-                parentDocumentName.innerHTML = json['NAME'];
+                parentDocumentName.innerHTML = json['QUIZ_TITLE'];
                 showData(json['CONTENT']);
 			}
 		}
@@ -40,7 +40,7 @@ function postData(){
     ajax = new XMLHttpRequest();
 	ajax.onreadystatechange = function() {
 		if (ajax.readyState === 4 && ajax.status === 200) {
-            alert('Score updated');
+            alert('Quiz completed! ' + ajax.responseText);
 		}
     }
     ajax.open('POST', postURI, true);
@@ -91,12 +91,14 @@ document.getElementById("button-next").addEventListener("click", function(){
     if(currentIndex < questionSize-1)
         currentIndex++;
     setQuestionInfo();
+    answerBox.value = "";
 });
 
 document.getElementById("button-prev").addEventListener("click", function(){
     if(currentIndex > 0)
         currentIndex--;
     setQuestionInfo();
+    answerBox.value = "";
 });
 
 //runner code

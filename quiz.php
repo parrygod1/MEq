@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <?php include "navbar.php"; ?>    
+    <?php include "navbar.php"; 
+        if(isset($_SESSION) && isset($_GET['id'])){
+            $_SESSION['currentquizid'] = $_GET['id'];
+        }
+    ?>    
 
     <div class="content">
         <div id="quiz-title"></div>

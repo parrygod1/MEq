@@ -8,7 +8,7 @@
 
     $sql = null;
     if($postTitle == '*new*')
-        $sql = 'SELECT ID, NAME, DESCRIPTION, VIEWS, CREATED_AT from documents where public=true order by UPDATED_AT ASC limit 10';
+        $sql = 'SELECT ID, NAME, DESCRIPTION, VIEWS, CREATED_AT from documents where public=true order by UPDATED_AT DESC limit 10';
     else if($postTitle == '*top*')
         $sql = 'SELECT ID, NAME, DESCRIPTION, VIEWS, CREATED_AT from documents where public=true order by VIEWS DESC limit 10';
     else
