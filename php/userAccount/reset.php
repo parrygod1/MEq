@@ -7,6 +7,9 @@ require_once "MUser.php";
 require_once "VUser.php";
 require_once "CUser.php";
 
-$controller = new CUser("reset");
+$action = null;
+if(isset($_GET['action']))
+    $action = $_GET['action'];
+$controller = new CUser("reset", $action);
 
 ?>

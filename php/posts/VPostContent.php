@@ -103,7 +103,7 @@ class VPostContent
                 Background: <input type="color" onchange="execCmdWithArgument('hiliteColor', this.value);">
 
             </div>
-            <div contenteditable class="upload-content" name="docContent" id="docContent" style="border:solid 1px #999; padding:10px;"></div>
+            <div contenteditable class="upload-content" name="docContent" id="docContent" style="border:solid 1px #999; padding:10px; resize: none;"></div>
             <input type="hidden" id="docContent_hidden" name="docContent" required="required" />
 
             <div style="font-size: 20px; text-align: center; align-content: center;" ,>
@@ -163,6 +163,9 @@ class VPostContent
                         reader.onload = function(e) {
                             var img = new Image();
                             img.src = e.target.result;
+                            img.height = 300;
+                            img.width = 300;
+                            img.int
 
                             div.appendChild(img);
                         };

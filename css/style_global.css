@@ -94,14 +94,6 @@ p{
 	}
   }
 
-.upload-content {
-    resize: vertical;
-    overflow: auto;
-    font-size: 20px;
-    width: 70%;
-    height: 500px;
-    margin: auto;
-}
 
 .font-buttons {
 	box-shadow:inset 0px 1px 0px 0px #ffffff;

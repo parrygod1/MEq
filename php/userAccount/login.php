@@ -7,6 +7,6 @@ require_once "MUser.php";
 require_once "VUser.php";
 require_once "CUser.php";
 
-$controller = new CUser("login");
+$controller = new CUser("login", null);
 
 ?>

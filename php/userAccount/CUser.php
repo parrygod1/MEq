@@ -5,9 +5,9 @@ require_once "User.php";
 
         private $model;
         private $view;
-        private $username = "", $password = "", $confirm_password = "", $photo = "";
-        private $username_err = "", $password_err = "", $confirm_password_err = "";
-        public function __construct($param)
+        private $username = "", $password = "", $confirm_password = "", $photo = "", $email= "";
+        private $username_err = "", $password_err = "", $confirm_password_err = "", $email_err = "";
+        public function __construct($param, $action)
         {
             parent::__construct();
             $this->model = new MUser();
@@ -16,7 +16,7 @@ require_once "User.php";
             else if($param === "login")
                 $this->autentificaUser();
             else if($param === "reset")
-                $this->resetPassword();
+                $this->resetPassword($action);
         }
 
         private function adaugaUser() {
@@ -25,20 +25,32 @@ require_once "User.php";
                 if(isset($_POST["username"]) && empty(trim($_POST["username"]))){
                     $this->username_err = "Please enter a username.";
                 }
+                elseif (isset($_POST["email"]) && empty(trim($_POST["email"]))) {
+                    $this->email_err = "Please enter an email.";
+                }
                 else {
                     $sql = "SELECT id FROM users WHERE username = :username";
 
                     $stmt = BD::obtine_conexiune()->prepare($sql);
 
-                    $param_username = trim($_POST["username"]);
+                    $sql2 = "SELECT id FROM users WHERE email = :email";
 
-                    if($stmt -> execute ([ 'username' => $param_username ])) {
+                    $stmt2 = BD::obtine_conexiune()->prepare($sql2);
+
+                    $param_username = trim($_POST["username"]);
+                    $param_email = trim($_POST["email"]);
+
+                    if($stmt -> execute ([ 'username' => $param_username]) && $stmt2 -> execute ([ 'email' => $param_email])) {
 
                         if($stmt->rowCount()){
                             $this->username_err = "This username is already taken.";
                         }
+                        elseif ($stmt2->rowCount()) {
+                            $this->email_err = "This email is already used.";
+                        }
                         else {
                             $this->username = trim($_POST["username"]);
+                            $this->email = trim($_POST["email"]);
                         }
                     }
                     else echo "Oops! Something went wrong. Please try again later.";
@@ -66,11 +78,11 @@ require_once "User.php";
             }
 
 
-            if(empty($this->username_err) && empty($this->password_err) && empty($this->confirm_password_err)) {
-                $this->model->adaugaUser($this->username, $this->password);
+            if(empty($this->username_err) && empty($this->password_err) && empty($this->confirm_password_err) && empty($this->email_err)) {
+                $this->model->adaugaUser($this->username, $this->email, $this->password);
             }
 
-            $this->view = new VUser($this->username_err, $this->password_err, $this->confirm_password_err);
+            $this->view = new VUser($this->username_err, $this->email_err, $this->password_err, $this->confirm_password_err);
             $this->view->oferaVizualizareRegister();
         }
 
@@ -126,7 +138,7 @@ require_once "User.php";
             }
             else {
                 if (isset($_POST["username"]) && empty(trim($_POST["username"]))) {
-                    $this->username_err = "Please enter username.";
+                    $this->username_err = "Please enter username or email.";
                 } else if (isset($_POST["username"])) {
                     $this->username = trim($_POST["username"]);
                 }
@@ -141,9 +153,9 @@ require_once "User.php";
                 if (empty($this->username_err) && empty($this->password_err)) {
                     $valid = $this->model->autentificaUser($this->username, $this->password);
                 }
-                //}
+
                 if (!empty($valid) && (isset($_POST["username"]) || isset($_POST["password"])))
-                    $valid === "password" ? $this->password_err = "The password you entered was not valid." : $this->username_err = "No account found with that username.";
+                    $valid === "password" ? $this->password_err = "The password you entered was not valid." : $this->username_err = "No account found with that username or email.";
 
                 $this->view = new VUser($this->username_err, $this->password_err, null);
                 $this->view->oferaVizualizareLogin();
@@ -151,35 +163,41 @@ require_once "User.php";
             
         }
 
-        public function resetPassword() {
-            if(isset($_POST["password"]) && empty(trim($_POST["password"]))){
-                $this->password_err = "Please enter new password.";     
-            } 
-            else if(isset($_POST["password"]) && strlen(trim($_POST["password"])) < 6) {
-                $this->password_err = "Password must have at least 6 characters.";
-            }
-            else if(isset($_POST["password"])) {
-                $this->password = trim($_POST["password"]);
-            }
-            
-            if(isset($_POST["confirm_password"]) && empty(trim($_POST["confirm_password"]))) {
-                $this->confirm_password_err = "Please confirm new password.";     
-            } 
+        public function resetPassword($action) {
+            if($action == "resetPass") {
+                if (isset($_POST["password"]) && empty(trim($_POST["password"])) || !isset($_POST["password"])) {
+                    $this->password_err = "Please enter new password.";
+                } else if (isset($_POST["password"]) && strlen(trim($_POST["password"])) < 6) {
+                    $this->password_err = "Password must have at least 6 characters.";
+                } else if (isset($_POST["password"])) {
+                    $this->password = trim($_POST["password"]);
+                }
 
-            else if(isset($_POST["confirm_password"])) {
-                $this->confirm_password = trim($_POST["confirm_password"]);
-                if(empty($this->password_err) && ($this->password != $this->confirm_password)) {
-                    $this->confirm_password_err = "Password did not match.";
+                if ((isset($_POST["confirm_password"]) && empty(trim($_POST["confirm_password"]))) || !isset($_POST["confirm_password"])) {
+                    $this->confirm_password_err = "Please confirm new password.";
+                } else if (isset($_POST["confirm_password"])) {
+                    $this->confirm_password = trim($_POST["confirm_password"]);
+                    if (empty($this->password_err) && ($this->password != $this->confirm_password)) {
+                        $this->confirm_password_err = "Password did not match.";
+                    }
+                }
+
+
+                if (empty($this->password_err) && empty($this->confirm_password_err)) {
+                    $this->model->resetPassword($_GET['token'] ,$this->password);
                 }
             }
-
-
-            if(empty($this->username_err) && empty($this->confirm_password_err)) {
-                $this->model->resetPassword($this->password);
+            elseif ($action == "emailSent") {
+                if (isset($_POST["email"]) && empty(trim($_POST["email"]))) {
+                    $this->email_err = "Please enter your email.";
+                } else if (isset($_POST["email"])) {
+                    $this->email = trim($_POST["email"]);
+                }
+                $this->model->sendEmail($this->email);
             }
             
-            $this->view = new VUser($this->username_err, $this->password_err, $this->confirm_password_err);
-            $this->view->oferaVizualizareReset();
+            $this->view = new VUser($this->username_err, $this->password_err, $this->confirm_password_err, $this->email_err);
+            $this->view->oferaVizualizareReset($action);
         }
 
     }

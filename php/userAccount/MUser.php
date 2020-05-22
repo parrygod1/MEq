@@ -2,11 +2,18 @@
 require_once __DIR__ . "/../db_utils/database_conn.php";
 require_once __DIR__ . "/UserRoles.php";
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer\Exception.php';
+require 'PHPMailer\PHPMailer.php';
+require 'PHPMailer\SMTP.php';
+
 
 class MUser {
 
-    public function adaugaUser($username_, $password_) {
-        $sql = 'INSERT INTO users (id, username, password, created_at, updated_at) VALUES (:id, :username, :password, sysdate(), sysdate())';
+    public function adaugaUser($username_, $email_, $password_) {
+        $sql = 'INSERT INTO users (id, username, email, password, created_at, updated_at) VALUES (:id, :username, :email, :password, sysdate(), sysdate())';
         $query = 'select max(id) as maxid from users';
     
         $stmt = BD::obtine_conexiune()->prepare($sql);
@@ -21,6 +28,7 @@ class MUser {
         if($stmt -> execute ([ 
             'id' => $newid,
             'username' => $username_,
+            'email' => $email_,
             'password' => $param_password ])) {
             
             $_SESSION["loggedin"] = true;
@@ -38,7 +46,7 @@ class MUser {
 
 
     public function autentificaUser($username_, $password_) {
-        $sql = 'SELECT id, username, password, role FROM users WHERE username = :username';
+        $sql = 'SELECT id, username, password, role FROM users WHERE username = :username OR email = :username';
         
         $stmt = BD::obtine_conexiune()->prepare($sql);
         $stmt -> execute ([
@@ -76,22 +84,19 @@ class MUser {
         return;
     }
 
-    public function resetPassword($password_) {
-        if (isset($_SESSION['userid'])) {
-            $temp_id = $_SESSION["userid"];
+    public function resetPassword($token, $password_) {
+        $sql = 'UPDATE users SET password = :password where token = :token';
+        $stmt = BD::obtine_conexiune()->prepare($sql);
 
-            $sql = 'UPDATE users SET password = :password where id = :id';
-            $stmt = BD::obtine_conexiune()->prepare($sql);
+        $param_password = password_hash($password_, PASSWORD_DEFAULT);
 
-            $param_password = password_hash($password_, PASSWORD_DEFAULT);
-
-            if ($stmt->execute([
-                'id' => $temp_id,
-                'password' => $param_password
-            ])){
-                header("location: ../../index.html");
-            }
+        if ($stmt->execute([
+            'password' => $param_password,
+            'token' => $token
+        ])){
+            header("location: login.php");
         }
+
     }
 
     public function autentificaSocial($username, $photo) {
@@ -154,6 +159,53 @@ class MUser {
 
                     header("location: ../../index.html");
             }
+        }
+    }
+
+    public function sendEmail($email) {
+        $token = bin2hex(random_bytes(50));
+
+        $sql = 'UPDATE users SET token = :token WHERE email = :email';
+        $stmt = BD::obtine_conexiune()->prepare($sql);
+        $stmt -> execute ([
+            'token' => $token,
+            'email' => $email
+        ]);
+
+        $sql = 'SELECT username from users WHERE email = :email';
+        $stmt = BD::obtine_conexiune()->prepare($sql);
+        $stmt -> execute ([
+            'email' => $email
+        ]);
+        $array = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        $mail = new PHPMailer(TRUE);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'tw.meq2020@gmail.com';
+            $mail->Password = 'tehnologiiweb';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            $mail->setFrom('tw.meq2020@gmail.com');
+            $mail->addAddress($email);
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Reset your password - MEq';
+            $msg = "Hello " . $array['username'] . "! Click on this <a href=\"http://localhost/MEq/php/userAccount/reset.php?action=resetPass&token=" . $token . "\">link</a> to reset your password on MEq. <br><br><br><br> Have a good day! <br><br>  Regards, <br>MEq team.";
+            $msg = wordwrap($msg, 70);
+
+            $mail->Body = $msg;
+
+            $mail->send();
+
+        }
+        catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
 }

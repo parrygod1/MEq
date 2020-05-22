@@ -1,3 +1,16 @@
+.upload-content {
+    resize: vertical;
+    overflow: auto;
+    font-size: 20px;
+    width: 70%;
+    height: 500px;
+    margin: auto;
+}
+
+.upload-content img {
+    intrinsicsize: "300 x 300"
+}
+
 .button-delete-question{
     height:40px;
     margin-top:5px;
