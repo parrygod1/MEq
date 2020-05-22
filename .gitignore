@@ -10,3 +10,4 @@ equation.html
 .idea/sqldialects.xml
 .idea/vcs.xml
 php/config.php
+php/configDomain.php
