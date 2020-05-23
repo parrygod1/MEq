@@ -1,0 +1,36 @@
+<html>
+<head>
+
+    <script
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+    </script>
+</head>
+<body>
+
+<div contenteditable="true" id="formula"></div>
+
+A: <input type="text" id="valueA">
+<!--B: <input type="text" id="valueB">
+C: <input type="text" id="valueC"> -->
+
+<p><input type="button" value="Update" onclick="DynamicMJ.update()" /></p>
+
+<script>
+    var DynamicMJ = {
+        formula: document.getElementById("formula"),
+
+        update: function () {
+            var a = document.getElementById("valueA").value;
+
+            /*b = document.getElementById("valueB").value;
+            var c = document.getElementById("valueC").value;*/
+            //var tex = "\\frac{3}{2}+ \\frac{"+b+"}{2 + 5 * 12} = \\frac{"+c+"}{5}";
+            this.formula.innerHTML = "\\["+ a +"\\]";
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub,this.formula]);
+        }
+    };
+    //DynamicMJ.update();
+</script>
+
+</body>
+</html>

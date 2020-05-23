@@ -70,7 +70,7 @@ class VPostContent
                 <input class="fa fa-paragraph" name="insertParagraph" type="button" value="&#xf1dd" onclick="execCmd('insertParagraph')">
                 <input class="fa fa-bold" name="insertHorizontalRule" type="button" value="HR" onclick="execCmd('insertHorizontalRule')">
                 <input class="fa fa-bold" name="insertLatex" type="button" value="TeX" onclick="execCmdWithArgument('insertText', '$$ 1+1=2 $$')">
-                <input class="fa fa-bold" name="renderLatex" type="button" value="TeX-Render" onclick="MathJax.Hub.Typeset()">
+                <input class="fa fa-bold" name="renderLatex" type="button" value="TeX-Render" onclick="MathJax.Hub.Typeset();">
                 <input class="fa fa-bold" name="renderLatex" type="button" value="Reset" onclick="execCmd('removeFormat')">
                 <br>
                 <select onclick="execCmdWithArgument('formatBlock', this.value)">
@@ -102,7 +102,57 @@ class VPostContent
                 Color: <input type="color" onchange="execCmdWithArgument('foreColor', this.value);">
                 Background: <input type="color" onchange="execCmdWithArgument('hiliteColor', this.value);">
 
+                <br>
+                <input class="fa fa-bold" id="assistant-button" type="button" value="Math assistant">
+                <div id="math-assistant">
+
+                </div>
+
             </div>
+
+            <div id="math-assistant" class="math-assistantt">
+                <div class="math-assistant-content">
+                    <span class="assistant-close">&times;</span>
+                    <input class="fa fa-subscript" name="start" type="button" value="Start equation" style="width: 100px; margin-top: 15px; margin-bottom: 10px;">
+                    <input class="fa fa-subscript" name="end" type="button" value="End equation"  style="width: 100px; margin-top: 15px; margin-bottom: 10px;">
+                    <br>
+                    <input class="fa fa-bold" name="fraction" type="button" value="&#189">
+                    <input class="fa fa-subscript" name="subscript" type="button" value="&#xf12c" >
+                    <input class="fa fa-superscript" name="superscript" type="button" value="&#xf12b" >
+                    <input class="fa fa-bold" name="not-equal" type="button" value="&#x226D">
+                    <input class="fa fa-bold" name="equal-less" type="button" value="&#x2264">
+                    <input class="fa fa-bold" name="equal-greater" type="button" value="&#x2265">
+                    <input class="fa fa-bold" name="paralel" type="button" value="&#x2225">
+                    <input class="fa fa-bold" name="identical" type="button" value="&#x2261">
+
+                    <input class="fa fa-bold" name="sigma" type="button" value="&#931">
+                    <input class="fa fa-bold" name="intersect" type="button" value="&#x2229">
+                    <input class="fa fa-bold" name="union" type="button" value="&#x222A">
+                    <input class="fa fa-bold" name="integral" type="button" value="&#x222B">
+
+                    <input class="fa fa-bold" name="for-all" type="button" value="&#x2200">
+                    <input class="fa fa-bold" name="partial-differential" type="button" value="&#x2202">
+                    <input class="fa fa-bold" name="exists" type="button" value="&#x2203">
+                    <input class="fa fa-bold" name="not-exists" type="button" value="&#x2204">
+                    <input class="fa fa-bold" name="empty-set" type="button" value="&#x2205">
+                    <input class="fa fa-bold" name="element-of" type="button" value="&#x2208">
+                    <input class="fa fa-bold" name="not-element-of" type="button" value="&#x2209">
+                    <input class="fa fa-bold" name="product" type="button" value="&#x220F">
+                    <input class="fa fa-bold" name="root" type="button" value="&#x221A">
+
+                    <input class="fa fa-bold" name="subset-of" type="button" value="&#x2282">
+                    <input class="fa fa-bold" name="not-subset-of" type="button" value="&#x2284">
+                    <input class="fa fa-bold" name="infinity" type="button" value="&#x223E">
+                    <input class="fa fa-bold" name="pi" type="button" value="&#x03D6">
+                    <input class="fa fa-bold" name="epsilon" type="button" value="&#x03B5">
+                    <input class="fa fa-bold" name="phi" type="button" value="&#x03C6">
+                    <input class="fa fa-bold" name="omega" type="button" value="&#x03C9">
+
+
+
+                </div>
+            </div>
+
             <div contenteditable class="upload-content" name="docContent" id="docContent" style="border:solid 1px #999; padding:10px; resize: none;"></div>
             <input type="hidden" id="docContent_hidden" name="docContent" required="required" />
 
@@ -165,7 +215,7 @@ class VPostContent
                             img.src = e.target.result;
                             img.height = 300;
                             img.width = 300;
-                            img.int
+
 
                             div.appendChild(img);
                         };
@@ -186,6 +236,7 @@ class VPostContent
                 document.getElementById("docContent_hidden").value = document.getElementById("docContent").innerHTML;
                 questionsToJSON();
             }
+
         </script>
         <script src="js/quiz/quiz_editor.js"></script>
 <?php }
