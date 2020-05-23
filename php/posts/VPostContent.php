@@ -104,13 +104,10 @@ class VPostContent
 
                 <br>
                 <input class="fa fa-bold" id="assistant-button" type="button" value="Math assistant">
-                <div id="math-assistant">
-
-                </div>
 
             </div>
 
-            <div id="math-assistant" class="math-assistantt">
+            <div id="math-assistant">
                 <div class="math-assistant-content">
                     <span class="assistant-close">&times;</span>
                     <input class="fa fa-subscript" name="start" type="button" value="Start equation" style="width: 100px; margin-top: 15px; margin-bottom: 10px;">
