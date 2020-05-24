@@ -9,7 +9,7 @@
     <link rel="stylesheet" type = "text/css" href="css/style_global.css" />
     <link rel="stylesheet" type = "text/css" href="css/style_upload.css" />
     <link rel="stylesheet" type = "text/css" href="css/navbar.css" />
-    <link rel="stylesheet" type = "text/css" href="test.css" />
+    <link rel="stylesheet" type = "text/css" href="css/math_assistant.css" />
     <link rel="stylesheet" type="text/css" href="css/resource/profil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -17,7 +17,7 @@
 <body>
     
     <?php
-        include 'navbar.php'; 
+        include 'navbar.php';
         include 'php/posts/upload_page.php'; 
     ?>
     <script src="js/navbar.js"></script>

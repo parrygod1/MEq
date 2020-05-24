@@ -12,32 +12,38 @@
 }
 
 .math-assistant-content {
-    background-color: blueviolet;
+    background-color: #ad75cf;
     position: absolute;
-    height: 300px;
-    width: 400px;
-    margin: -150px 0 0 -200px;
+    height: 470px;
+    width: 540px;
+    margin: -235px 0 0 -270px;
     top: 50%;
     left: 50%;
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.6);
 }
 
 .math-assistant-content input {
-    height: 50px;
-    width: 50px;
+    height: 35px;
+    width: 35px;
+    background-color: #ffc2e2;
+}
+
+.math-assistant-content input:hover {
+    background-color: #ca96c7;
 }
 
 .assistant-close {
-    color: #efefef;
+    color: #ffc2e2;
     font-size: 28px;
     font-weight: bold;
     position: absolute;
-    margin-left: -85px;
+    margin-left: 340px;
 }
 
 .assistant-close:hover,
 .assistant-close:focus {
-    color: #e5e5e5;
+    color: #ca96c7;
     text-decoration: none;
     cursor: pointer;
 }
+

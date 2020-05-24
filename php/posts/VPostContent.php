@@ -40,7 +40,6 @@ class VPostContent
 
     public function viewUploadPage()
     { ?>
-
         <div class="title-main">Create a theory page</div>
         <hr class="section-divider-bar">
         <form action="" method="POST" enctype="multipart/form-data" onsubmit="prepareDiv()" id="uploadPage">
@@ -69,7 +68,6 @@ class VPostContent
                 <input class="fa fa-list-ol" name="insertOrderedList" type="button" value="&#xf0cb" onclick="execCmd('insertOrderedList')">
                 <input class="fa fa-paragraph" name="insertParagraph" type="button" value="&#xf1dd" onclick="execCmd('insertParagraph')">
                 <input class="fa fa-bold" name="insertHorizontalRule" type="button" value="HR" onclick="execCmd('insertHorizontalRule')">
-                <input class="fa fa-bold" name="insertLatex" type="button" value="TeX" onclick="execCmdWithArgument('insertText', '$$ 1+1=2 $$')">
                 <input class="fa fa-bold" name="renderLatex" type="button" value="TeX-Render" onclick="MathJax.Hub.Typeset();">
                 <input class="fa fa-bold" name="renderLatex" type="button" value="Reset" onclick="execCmd('removeFormat')">
                 <br>
@@ -109,43 +107,108 @@ class VPostContent
 
             <div id="math-assistant">
                 <div class="math-assistant-content">
+                    <div id="close-tags">
                     <span class="assistant-close">&times;</span>
-                    <input class="fa fa-subscript" name="start" type="button" value="Start equation" style="width: 100px; margin-top: 15px; margin-bottom: 10px;">
-                    <input class="fa fa-subscript" name="end" type="button" value="End equation"  style="width: 100px; margin-top: 15px; margin-bottom: 10px;">
+                    <input class="fa fa-subscript" name="start" type="button" value="Start equation" style="width: 100px; margin-top: 15px; margin-bottom: 10px; background-color: #caff8a;" >
+                    <input class="fa fa-subscript" name="end" type="button" value="End equation"  style="width: 100px; margin-top: 15px; background-color: #ff6666;" >
                     <br>
-                    <input class="fa fa-bold" name="fraction" type="button" value="&#189">
-                    <input class="fa fa-subscript" name="subscript" type="button" value="&#xf12c" >
-                    <input class="fa fa-superscript" name="superscript" type="button" value="&#xf12b" >
-                    <input class="fa fa-bold" name="not-equal" type="button" value="&#x226D">
-                    <input class="fa fa-bold" name="equal-less" type="button" value="&#x2264">
-                    <input class="fa fa-bold" name="equal-greater" type="button" value="&#x2265">
-                    <input class="fa fa-bold" name="paralel" type="button" value="&#x2225">
-                    <input class="fa fa-bold" name="identical" type="button" value="&#x2261">
-
-                    <input class="fa fa-bold" name="sigma" type="button" value="&#931">
-                    <input class="fa fa-bold" name="intersect" type="button" value="&#x2229">
-                    <input class="fa fa-bold" name="union" type="button" value="&#x222A">
-                    <input class="fa fa-bold" name="integral" type="button" value="&#x222B">
-
-                    <input class="fa fa-bold" name="for-all" type="button" value="&#x2200">
-                    <input class="fa fa-bold" name="partial-differential" type="button" value="&#x2202">
-                    <input class="fa fa-bold" name="exists" type="button" value="&#x2203">
-                    <input class="fa fa-bold" name="not-exists" type="button" value="&#x2204">
-                    <input class="fa fa-bold" name="empty-set" type="button" value="&#x2205">
-                    <input class="fa fa-bold" name="element-of" type="button" value="&#x2208">
-                    <input class="fa fa-bold" name="not-element-of" type="button" value="&#x2209">
-                    <input class="fa fa-bold" name="product" type="button" value="&#x220F">
-                    <input class="fa fa-bold" name="root" type="button" value="&#x221A">
-
-                    <input class="fa fa-bold" name="subset-of" type="button" value="&#x2282">
-                    <input class="fa fa-bold" name="not-subset-of" type="button" value="&#x2284">
-                    <input class="fa fa-bold" name="infinity" type="button" value="&#x223E">
-                    <input class="fa fa-bold" name="pi" type="button" value="&#x03D6">
-                    <input class="fa fa-bold" name="epsilon" type="button" value="&#x03B5">
-                    <input class="fa fa-bold" name="phi" type="button" value="&#x03C6">
-                    <input class="fa fa-bold" name="omega" type="button" value="&#x03C9">
 
 
+                        <!-- COMPARE -->
+                        <p style="margin-top: -10px; margin-bottom: 0;">Assign and compare</p>
+                        <input class="fa fa-bold" name="not-equal" type="button" value="&#x226D" >
+                        <input class="fa fa-bold" name="almost-equal" type="button" value="&#x2248" >
+                        <input class="fa fa-bold" name="identical" type="button" value="&#x2261" >
+                        <input class="fa fa-bold" name="less" type="button" value="&#x3c" >
+                        <input class="fa fa-bold" name="greater" type="button" value="&#x3e" >
+                        <input class="fa fa-bold" name="equal-less" type="button" value="&#x2264" >
+                        <input class="fa fa-bold" name="equal-greater" type="button" value="&#x2265" >
+                        <input class="fa fa-bold" name="minus-or-plus" type="button" value="&#x2213" >
+                        <input class="fa fa-bold" name="divides" type="button" value="&#x2223" >
+                        <input class="fa fa-bold" name="not-divides" type="button" value="&#x2224" >
+                        <input class="fa fa-bold" name="paralel" type="button" value="&#x2225" >
+                        <input class="fa fa-bold" name="not-paralel" type="button" value="&#x2226" >
+
+                        <br>
+
+                        <!-- OPERATIONS -->
+                        <p style="margin-top: -6px; margin-bottom: 0">Operations</p>
+                        <input class="fa fa-bold" name="fraction" type="button" value="&#189">
+                        <input class="fa fa-subscript" name="subscript" type="button" value="&#xf12c">
+                        <input class="fa fa-superscript" name="superscript" type="button" value="&#xf12b" >
+                        <input class="fa fa-bold" name="root" type="button" value="&#x221A" >
+                        <input class="fa fa-bold" name="root-3" type="button" value="&#x221B" >
+                        <input class="fa fa-bold" name="abs" type="button" value="|x|">
+                        <input class="fa fa-bold" name="percent" type="button" value="&#x25" >
+                        <input class="fa fa-bold" name="mod" type="button" value="mod" style="font-size: 12px;">
+
+                        <br>
+
+                        <!-- CALCULUS -->
+                        <p style="margin-top: -6px; margin-bottom: 0">Calculus</p>
+                        <input class="fa fa-bold" name="limit" type="button" value="lim" >
+                        <input class="fa fa-bold" name="integral" type="button" value="&#x222B" >
+                        <input class="fa fa-bold" name="double-integral" type="button" value="&#x222C" >
+                        <input class="fa fa-bold" name="partial-differential" type="button" value="&#x2202" >
+                        <input class="fa fa-bold" name="matrix" type="button" value="[&#x22c5&#x22c5&#x22c5]" style="font-size: 14px;" >
+                        <input class="fa fa-bold" name="determinant" type="button" value="|&#x22c5&#x22c5&#x22c5|" style="font-size: 14px;" >
+
+                        <br>
+
+                        <!-- TRIGONOMETRY -->
+                        <p style="margin-top: -6px; margin-bottom: 0">Trigonometry</p>
+                        <input class="fa fa-bold" name="degree" type="button" value="&#xb0" >
+                        <input class="fa fa-bold" name="sin" type="button" value="sin" >
+                        <input class="fa fa-bold" name="cos" type="button" value="cos" >
+                        <input class="fa fa-bold" name="tg" type="button" value="tg" >
+                        <input class="fa fa-bold" name="ctg" type="button" value="ctg" >
+                        <input class="fa fa-bold" name="angle" type="button" value="&#x2222" >
+
+                        <br>
+
+                        <!-- LOGICAL -->
+                        <p style="margin-top: -6px; margin-bottom: 0">Logical</p>
+                        <input class="fa fa-bold" name="to" type="button" value="&#x2192" >
+                        <input class="fa fa-bold" name="implies" type="button" value="&#x21d2" >
+                        <input class="fa fa-bold" name="equivalent" type="button" value="&#x21d4" >
+                        <input class="fa fa-bold" name="for-all" type="button" value="&#x2200" >
+                        <input class="fa fa-bold" name="exists" type="button" value="&#x2203" >
+                        <input class="fa fa-bold" name="not-exists" type="button" value="&#x2204" >
+
+                        <br>
+
+                        <!-- SETS -->
+                        <p style="margin-top: -6px; margin-bottom: 0">Set operations</p>
+                        <input class="fa fa-bold" name="natural" type="button" value="&#x2115" >
+                        <input class="fa fa-bold" name="integer" type="button" value="&#x2124" >
+                        <input class="fa fa-bold" name="rational" type="button" value="&#x211a" >
+                        <input class="fa fa-bold" name="real" type="button" value="&#x211d" >
+                        <input class="fa fa-bold" name="complex" type="button" value="&#x2102" >
+                        <input class="fa fa-bold" name="intersect" type="button" value="&#x2229" >
+                        <input class="fa fa-bold" name="union" type="button" value="&#x222A" >
+                        <input class="fa fa-bold" name="subset-of" type="button" value="&#x2282" >
+                        <input class="fa fa-bold" name="not-subset-of" type="button" value="&#x2284" >
+                        <input class="fa fa-bold" name="empty-set" type="button" value="&#x2205" >
+                        <input class="fa fa-bold" name="element-of" type="button" value="&#x2208" >
+                        <input class="fa fa-bold" name="not-element-of" type="button" value="&#x2209" >
+
+
+                        <!-- SYMBOLS -->
+                        <p style="margin-top: -6px; margin-bottom: 0">Symbols, letters and constants</p>
+                        <input class="fa fa-bold" name="function" type="button" value="&#x192" >
+                        <input class="fa fa-bold" name="cases" type="button" value="&#x192={&#x22c5&#x22c5&#x22c5" style="font-size: 10px;" >
+                        <input class="fa fa-bold" name="sigma" type="button" value="&#931" >
+                        <input class="fa fa-bold" name="product" type="button" value="&#x220F" >
+                        <input class="fa fa-bold" name="infinity" type="button" value="&#x223E" >
+                        <input class="fa fa-bold" name="e-constant" type="button" value="e" >
+                        <input class="fa fa-bold" name="pi" type="button" value="&#x03D6" >
+                        <input class="fa fa-bold" name="delta" type="button" value="&#x0394" >
+                        <input class="fa fa-bold" name="epsilon" type="button" value="&#x03B5" >
+                        <input class="fa fa-bold" name="phi" type="button" value="&#x03C6" >
+                        <input class="fa fa-bold" name="omega" type="button" value="&#x03C9" >
+
+
+                    </div>
 
                 </div>
             </div>
@@ -166,9 +229,8 @@ class VPostContent
             <hr>
             <div style="text-align: center; align-content: center;">
                 
-         </div> 
-        
-        
+         </div>
+
 
 
 
