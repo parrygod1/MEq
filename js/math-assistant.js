@@ -33,8 +33,8 @@ for(let i = 0; i < inputs.length; i++) {
             case 'equal-less': execCmdWithArgument('insertText', '\\le'); break;
             case 'equal-greater': execCmdWithArgument('insertText', '\\ge'); break;
             case 'minus-or-plus': execCmdWithArgument('insertText', '\\mp'); break;
-            case 'divides': execCmdWithArgument('insertText', '\\textbar'); break;
-            case 'not-divides': execCmdWithArgument('insertText', '\\not\\textbar'); break;
+            case 'divides': execCmdWithArgument('insertText', '\|'); break;
+            case 'not-divides': execCmdWithArgument('insertText', '\\not\|'); break;
             case 'paralel': execCmdWithArgument('insertText', '\\parallel'); break;
             case 'not-paralel': execCmdWithArgument('insertText', '\\not\\parallel'); break;
 
@@ -43,7 +43,7 @@ for(let i = 0; i < inputs.length; i++) {
             case 'superscript': execCmdWithArgument('insertText', 'x^{}'); break;
             case 'root': execCmdWithArgument('insertText', '\\sqrt{}'); break;
             case 'root-3': execCmdWithArgument('insertText', '\\sqrt[3]{}'); break;
-            case 'abs': execCmdWithArgument('insertText', '\\vert{}'); break;
+            case 'abs': execCmdWithArgument('insertText', '\|{}|'); break;
             case 'percent': execCmdWithArgument('insertText', '\\%'); break;
             case 'mod': execCmdWithArgument('insertText', '\\pmod {}'); break;
 
@@ -54,11 +54,9 @@ for(let i = 0; i < inputs.length; i++) {
             case 'matrix': execCmdWithArgument('insertText', '\\begin{pmatrix} 1 & x & x^2 \\\\ 1 & y & y^2 \\\\ 1 & z & z^2 \\end{pmatrix}'); break;
             case 'determinant': execCmdWithArgument('insertText', '\\begin{vmatrix} 1 & x & x^2 \\\\ 1 & y & y^2 \\\\ 1 & z & z^2 \\end{vmatrix}'); break;
 
-            case 'degree': execCmdWithArgument('insertText', '\\degree'); break;
-            case 'sin': execCmdWithArgument('insertText', '\\sin {}'); break;
-            case 'cos': execCmdWithArgument('insertText', '\\cos {}'); break;
-            case 'tg': execCmdWithArgument('insertText', '\\tg {}'); break;
-            case 'ctg': execCmdWithArgument('insertText', '\\ctg {}'); break;
+            case 'degree': execCmdWithArgument('insertText', '\^o'); break;
+            case 'sin': execCmdWithArgument('insertText', '\\sin ()'); break;
+            case 'cos': execCmdWithArgument('insertText', '\\cos ()'); break;
             case 'angle': execCmdWithArgument('insertText', '\\sphericalangle'); break;
 
             case 'to': execCmdWithArgument('insertText', '\\to'); break;

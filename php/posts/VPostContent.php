@@ -160,8 +160,6 @@ class VPostContent
                         <input class="fa fa-bold" name="degree" type="button" value="&#xb0" >
                         <input class="fa fa-bold" name="sin" type="button" value="sin" >
                         <input class="fa fa-bold" name="cos" type="button" value="cos" >
-                        <input class="fa fa-bold" name="tg" type="button" value="tg" >
-                        <input class="fa fa-bold" name="ctg" type="button" value="ctg" >
                         <input class="fa fa-bold" name="angle" type="button" value="&#x2222" >
 
                         <br>
