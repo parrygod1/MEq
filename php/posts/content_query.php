@@ -11,6 +11,6 @@
         BD::opreste_conexiune();
     }
     else {
-        header("location: /meq/search.php");
+        header("location: /../../search.php");
     }
 ?>

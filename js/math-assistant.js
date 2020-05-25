@@ -38,8 +38,8 @@ for(let i = 0; i < inputs.length; i++) {
             case 'paralel': execCmdWithArgument('insertText', '\\parallel'); break;
             case 'not-paralel': execCmdWithArgument('insertText', '\\not\\parallel'); break;
 
-            case 'fraction': execCmdWithArgument('insertText', '\frac{}{}'); break;
-            case 'subscript': execCmdWithArgument('insertText', '\log_2{}'); break;
+            case 'fraction': execCmdWithArgument('insertText', '\\frac{}{}'); break;
+            case 'subscript': execCmdWithArgument('insertText', '\\log_2{}'); break;
             case 'superscript': execCmdWithArgument('insertText', 'x^{}'); break;
             case 'root': execCmdWithArgument('insertText', '\\sqrt{}'); break;
             case 'root-3': execCmdWithArgument('insertText', '\\sqrt[3]{}'); break;

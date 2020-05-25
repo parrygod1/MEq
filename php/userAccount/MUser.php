@@ -14,7 +14,7 @@ require 'PHPMailer\SMTP.php';
 class MUser {
 
     public function adaugaUser($username_, $email_, $password_) {
-        $sql = 'INSERT INTO users (id, username, email, password, created_at, updated_at) VALUES (:id, :username, :email, :password, sysdate(), sysdate())';
+        $sql = 'INSERT INTO users (id, username, email, password, role, created_at, updated_at) VALUES (:id, :username, :email, :password, 0, sysdate(), sysdate())';
         $query = 'select max(id) as maxid from users';
     
         $stmt = BD::obtine_conexiune()->prepare($sql);
@@ -32,6 +32,7 @@ class MUser {
             'email' => $email_,
             'password' => $param_password ])) {
             
+            $_SESSION['role'] = UserRoles::USER;
             $_SESSION["loggedin"] = true;
             $_SESSION["userid"] = $newid;
             $_SESSION["username"] = $username_; 
@@ -71,8 +72,6 @@ class MUser {
                     $_SESSION['start'] = time();
                     $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);    
                     
-                    
-
                     header("location: ../../index.html");
             } else{
                 //$password_err = "The password you entered was not valid.";

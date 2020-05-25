@@ -7,7 +7,8 @@
     if(!$_SESSION)
         session_start();
 
-    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SESSION['userid']))
+    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true 
+    && isset($_SESSION['userid']) && intval($_SESSION['role']) !== UserRoles::BANNED)
     {
         $title = $content = $quiz = null;
         if(isset($_POST["docTitle"]))
