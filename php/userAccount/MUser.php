@@ -14,35 +14,37 @@ require 'PHPMailer\SMTP.php';
 class MUser {
 
     public function adaugaUser($username_, $email_, $password_) {
-        $sql = 'INSERT INTO users (id, username, email, password, role, created_at, updated_at) VALUES (:id, :username, :email, :password, 0, sysdate(), sysdate())';
-        $query = 'select max(id) as maxid from users';
-    
-        $stmt = BD::obtine_conexiune()->prepare($sql);
-        $stmt2 = BD::obtine_conexiune()->prepare($query);
-        
-        $stmt2 -> execute();
-		$response = $stmt2->fetch();
-		
-		$newid = $response["maxid"] + 1;
-        $param_password = password_hash($password_, PASSWORD_DEFAULT); 
-        
-        if($stmt -> execute ([ 
-            'id' => $newid,
-            'username' => $username_,
-            'email' => $email_,
-            'password' => $param_password ])) {
+        if(isset($_POST)){
+            $sql = 'INSERT INTO users (id, username, email, password, role, created_at, updated_at) VALUES (:id, :username, :email, :password, 0, sysdate(), sysdate())';
+            $query = 'select max(id) as maxid from users';
             
-            $_SESSION['role'] = UserRoles::USER;
-            $_SESSION["loggedin"] = true;
-            $_SESSION["userid"] = $newid;
-            $_SESSION["username"] = $username_; 
-            $_SESSION['start'] = time();
-            $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);   
+            $stmt = BD::obtine_conexiune()->prepare($sql);
+            $stmt2 = BD::obtine_conexiune()->prepare($query);
             
-            header("location: ../../index.html");
-        } 
-        else {
-            echo "Something went wrong. Please try again later.";
+            $stmt2 -> execute();
+	    	$response = $stmt2->fetch();
+            
+	    	$newid = $response["maxid"] + 1;
+            $param_password = password_hash($password_, PASSWORD_DEFAULT); 
+            
+            if($stmt -> execute ([ 
+                'id' => $newid,
+                'username' => $username_,
+                'email' => $email_,
+                'password' => $param_password ])) {
+                
+                $_SESSION['role'] = UserRoles::USER;
+                $_SESSION["loggedin"] = true;
+                $_SESSION["userid"] = $newid;
+                $_SESSION["username"] = $username_; 
+                $_SESSION['start'] = time();
+                $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);   
+                
+                header("location: ../../index.html");
+            } 
+            else {
+                echo "Something went wrong. Please try again later.";
+            }
         }
     }
 

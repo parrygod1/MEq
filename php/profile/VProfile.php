@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . "/../userAccount/UserRoles.php";
+
 class VProfile {
 
     private $user;
@@ -33,7 +35,7 @@ class VProfile {
                 </div>
 
                 <div class="user-name">
-                    <h2><?php echo $row['USERNAME'] ?></h2>
+                    <h2><?php echo $row['USERNAME']; if($row['ROLE'] == UserRoles::BANNED) echo ' - BANNED'; ?> </h2>
                 </div>
 
                 <div class="user-info" id="user-points">

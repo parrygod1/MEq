@@ -17,7 +17,7 @@ class MComment{
             return $cerere -> execute ([
                 'id_user' => $id_user,
                 'id_document' => $id_document,
-                'text' => $text,
+                'text' => htmlspecialchars($text),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]);

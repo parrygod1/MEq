@@ -14,7 +14,6 @@ if (isset($_POST["actiune"])) $actiune = $_POST["actiune"];
 if ($actiune == "Post Comment"){
     if(isset($_SESSION["userid"]) && $_SESSION["loggedin"] === true && isset($_SESSION["currentpageid"])){
         if(intval($_SESSION["role"]) == UserRoles::BANNED){
-            header("location: /../../search.php");
             unset($_POST);
         }
 
