@@ -19,8 +19,9 @@ class VPostContent
         } else {
             $row = $this->data->fetch(PDO::FETCH_ASSOC);
             
-            //show private documents only to admins
-            if ($row['PUBLIC'] == false && ( !isset($_SESSION['role']) || $_SESSION['role'] != UserRoles::ADMIN) ){
+            //show private documents only to admins or the user who posted it
+            if ($row['PUBLIC'] == false && ( !isset($_SESSION['role']) 
+                || $_SESSION['role'] != UserRoles::ADMIN) && $_SESSION['userid'] !== $row['ID_USER']){
                 echo '<div class="title-main">Post is private</div><hr class="section-divider-bar">';
                 BD::opreste_conexiune();
                 exit();

@@ -31,7 +31,8 @@
             </span>
             <div class="admin-content">
                 <div class="search-container">      
-                    <input type="text" id="searchbar" name="fname" placeholder="Enter a title...">
+                    <input type="text" id="searchbar" name="fname" placeholder="Search for a publication...">
+                    <input type="text" id="searchbar-quiz" placeholder="Search for a quiz...">
                 </div>
 
                 <div id="content">

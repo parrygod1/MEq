@@ -5,7 +5,7 @@ ob_start();
 
 class MPostContent{
     public function getPostContent($id_document){ 
-        $sql = 'SELECT d.ID, d.CONTENT, d.NAME, d.PUBLIC, q.ID as QUIZID, q.CONTENT as QUIZCONTENT from documents d 
+        $sql = 'SELECT d.ID, d.ID_USER, d.CONTENT, d.NAME, d.PUBLIC, q.ID as QUIZID, q.CONTENT as QUIZCONTENT from documents d 
         left join quizzes q on q.id_document = d.id where d.id =:id';
         $stmt1 = BD::obtine_conexiune()->prepare($sql);
         $stmt1 -> execute ([
@@ -25,6 +25,7 @@ class MPostContent{
 
     public function insertDocument($title, $content, $quiz, $user_id)
     {
+        $id_document = null;
         $sql = 'INSERT INTO documents (name, id_user, description, content) values (:name, :user_id, :description, :content)';
         $stmt = BD::obtine_conexiune()->prepare($sql);
         if ($stmt->execute([
@@ -35,20 +36,20 @@ class MPostContent{
         ])) {
             $sql1 = 'SELECT max(id) as maxi from documents';
             $stmt1 = BD::obtine_conexiune()->prepare($sql1);
-            $id_document = null;
             if ($stmt1->execute()) {
                 $row = $stmt1->fetch(PDO::FETCH_ASSOC);
                 $id_document = $row['maxi'];
             }
-            $sql2 = 'INSERT INTO quizzes (id_document, quiz_title, content) values (:id_document, :title, :content)';
-            $stmt2 = BD::obtine_conexiune()->prepare($sql2);
-            if ($stmt2->execute([
-                'id_document' => $id_document,
-                'content' => $quiz,
-                'title' => $title
-            ])) {
-                header("location: search.php");
+            if($quiz != '[]'){
+                $sql2 = 'INSERT INTO quizzes (id_document, quiz_title, content) values (:id_document, :title, :content)';
+                $stmt2 = BD::obtine_conexiune()->prepare($sql2);
+                $stmt2->execute([
+                    'id_document' => $id_document,
+                    'content' => $quiz,
+                    'title' => $title
+                ]);
             }
+            header("location: postpage.php?id=" . $id_document);
         }
     }
 }

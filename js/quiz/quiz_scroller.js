@@ -1,5 +1,5 @@
-var requestURI = 'php/quiz/quiz_query.php?id=';
-var postURI = 'php/quiz/quiz_updatescore.php'
+var requestURI = '/meq/php/quiz/quiz_query.php?id=';
+var postURI = '/meq/php/quiz/quiz_updatescore.php'
 
 var questionArray = []
 var questionSize = 0;
@@ -91,6 +91,7 @@ document.getElementById("button-next").addEventListener("click", function(){
     if(currentIndex < questionSize-1)
         currentIndex++;
     setQuestionInfo();
+    MathJax.Hub.Typeset()
     answerBox.value = "";
 });
 
@@ -98,6 +99,7 @@ document.getElementById("button-prev").addEventListener("click", function(){
     if(currentIndex > 0)
         currentIndex--;
     setQuestionInfo();
+    MathJax.Hub.Typeset()
     answerBox.value = "";
 });
 

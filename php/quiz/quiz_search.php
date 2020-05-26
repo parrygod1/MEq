@@ -7,12 +7,12 @@
     $like = '%' . strtolower(trim(htmlspecialchars($quizTitle))) . '%';
 
     $sql = null;
-    if($postTitle == '*new*')
-        $sql = 'SELECT ID, QUIZ_TITLE, CREATED_AT from quizzes order by CREATED_AT DESC limit 10';
+    if($quizTitle == '*new*')
+        $sql = 'SELECT ID, QUIZ_TITLE, CONTENT, CREATED_AT from quizzes order by CREATED_AT DESC limit 10';
     //else if($postTitle == '*top*')
         //$sql = 'SELECT ID, NAME, DESCRIPTION, VIEWS, CREATED_AT from documents where public=true order by VIEWS DESC limit 10';
     else
-        $sql = 'SELECT ID, QUIZ_TITLE, CREATED_AT from quizzes where lower(NAME) like :name';
+        $sql = 'SELECT ID, QUIZ_TITLE, CONTENT, CREATED_AT from quizzes where lower(QUIZ_TITLE) like :name and CONTENT not like \'[]\' ';
 
     $stmt = BD::obtine_conexiune()->prepare($sql);
     $stmt -> execute ([
@@ -20,7 +20,7 @@
     ]);
 
     $found = $stmt->fetchAll(PDO::FETCH_ASSOC); 
-    echo json_encode($found); //this is sent as json to quiz_ajaxsearch.js
+    echo json_encode($found); //this is sent as json to ajaxsearch
     exit();
 
 ?>

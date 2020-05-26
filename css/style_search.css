@@ -10,6 +10,12 @@
     display: none;
 }
 
+#searchbar-quiz{
+    font-size: 20px;
+    width: 50%;
+    display: none;
+}
+
 .search-divider-bar{
     margin-left: 20%;
     margin-right: 20%;
