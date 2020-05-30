@@ -69,7 +69,7 @@ class VProfile {
                 <div class="pagination">
                     <?php if(!empty($_GET['page']) && $_GET['page'] > 1) { ?>
                         <a href="?id=<?php echo $this->idUser; ?>&page=<?php echo $_GET['page'] - 1; ?>">&lt;</a>
-                    <?php } if(empty($_GET['page']) || $_GET['page'] < $pages) { ?>
+                    <?php } if((empty($_GET['page']) ? 1 : $_GET['page']) < $pages) { ?>
                         <a href="?id=<?php echo $this->idUser; ?>&page=<?php echo (empty($_GET['page']) ? 1 : $_GET['page']) + 1; ?>">&gt;</a>
                     <?php } ?>
                 </div>

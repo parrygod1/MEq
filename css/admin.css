@@ -1,15 +1,15 @@
 #admin-panel {
-    width: 100%;
     margin: 0 auto;
-    height: 100%;
+    width: 100%;
+    height: calc(100% - 72px);
 }
 
 .admin-content {
-    width: auto;
-    margin-left: 250px;
-    height: 100%;
+    float: left;
+    width: calc(100% - 300px);
+    height: calc(100% - 50px);
     background-color: #f6f6f6;
-    padding: 15px;
+    padding: 25px;
 }
 
 .admin-content p {
@@ -161,7 +161,8 @@
     }
 
     .admin-content {
-        margin-left: 0;
+        float: none;
+        width: auto;
         z-index: 2;
     }
 }
