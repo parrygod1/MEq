@@ -5,10 +5,14 @@ class VProfile {
 
     private $user;
     private $idUser;
+    private $publications;
+    private $maxPerPage;
 
-    public function __construct($user, $idUser) {
-        $this->user = $user;
-        $this->idUser = $idUser;
+    public function __construct($parameters) {
+        $this->user = $parameters[0];
+        $this->idUser = $parameters[1];
+        $this->publications = $parameters[2];
+        $this->maxPerPage = $parameters[3];
     }
 
     public function viewProfile() {
@@ -16,6 +20,8 @@ class VProfile {
             echo 'Error 404 user not found';
         } else {
             $row = $this->user->fetch(PDO::FETCH_ASSOC);
+            $publications = $this->publications->fetchAll(PDO::FETCH_ASSOC);
+            $pages = ceil($row['DOC'] / $this->maxPerPage);
             ?>
                 <img src="<?php echo $row['IMAGE_PATH'] ?>">
 
@@ -39,11 +45,11 @@ class VProfile {
                 </div>
 
                 <div class="user-info" id="user-points">
-                    <h2><?php echo "Points: ".$row['SCORE'] ?></h2>
+                    <h2><?php echo "Points: ".$row['SCORE']; ?></h2>
                 </div>
 
                 <div class="user-info" id="user-publications">
-                    <h2><?php echo "Publications: " . $row['DOC'];?></h2>
+                    <h2><?php echo "Publications: " . $row['DOC']; ?></h2>
                 </div>
 
                 <?php if(isset($_SESSION['userid']) && $this->idUser === $_SESSION['userid']) { ?>
@@ -51,19 +57,24 @@ class VProfile {
                 <?php } ?>
             </div>
 
-            <div id="user-posts">
-            <hr class="search-divider-bar">
-            <div class="post">
-                <div class="post-desc">
-                    <a class="post-title" href="postpage.php?id=1">Pythagorean Theorem</a>
-                    <div class="post-shortdesc">The Pythagorean theorem, also known as Pythagoras' theorem, is a fundamental
-                        relation in Euclidean geometry among the three sides of a right triangle.
+            <div id="publications-list">
+                <?php foreach($publications as $publication): ?>
+                    <div class="publication">
+                        <a class="publication-title" href="postpage.php?id=<?php echo $publication['ID']; ?>">
+                            <h2><?php echo $publication['NAME']; ?></h2>
+                        </a>
+                        <p><?php echo $publication['DESCRIPTION']; ?></p>
                     </div>
-                    <div class="post-date">Posted on 2020-04-09</div>
+                <?php endforeach; ?>
+                <div class="pagination">
+                    <?php if(!empty($_GET['page']) && $_GET['page'] > 1) { ?>
+                        <a href="?id=<?php echo $this->idUser; ?>&page=<?php echo $_GET['page'] - 1; ?>">&lt;</a>
+                    <?php } if(empty($_GET['page']) || $_GET['page'] < $pages) { ?>
+                        <a href="?id=<?php echo $this->idUser; ?>&page=<?php echo (empty($_GET['page']) ? 1 : $_GET['page']) + 1; ?>">&gt;</a>
+                    <?php } ?>
                 </div>
             </div>
-            <hr class="search-divider-bar">
-
+  
 
 <!--            <div class = "profile-photo">-->
 <!--                <p>-->

@@ -1,5 +1,5 @@
-var requestURI = '/php/admin/user_query.php?';
-var postURI = '/php/admin/user_update.php?';
+var requestURI = '/meq/php/admin/user_query.php?';
+var postURI = '/meq/php/admin/user_update.php?';
 
 var textBoxName = document.getElementById('searchbar-name');
 var textBoxId = document.getElementById('searchbar-id');
@@ -8,8 +8,9 @@ resultContainer = document.getElementById('search-results');
 
 var ajax = null;
 
-textBoxName.onkeyup = searchInputChanged;
-textBoxId.onkeyup = searchInputChanged;
+var searchButton = document.getElementById('search-button');
+
+searchButton.onclick = searchInputChanged;
 
 function searchInputChanged (){
     let valname = textBoxName.value;
@@ -79,7 +80,7 @@ function searchForData(valueName, valueId) {
 			requestHeader += 'name=' + valueName;
 	}
 
-    ajax.open('GET', requestURI + requestHeader , true);
+  ajax.open('GET', requestURI + requestHeader , true);
 	ajax.send();
 }
 

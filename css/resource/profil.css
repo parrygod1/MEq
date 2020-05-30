@@ -2,10 +2,14 @@ body {
   height: 100vh;
 }
 
+.nav-container {
+  height: 10%;
+}
+
 .content-container {
   display: flex;
   height: calc(90% - 70px);
-  margin: 5% 15%;
+  margin: 0px 5%;
 }
 
 #profile-information {
@@ -18,8 +22,7 @@ body {
 }
 
 #profile-information img {
-  margin: 0 auto;
-  margin-bottom: 10px;
+  margin: 10px auto;
   max-width: 100%;
   width: 190px;
   max-height: 100%;
@@ -126,12 +129,25 @@ body {
   background: darkred;
 }
 
-#user-posts {
+#publications-list {
   width: 100%;
   margin-left: 10px;
 }
 
+.publication-title {
+  text-decoration: none;
+}
+
+.publication-title:hover {
+  text-decoration: underline;
+}
+
 @media only screen and (max-width: 768px) {
+
+  .nav-container {
+    height: auto;
+  }
+
   .content-container {
     flex-wrap: wrap;
     flex-direction: row;

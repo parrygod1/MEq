@@ -74,6 +74,7 @@ class VAdmin {
                     <input type="text" id="searchbar-name" name="fname" placeholder="string">
                     <label for="fid">Id:</label>
                     <input type="text" id="searchbar-id" name="fid" placeholder="number">
+                    <button id="search-button">Search</button>
                 </div>
 
                 <div id="search-results"></div>
