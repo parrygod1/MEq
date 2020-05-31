@@ -210,6 +210,86 @@ class MUser {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
+
+    public function sendDeletionEmail($id_user) {
+        $token = bin2hex(random_bytes(50));
+
+        $sql = 'select email from users where id = :id';
+        $stmt = BD::obtine_conexiune()->prepare($sql);
+        $stmt -> execute ([
+            'id' => $id_user,
+        ]);
+        $email = $stmt->fetch(PDO::FETCH_ASSOC)['email'];
+
+        $sql = 'UPDATE users SET token = :token WHERE email = :email';
+        $stmt = BD::obtine_conexiune()->prepare($sql);
+        $stmt -> execute ([
+            'token' => $token,
+            'email' => $email
+        ]);
+        echo $token;
+        $sql = 'SELECT username from users WHERE email = :email';
+        $stmt = BD::obtine_conexiune()->prepare($sql);
+        $stmt -> execute ([
+            'email' => $email
+        ]);
+        $array = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        $mail = new PHPMailer(TRUE);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'tw.meq2020@gmail.com';
+            $mail->Password = 'tehnologiiweb';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            $mail->setFrom('tw.meq2020@gmail.com');
+            $mail->addAddress($email);
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Delete your account - MEqX';
+            $msg = "Hello, " . $array['username'] . "! Click on this <a href=\"" . DomainPath::DOMAINPROTOCOL . "://" . DomainPath::MAINDOMAIN . "/php/userAccount/delete.php?token=" . $token . "\">link</a> to delete your account on MEqX. <br><br><br><br> If you didn't request this account deletion please reset your password. <br><br>  Regards, <br>MEqX team.";
+            $msg = wordwrap($msg, 70);
+            $mail->Body = $msg;
+
+            $mail->send();
+
+        }
+        catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
+
+    public function deleteUser($token) {
+        $sql = "select id from users
+        WHERE token = :token";
+        $request = BD::obtine_conexiune()->prepare($sql);
+        $request->execute([
+            'token' => $token
+        ]);
+        $id_user = $request->fetch(PDO::FETCH_ASSOC)['id'];
+        echo $id_user;
+        $sql = "DELETE from users
+        WHERE token = :token";
+        $request = BD::obtine_conexiune()->prepare($sql);
+        $request->execute([
+            'token' => $token
+        ]);
+
+        $sql = "UPDATE documents
+        SET id_user = -1, public = 0
+        WHERE id_user = :id_user";
+        $request = BD::obtine_conexiune()->prepare($sql);
+        $request->execute([
+            'id_user' => $id_user
+        ]);
+
+        header("location: logout.php");
+    }
 }
 
 
