@@ -1,5 +1,5 @@
-var requestURI = '/meq/php/quiz/quiz_query.php?id=';
-var postURI = '/meq/php/quiz/quiz_updatescore.php'
+var requestURI = 'php/quiz/quiz_query.php?id=';
+var postURI = 'php/quiz/quiz_updatescore.php'
 
 var questionArray = []
 var questionSize = 0;

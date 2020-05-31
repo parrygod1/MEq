@@ -1,5 +1,6 @@
 <?php
 require_once 'facebook/vendor/autoload.php';
+require_once 'google/vendor/autoload.php';
 
 class User {
     protected $google_client;
