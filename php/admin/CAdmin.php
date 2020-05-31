@@ -13,11 +13,13 @@ class CAdmin {
                     $this->model->handleDocument($decision, $idDoc);
                 }
                 $docs = $this->model->showDocuments();
-                $view = new VAdmin($docs);
+                $row_count = $this->model->docCount();
+                $param = array($this->model->maxPerPage, $row_count);
+                $view = new VAdmin($docs, $param);
                 $view->display();
             }
             else {
-                $view = new VAdmin(null);
+                $view = new VAdmin(null, array(null, null));
                 $view->displayUserSearch();
             }
         }

@@ -162,6 +162,7 @@
 
     .admin-content {
         float: none;
+        height: auto;
         width: auto;
         z-index: 2;
     }
