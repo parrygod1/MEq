@@ -1,5 +1,7 @@
 <?php
 
+require_once  __DIR__ . '/../userAccount/UserRoles.php';
+
 class CAdmin {
     private $model;
 
@@ -18,14 +20,19 @@ class CAdmin {
                 $view = new VAdmin($docs, $param);
                 $view->display();
             }
+            else if ($action === 'exportDocs') {
+                $this->model->exportDocs();
+            }
+            else if ($action === 'exportUsers') {
+                $this->model->exportUsers();
+            }
             else {
                 $view = new VAdmin(null, array(null, null));
                 $view->displayUserSearch();
             }
         }
         else {
-            header("location: index.html");
-
+            header("location: ../../index.html");
         }
     }
     
