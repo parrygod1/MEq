@@ -5,7 +5,7 @@ require_once __DIR__ . "/../configDomain.php";
 class MAdmin
 {
 
-    public $maxPerPage = 7;
+    public $maxPerPage = 6;
 
 
     public function usersCount()

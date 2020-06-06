@@ -18,7 +18,7 @@ class VAdmin {
         $publications = $this->data->fetchAll(PDO::FETCH_ASSOC);  
         $pages = ceil($this->docCount / $this->maxPerPage); ?>
 
-        <div id="admin-panel">
+        <div id="content-panel">
             <div class="side-bar" id="js-side-bar">
                 <form action="" method="POST" enctype="multipart/form-data">
                     <ul id="side-nav">
@@ -33,7 +33,7 @@ class VAdmin {
                 <i class="fa fa-user-secret"></i>
             </span>
 
-            <div class="admin-content">
+            <div class="main-content">
             <button onclick='window.location = "php/admin/publications.php?action=exportDocs"'>Export Publications CSV</button>
             <?php foreach($publications as $publication): ?>
                 <div class="admin-box">
@@ -65,7 +65,7 @@ class VAdmin {
 
     public function displayUserSearch(){
         ?>
-        <div id="admin-panel">
+        <div id="content-panel">
             <div class="side-bar" id="js-side-bar">
                 <form action="" method="POST" enctype="multipart/form-data">
                     <ul id="side-nav">
@@ -78,14 +78,15 @@ class VAdmin {
             <span class="side-bar-mobile" id="js-side-bar-mobile" onclick="toggleSidebar()">
                 <i class="fa fa-user-secret"></i>
             </span>
-            <div class="admin-content">
-            <button onclick='window.location = "php/admin/adminUsers.php?action=exportUsers"'>Export Users CSV</button>
-                <div class="search-container">
+            <div class="main-content">
+                <div class="util-container">
                     <label for="fname">Username:</label>
                     <input type="text" id="searchbar-name" name="fname" placeholder="string">
                     <label for="fid">Id:</label>
                     <input type="text" id="searchbar-id" name="fid" placeholder="number">
-                    <button id="search-button">Search</button>   
+                    <button id="search-button">Search</button>
+                    <button id="export-button" onclick='window.location = "php/admin/adminUsers.php?action=exportUsers"'>Export Users CSV</button> 
+                    <div style="clear: both;"></div>  
                 </div>
                 
                 <div id="search-results"></div>

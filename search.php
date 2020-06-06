@@ -16,7 +16,7 @@
 <body>
 <?php include 'navbar.php';
 ?>
-    <div id="admin-panel">
+    <div id="content-panel">
             <div class="side-bar" id="js-side-bar">
                 <ul id="side-nav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -29,8 +29,8 @@
             <span class="side-bar-mobile" id="js-side-bar-mobile" onclick="toggleSidebar()">
                 <i class="fa fa-list-ul"></i>
             </span>
-            <div class="admin-content">
-                <div class="search-container">      
+            <div class="main-content">
+                <div id="search-container">
                     <input type="text" id="searchbar" name="fname" placeholder="Search for a publication...">
                     <input type="text" id="searchbar-quiz" placeholder="Search for a quiz...">
                 </div>

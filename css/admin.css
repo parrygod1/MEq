@@ -1,23 +1,9 @@
-#admin-panel {
-    margin: 0 auto;
-    width: 100%;
-    height: calc(100% - 72px);
-}
-
-.admin-content {
-    float: left;
-    width: calc(100% - 300px);
-    height: calc(100% - 50px);
-    background-color: #f6f6f6;
-    padding: 25px;
-}
-
-.admin-content p {
-    color: #999999;
-    font-size: 0.73em;
+body {
+    background: #f6f6f6;
 }
 
 .admin-box {
+    height: 13%;
     margin-top: 15px;
 }
 
@@ -153,8 +139,14 @@
     font-weight: bold;
 }
 
-.search-container {
+.util-container {
     margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#export-button {
+    margin-left: auto;
 }
 
 #pages {
@@ -164,10 +156,17 @@
 @media only screen and (max-width: 767px) {
     
 
-    .search-container {
-        display: flex;
-        flex-wrap: wrap;
+    .util-container {
+        margin: 0;
         flex-direction: column;
+    }
+
+    .util-container button {
+        margin-top: 10px;
+    }
+
+    #export-button {
+        margin-left: 0;
     }
 
     #admin-nav li a {
@@ -175,11 +174,15 @@
         font-size: 15px;
     }
 
-    .admin-content {
+    .main-content {
         float: none;
         height: auto;
         width: auto;
         z-index: 2;
+    }
+
+    .admin-box {
+        height: auto;
     }
 }
 

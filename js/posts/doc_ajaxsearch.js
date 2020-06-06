@@ -1,6 +1,7 @@
 var requestURI = '/meq/php/posts/post_query.php?title=';
 var requestQuizURI = '/meq/php/quiz/quiz_search.php?title=';
 
+var searchContainer = document.getElementById('search-container');
 var textBox = document.getElementById('searchbar');
 var textBoxQuiz = document.getElementById('searchbar-quiz');
 
@@ -202,11 +203,13 @@ function noPosts() {
 function enableSearch() {
 	disableQuizSearch();
 	textBox.setAttribute('style', 'display: initial');
+	searchContainer.setAttribute('style', 'display: block');
 	clearResult();
 }
 
 function disableSearch(){
 	textBox.setAttribute('style', 'display: none');
+	searchContainer.setAttribute('style', 'display: none');
 }
 
 function searchTop(){
@@ -222,12 +225,14 @@ function searchNew(){
 function enableQuizSearch(){
 	disableSearch();
 	textBoxQuiz.setAttribute('style', 'display: initial');
+	searchContainer.setAttribute('style', 'display: block');
 	clearResult();
 	searchForQuiz('*new*');
 }
 
 function disableQuizSearch(){
 	textBoxQuiz.setAttribute('style', 'display: none');
+	searchContainer.setAttribute('style', 'display: none');
 }
 
 searchNew();
