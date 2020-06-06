@@ -12,6 +12,7 @@ class VAdmin {
     }
 
     public function display() {
+        $page = empty($_GET['page']) ? 1 : $_GET['page'];
         $this->maxPerPage;
         $this->docCount = $this->docCount->fetch(PDO::FETCH_ASSOC)['docCount'];
         $publications = $this->data->fetchAll(PDO::FETCH_ASSOC);  
@@ -51,7 +52,7 @@ class VAdmin {
             
             <div class="pagination">
                 <?php for($x = 1; $x <= $pages; $x++):?>
-                    <a href="?page=<?php echo $x; ?>"><?php echo $x;?></a>
+                    <a <?php if((int)$page === $x) { echo 'class="selected"';} ?> href="?page=<?php echo $x; ?>"><?php echo $x;?></a>
                 <?php endfor; ?>
             </div>
 

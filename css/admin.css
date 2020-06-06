@@ -55,7 +55,6 @@
     width: 20px;
     height: 20px;
     background-color: rgb(119, 183, 255);
-    margin-left: auto;
     text-align: center;
     cursor: pointer;
     text-decoration: none;
@@ -144,6 +143,14 @@
 #unban-btn:hover {
     background:linear-gradient(to bottom, #68a54b 5%, #74ad5a 100%);
 	background-color:#68a54b;
+}
+
+.pagination {
+    margin-top: 10px;
+}
+
+.pagination a.selected {
+    font-weight: bold;
 }
 
 @media only screen and (max-width: 767px) {

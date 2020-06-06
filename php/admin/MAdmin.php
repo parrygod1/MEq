@@ -3,7 +3,7 @@ require_once __DIR__ . "/../db_utils/database_conn.php";
 
 class MAdmin {
 
-    public $maxPerPage = 2;
+    public $maxPerPage = 7;
 
     public function docCount() {
         $sql = "SELECT count(*) AS docCount
@@ -21,7 +21,7 @@ class MAdmin {
         // return $stmt;
 
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $perPage = isset($_GET['per-page']) && $_GET['per-page'] <= 10 ? (int)$_GET['per-page'] : $this->maxPerPage;
+        $perPage = isset($_GET['per-page']) && $_GET['per-page'] <= 7 ? (int)$_GET['per-page'] : $this->maxPerPage;
         $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 
         $sql = "SELECT d.ID, d.NAME, d.DESCRIPTION
