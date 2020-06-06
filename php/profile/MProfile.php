@@ -3,7 +3,7 @@
 
   class MProfile {
 
-    public $maxPerPage = 2;
+    public $maxPerPage = 6;
 
     public function getProfileInfo($id_user) {
         $sql = "SELECT u.ID, USERNAME, IMAGE_PATH, SCORE, ROLE, COUNT(ID_USER) as DOC from users u join documents d on d.ID_USER = u.ID where u.id = :id_user";

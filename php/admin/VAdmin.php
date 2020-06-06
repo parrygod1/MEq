@@ -89,7 +89,7 @@ class VAdmin {
                 </div>
                 
                 <div id="search-results"></div>
-
+                <div id="pages"></div>
                 <!--<div id="admin-box">
                     <div class="admin-box-top"> </div>
                     <div class="admin-box-panel">

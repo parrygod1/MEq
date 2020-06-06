@@ -8,6 +8,7 @@ resultContainer = document.getElementById('search-results');
 
 var ajax = null;
 
+var usersCount = 0;
 var searchButton = document.getElementById('search-button');
 
 searchButton.onclick = searchInputChanged;
@@ -19,11 +20,7 @@ function searchInputChanged (){
 	valname = valname.replace(/^\s|\s $/, "");
   valid = valid.replace(/^\s|\s $/, "");
 
-	if (valname !== '' || valid !== '' ) {	
-		searchForData(valname, valid);
-	} else {
-		clearResult();
-	}
+	searchForData(valname, valid, null);
 }
 
 function postData(action, id) {
@@ -49,7 +46,7 @@ function postData(action, id) {
 	} 
 }
 
-function searchForData(valueName, valueId) {
+function searchForData(valueName, valueId, page) {
 	if (ajax && typeof ajax.abort === 'function') {
 		ajax.abort(); // abort previous requests
 	}
@@ -60,35 +57,58 @@ function searchForData(valueName, valueId) {
 	ajax.onreadystatechange = function() {
 		if (ajax.readyState === 4 && ajax.status === 200) {
 			var json = JSON.parse(ajax.responseText);
+			usersCount = json['usersCount'];
 			if (json === false) {
 				noUsers();
 			} else {
-				showUsers(json);
+				showUsers(json['array']);
 			}
 		}
     }
 
     let requestHeader = '';
 
-	console.log(valueName, valueId);
+	// console.log(valueName, valueId);
+	if(page === undefined || page === null) {
+		page = 1;
+	}
+
 	if(valueName !== '' && valueId !== ''){
 			requestHeader += 'name=' + valueName + '&id=' + parseInt(valueId);
 	} else if(valueId !== ''){
 		requestHeader += 'id=' + parseInt(valueId);
 	}
 	else if(valueName !== ''){
-			requestHeader += 'name=' + valueName;
+			requestHeader += 'name=' + valueName + '&page=' + page;
+	}
+	else {
+		requestHeader += 'name=*all*' + '&page=' + page; 
 	}
 
   ajax.open('GET', requestURI + requestHeader , true);
 	ajax.send();
 }
 
+function createPageNumbers() {
+	let pages = Math.ceil(usersCount / 6);
+	let pageDiv = document.getElementById('pages');
+	let name = (textBoxName.value != "") ? textBoxName.value : '*all*';
+	pageDiv.innerHTML = "";
+
+	for(var i = 0; i < pages; i++) {
+		let pageNumber = document.createElement('button');
+		pageNumber.innerHTML = i + 1;
+		pageNumber.setAttribute("onclick", "searchForData('" + name + "', ''," + (i + 1) + ')');
+		pageDiv.appendChild(pageNumber);
+	}
+}
+
 function showUsers(data) {
     console.log(data); 
     for(var i = 0; i < data.length; i++){
         createElement(data[i]);   
-	}
+		}
+		createPageNumbers();
 }
 
 function createElement(data){

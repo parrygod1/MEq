@@ -7,6 +7,28 @@ class MAdmin
 
     public $maxPerPage = 7;
 
+
+    public function usersCount()
+    {
+        $sql = "SELECT count(*) AS usersCount
+        FROM users";
+        $request = BD::obtine_conexiune()->prepare($sql);
+        $request->execute();
+        return $request;
+    }
+
+    public function usersCountByName($name) 
+    {
+        $sql = "SELECT count(*) AS usersCount
+        FROM users
+        WHERE username LIKE :name";
+        $request = BD::obtine_conexiune()->prepare($sql);
+        $request->execute([
+            'name' => $name
+        ]);
+        return $request;
+    }
+
     public function docCount()
     {
         $sql = "SELECT count(*) AS docCount
