@@ -65,7 +65,7 @@ class VProfile {
                         <p><?php echo $publication['DESCRIPTION']; ?></p>
                     </div>
                 <?php endforeach; ?>
-                <div class="pagination">
+                <div class="pages">
                     <?php if(!empty($_GET['page']) && $_GET['page'] > 1) { ?>
                         <a href="?id=<?php echo $this->idUser; ?>&page=<?php echo $_GET['page'] - 1; ?>">&lt;</a>
                     <?php } if((empty($_GET['page']) ? 1 : $_GET['page']) < $pages) { ?>

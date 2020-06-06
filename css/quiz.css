@@ -1,15 +1,15 @@
-#quiz-title{
+#quiz-title {
     margin-top: 2%;
     font-size: 40px;
     text-align: center;
 }
 
-#question-counter{
+#question-counter {
     font-size: 15px;
     text-align: center;
 }
 
-#question-title{
+#question-title {
     text-align: center;
     margin-top: 2%;
     margin-left: 20%;
@@ -17,19 +17,19 @@
     font-size: 30px;
 }
 
-#question-wrapper{
+#question-wrapper {
     margin-top: 3%;
     margin-left: 10%;
     margin-right: 10%;
     font-size: 20px;
 }
 
-#actual-question{
+#actual-question {
     font-weight: bold;
     text-align: center;
 }
 
-#graphic-wrapper{
+#graphic-wrapper {
     text-align: center;
 }
 
@@ -39,7 +39,7 @@
     max-width: 720px;
 }
 
-#answer-wrapper{
+#answer-wrapper {
     display: none;
 }
 
@@ -68,13 +68,14 @@
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     [class*="content"] {
-      margin: 0 0;
+        margin: 0 0;
     }
 
     #question-wrapper {
         margin-left: 5%;
         margin-right: 5%;
     }
+
     #graphic {
         width: 100%;
     }

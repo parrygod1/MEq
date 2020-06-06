@@ -1,23 +1,23 @@
-#search-container{
+#search-container {
     display: none;
     margin-top: 2%;
     margin-bottom: 2%;
     text-align: center;
 }
 
-#searchbar{
+#searchbar {
     font-size: 20px;
     width: 50%;
     display: none;
 }
 
-#searchbar-quiz{
+#searchbar-quiz {
     font-size: 20px;
     width: 50%;
     display: none;
 }
 
-.search-divider-bar{
+.search-divider-bar {
     margin-left: 20%;
     margin-right: 20%;
     border: 0;
@@ -25,19 +25,19 @@
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 13.75), rgba(0, 0, 0, 0.1));
 }
 
-.post{
+.post {
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 20%;
     margin-right: 20%;
-    display:flex;
+    display: flex;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: left;
 }
 
-.post-counters{
-    display:flex;
+.post-counters {
+    display: flex;
     flex-wrap: nowrap;
     text-align: center;
     font-size: 20px;
@@ -47,22 +47,24 @@
 .post-counters > *:first-child {
     margin-right: 5px;
 }
-.post-counters > div > div{
+
+.post-counters > div > div {
     font-size: 10px;
 }
 
-.post-desc{
+.post-desc {
     margin-left: 5px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
 }
-.post-title{
+
+.post-title {
     font-size: 25px;
-    text-decoration:none;
+    text-decoration: none;
 }
 
-.post-shortdesc{
+.post-shortdesc {
     font-size: 15px;
     margin-top: 5px;
     color: gray;
@@ -70,14 +72,14 @@
     flex-direction: row;
 }
 
-.MathJax_Display{ /*overrided so it works for descriptions*/
+.MathJax_Display { /*overrided so it works for descriptions*/
     margin: 0 !important;
     width: auto !important;
     margin-left: 10px !important;
     margin-right: 10px !important;
 }
 
-.post-tags{
+.post-tags {
     display: flex;
     margin-top: 5px;
     justify-content: flex-start;
@@ -85,15 +87,15 @@
     flex-grow: 0.1;
 }
 
-.post-tagwrapper{
+.post-tagwrapper {
     display: flex;
     flex-grow: 0.1;
     text-align: left;
     justify-content: flex-start
 }
 
-.buttontag{
-    height:17px;
+.buttontag {
+    height: 17px;
     margin-right: 8px;
 
     border-radius: 2px;
@@ -108,7 +110,7 @@
     cursor: pointer;
 }
 
-.post-tagstext{
+.post-tagstext {
     margin-right: 5px;
     font-size: 11px;
 }
@@ -117,13 +119,13 @@
     display: flex;
 }
 
-.post-date{   
+.post-date {
     margin-top: 5px;
     font-size: 12px;
     color: gray;
 }
 
-.post-views{   
+.post-views {
     margin-left: 10px;
     margin-top: 5px;
     font-size: 12px;
@@ -136,16 +138,18 @@
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    [class*="post-counters"]{
+    [class*="post-counters"] {
         flex-wrap: wrap;
     }
-    [class*="search-divider-bar"]{
+
+    [class*="search-divider-bar"] {
         margin-left: 0;
         margin-right: 0;
     }
-    [class*="post"]{
+
+    [class*="post"] {
         margin-left: 1%;
         margin-right: 1%;
         flex-wrap: wrap;
     }
-  }
+}
