@@ -33,6 +33,7 @@ class VAdmin {
             </span>
 
             <div class="admin-content">
+            <button onclick='window.location = "php/admin/publications.php?action=exportDocs"'>Export Publications CSV</button>
             <?php foreach($publications as $publication): ?>
                 <div class="admin-box">
                     <div class="admin-box-top"><?php echo $publication['NAME']?></div>
@@ -77,14 +78,15 @@ class VAdmin {
                 <i class="fa fa-user-secret"></i>
             </span>
             <div class="admin-content">
+            <button onclick='window.location = "php/admin/adminUsers.php?action=exportUsers"'>Export Users CSV</button>
                 <div class="search-container">
                     <label for="fname">Username:</label>
                     <input type="text" id="searchbar-name" name="fname" placeholder="string">
                     <label for="fid">Id:</label>
                     <input type="text" id="searchbar-id" name="fid" placeholder="number">
-                    <button id="search-button">Search</button>
+                    <button id="search-button">Search</button>   
                 </div>
-
+                
                 <div id="search-results"></div>
 
                 <!--<div id="admin-box">
