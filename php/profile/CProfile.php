@@ -18,6 +18,10 @@ class CProfile
     $view->viewProfile();
   }
 
+  public function showMailConfirmation(){
+    $view = new VProfile(null);
+    $view->viewMailConfirmation();
+  }
   /*public function uploadAvatar($id_user, $avatar_user) {
     $this->model->uploadAvatar($id_user, $avatar_user);
   }*/

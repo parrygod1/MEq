@@ -34,8 +34,8 @@ require_once "VUser.php";
                 if(isset($_POST["username"]) && empty(trim($_POST["username"]))){
                     $this->username_err = "Please enter a username.";
                 }
-                elseif (isset($_POST["email"]) && empty(trim($_POST["email"]))) {
-                    $this->email_err = "Please enter an email.";
+                elseif (isset($_POST["email"]) && empty(trim($_POST["email"]) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))) {
+                    $this->email_err = "Please enter a valid email.";
                 }
                 else {
                     $sql = "SELECT id FROM users WHERE username = :username";
@@ -198,7 +198,7 @@ require_once "VUser.php";
                 }
             }
             elseif ($action == "emailSent") {
-                if (isset($_POST["email"]) && empty(trim($_POST["email"]))) {
+                if (isset($_POST["email"]) && empty(trim($_POST["email"])) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                     $this->email_err = "Please enter your email.";
                 } else if (isset($_POST["email"])) {
                     $this->email = trim($_POST["email"]);

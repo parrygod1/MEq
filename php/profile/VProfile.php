@@ -16,15 +16,14 @@ class VProfile {
     }
 
     public function viewProfile() {
-        if($this->user->rowcount() === 0) {
+        $row = $this->user->fetch(PDO::FETCH_ASSOC);
+        if($row['ID'] == null) {
             echo 'Error 404 user not found';
         } else {
-            $row = $this->user->fetch(PDO::FETCH_ASSOC);
             $publications = $this->publications->fetchAll(PDO::FETCH_ASSOC);
             $pages = ceil($row['DOC'] / $this->maxPerPage);
             ?>
                 <img src="<?php echo $row['IMAGE_PATH'] ?>">
-
                 <?php if(isset($_SESSION['userid']) && $this->idUser == $_SESSION['userid']) { ?>
                     <button class="button-regular" id="avatar-button">Change avatar</button>
                 <?php } ?>
@@ -74,40 +73,6 @@ class VProfile {
                     <?php } ?>
                 </div>
             </div>
-  
-
-<!--            <div class = "profile-photo">-->
-<!--                <p>-->
-<!--                <form action="" method="POST" enctype="multipart/form-data" onsubmit="prepareDiv();">-->
-<!--                    <input type="image" src="--><?php //echo $row['IMAGE_PATH'] ?><!--" alt="img" class="profile-photo" id="uploadPhoto" name="uploadPhoto" >-->
-<!--                    <input type="hidden" id="uploadPhoto" name="uploadPhoto"/>-->
-<!--                    --><?php //if($this->idUser === $_SESSION['userid']) { ?>
-<!--                        <input class="profile-choose-button" name="image" id="image" type="file" accept="image/*" multiple="multiple" onchange='loadFile(event); showFiles();' />-->
-<!--                        <input name="subButton" id="subButton" class="profile-upload-button" type="submit" value="Upload photo" />-->
-<!--                    --><?php //} ?>
-<!--                </form>-->
-<!--                </p>-->
-<!--            </div>-->
-<!--            <div class = "profile-stats">-->
-<!--                --><?php //echo "Points: ".$row['SCORE'] ?>
-<!---->
-<!--                <br>-->
-<!---->
-<!--                <div id="profile-stats2">-->
-<!--                    --><?php //echo "Publications: " . $row['DOC'];
-//                    ?>
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class = "profile-name">-->
-<!--                --><?php //echo $row['USERNAME'] ?>
-<!--            </div>-->
-<!---->
-<!--            --><?php //if($this->idUser === $_SESSION['userid']) { ?>
-<!--                <form action="" method="POST" enctype="multipart/form-data" onsubmit="prepareDiv();">-->
-<!--                    <input name="deleteAcc" id="deleteAcc" class="delete-button" type="submit" value="Delete account" />-->
-<!--                </form>-->
-<!--            --><?php //} ?>
-
 
             <script>
                 var loadFile = function(event) {
@@ -144,10 +109,14 @@ class VProfile {
                 }
             </script>
 
-
-
             <?php
         }
+    }
+
+    public function viewMailConfirmation(){
+    ?>
+        <div>A confirmation email was sent to your address!</div>
+    <?php
     }
 }
 ?>

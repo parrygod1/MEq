@@ -58,7 +58,7 @@ class MAdmin
     public function handleDocument($decision, $idDoc)
     {
         if ($decision === 'accepted') {
-            $sql = 'UPDATE documents d  SET d.PUBLIC = 1 WHERE d.ID = ' . $idDoc;
+            $sql = 'UPDATE documents d  SET d.PUBLIC = 1, d.UPDATED_AT = now() WHERE d.ID = ' . $idDoc;
             $stmt = BD::obtine_conexiune()->prepare($sql);
             $stmt->execute();
         } elseif ($decision === 'refused') {

@@ -35,8 +35,8 @@
                     <input type="text" id="searchbar-quiz" placeholder="Search for a quiz...">
                 </div>
 
-                <div id="content">
-                </div>
+                <div id="content"></div>
+                <div id="pages"></div>
 
             </div>
     </div>

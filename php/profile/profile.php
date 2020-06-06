@@ -17,5 +17,9 @@ require_once "CProfile.php";
   {
     $controller = new CUser($_SESSION['userid'], "sendDelEmail");
   }
+  else if ($_GET['action'] == 'confirmMail'){
+    $controller = new CProfile();
+    $controller -> showMailConfirmation();
+  }
   BD::opreste_conexiune();
 ?>

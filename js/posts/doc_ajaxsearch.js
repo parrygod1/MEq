@@ -1,4 +1,4 @@
-var requestURI = '/meq/php/search/search_query.php?title=';
+var requestURI = '/meq/php/posts/post_query.php?title=';
 var requestQuizURI = '/meq/php/quiz/quiz_search.php?title=';
 
 var textBox = document.getElementById('searchbar');
@@ -7,14 +7,14 @@ var textBoxQuiz = document.getElementById('searchbar-quiz');
 resultContainer = document.getElementById('content');
 
 var ajax = null;
-var page = 0;
+var postCount = 0;
 
 textBox.onkeyup = function() {
 	var val = this.value;
 	val = val.replace(/^\s|\s $/, "");
 
 	if (val !== "") {	
-		searchForData(val);
+		searchForData(val, 1);
 	} else {
 		clearResult();
 	}
@@ -31,7 +31,7 @@ textBoxQuiz.onkeyup = function() {
 	}
 }
 
-function searchForData(value) {
+function searchForData(value, page) {
 	if (ajax && typeof ajax.abort === 'function') {
 		ajax.abort(); // abort previous requests
 	}
@@ -41,11 +41,13 @@ function searchForData(value) {
 	ajax = new XMLHttpRequest(); //php response will be in this variable
 	ajax.onreadystatechange = function() {
 		if (ajax.readyState === 4 && ajax.status === 200) {
+			//console.log(ajax.responseText);
 			var json = JSON.parse(ajax.responseText);
 			if (json === false) {
 				noPosts();	
 			} else {
-				showPosts(json);
+				postCount = json['postCount'];
+				showPosts(json['array']);
 			}
 		}
     }
@@ -85,11 +87,26 @@ function showQuizzes(data) {
 }
 
 function showPosts(data) {
-    console.log(data); 
+	console.log(data); 
     for(var i = 0; i < data.length; i++){
         createElement(data[i]);   
 	}
+	createPageNumbers();	
 	MathJax.Hub.Typeset();
+}
+
+function createPageNumbers() {
+	let pages = Math.ceil(postCount / 6);
+	let pageDiv = document.getElementById('pages');
+	let name = textBox.value;
+	pageDiv.innerHTML = "";
+
+	for(var i = 0; i < pages; i++) {
+		let pageNumber = document.createElement('button');
+		pageNumber.innerHTML = i + 1;
+		pageNumber.setAttribute("onclick", "searchForData('" + name + "'," + (i + 1) + ')');
+		pageDiv.appendChild(pageNumber);
+	}
 }
 
 function createElement(data){
@@ -163,11 +180,6 @@ function createQuizElement(data){
 	postDate.innerText = "Posted on " + data['CREATED_AT'];
 	info.appendChild(postDate);
 
-	let views = document.createElement("div");
-	views.className = "post-views";
-	views.innerText = "Views:  " + data['VIEWS'];
-	info.appendChild(views);
-
 	descDiv.appendChild(info);
 
     mainDiv.appendChild(descDiv);
@@ -180,7 +192,7 @@ function createQuizElement(data){
 
 function clearResult() {
 	resultContainer.innerHTML = "";
-	page = 0;
+	page = 1;
 }
 
 function noPosts() {

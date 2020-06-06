@@ -198,7 +198,7 @@ class MUser {
 
             $mail->isHTML(true);
             $mail->Subject = 'Reset your password - MEqX';
-            $msg = "Hello, " . $array['username'] . "! Click on this <a href=\"" . DomainPath::DOMAINPROTOCOL . "://" . DomainPath::MAINDOMAIN . "/meq/php/userAccount/reset.php?action=resetPass&token=" . $token . "\">link</a> to reset your password on MEqX. <br><br><br><br> Have a good day! <br><br>  Regards, <br>MEqX team.";
+            $msg = "Hello, " . $array['username'] . "! Click on this <a href=\"" . DomainPath::DOMAINPROTOCOL . "://" . DomainPath::MAINDOMAIN . "/php/userAccount/reset.php?action=resetPass&token=" . $token . "\">link</a> to reset your password on MEqX. <br><br><br><br> Have a good day! <br><br>  Regards, <br>MEqX team.";
             $msg = wordwrap($msg, 70);
 
             $mail->Body = $msg;
@@ -255,13 +255,12 @@ class MUser {
             $msg = "Hello, " . $array['username'] . "! Click on this <a href=\"" . DomainPath::DOMAINPROTOCOL . "://" . DomainPath::MAINDOMAIN . "/php/userAccount/delete.php?token=" . $token . "\">link</a> to delete your account on MEqX. <br><br><br><br> If you didn't request this account deletion please reset your password. <br><br>  Regards, <br>MEqX team.";
             $msg = wordwrap($msg, 70);
             $mail->Body = $msg;
-
             $mail->send();
-
         }
         catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
+        header("location: profilepage.php?action=confirmMail");
     }
 
     public function deleteUser($token) {

@@ -8,6 +8,7 @@ $decision = $idDoc = null;
 if(isset($_GET['decision']) && isset($_GET['id'])) {
     $decision = $_GET['decision'];
     $idDoc = $_GET['id'];
+    $controller = new CAdmin('showDocuments', $decision, $idDoc);
 } 
 else if(isset($_GET['action'])){
     session_start();
