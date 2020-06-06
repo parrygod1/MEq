@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum</title>
-    <link rel="stylesheet" type = "text/css" href="css/style_postpage.css" />
-    <link rel="stylesheet" type = "text/css" href="css/style_comment.css" />
-    <link rel="stylesheet" type = "text/css" href="css/style_global.css" />
-    <link rel="stylesheet" type = "text/css" href="css/style_upload.css" />
+    <link rel="stylesheet" type = "text/css" href="css/postpage.css" />
+    <link rel="stylesheet" type = "text/css" href="css/comment.css" />
+    <link rel="stylesheet" type = "text/css" href="css/global.css" />
+    <link rel="stylesheet" type = "text/css" href="css/upload.css" />
     <link rel="stylesheet" type = "text/css" href="css/navbar.css" />
     <link rel="stylesheet" type = "text/css" href="css/math_assistant.css" />
-    <link rel="stylesheet" type="text/css" href="css/resource/profil.css">
+    <link rel="stylesheet" type="text/css" href="css/profilepage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>

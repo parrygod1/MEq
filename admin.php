@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin panel</title>
-    <link rel="stylesheet" type = "text/css" href="css/style_postpage.css" />
-    <link rel="stylesheet" type = "text/css" href="css/style_comment.css" />
-    <link rel="stylesheet" type = "text/css" href="css/style_global.css" />
+    <link rel="stylesheet" type = "text/css" href="css/postpage.css" />
+    <link rel="stylesheet" type = "text/css" href="css/comment.css" />
+    <link rel="stylesheet" type = "text/css" href="css/global.css" />
     <link rel="stylesheet" type = "text/css" href="css/navbar.css" />
     <link rel="stylesheet" type = "text/css" href="css/navpanel.css" />
     <link rel="stylesheet" type = "text/css" href="css/admin.css" />
