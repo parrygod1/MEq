@@ -66,7 +66,7 @@ function searchForQuiz(value) {
 	ajax = new XMLHttpRequest(); //php response will be in this variable
 	ajax.onreadystatechange = function() {
 		if (ajax.readyState === 4 && ajax.status === 200) {
-			console.log(ajax.responseText);
+			//console.log(ajax.responseText);
 			var json = JSON.parse(ajax.responseText);
 			if (json === false) {
 				noPosts();	
@@ -92,7 +92,8 @@ function showPosts(data) {
     for(var i = 0; i < data.length; i++){
         createElement(data[i]);   
 	}
-	createPageNumbers();	
+	createPageNumbers();
+	document.getElementById('pages').setAttribute('style', 'display: block');
 	MathJax.Hub.Typeset();
 }
 
@@ -226,6 +227,7 @@ function enableQuizSearch(){
 	disableSearch();
 	textBoxQuiz.setAttribute('style', 'display: initial');
 	searchContainer.setAttribute('style', 'display: block');
+	document.getElementById('pages').setAttribute('style', 'display: none');
 	clearResult();
 	searchForQuiz('*new*');
 }
