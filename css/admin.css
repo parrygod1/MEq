@@ -1,23 +1,9 @@
-#admin-panel {
-    width: 100%;
-    margin: 0 auto;
-    height: 100%;
-}
-
-.admin-content {
-    width: auto;
-    margin-left: 250px;
-    height: 100%;
-    background-color: #f6f6f6;
-    padding: 15px;
-}
-
-.admin-content p {
-    color: #999999;
-    font-size: 0.73em;
+body {
+    background: #f6f6f6;
 }
 
 .admin-box {
+    height: 13%;
     margin-top: 15px;
 }
 
@@ -55,7 +41,6 @@
     width: 20px;
     height: 20px;
     background-color: rgb(119, 183, 255);
-    margin-left: auto;
     text-align: center;
     cursor: pointer;
     text-decoration: none;
@@ -85,7 +70,7 @@
 
 .closebtn {
     text-decoration: none;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 30px;
     cursor: pointer;
     margin-left: 120px;
@@ -104,55 +89,83 @@
 }
 
 .actionbtn {
-	cursor:pointer;
-	color:#ffffff;
-	font-size:13px;
-	font-weight:bold;
-	padding:6px 12px;
-    text-decoration:none;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 6px 12px;
+    text-decoration: none;
     text-shadow: 1px 1px black;
 }
 
 #admin-btn {
-    background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
-    background-color:#007dc1;
-    border:1px solid #124d77;
+    background: linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+    background-color: #007dc1;
+    border: 1px solid #124d77;
 }
 
 #admin-btn:hover {
-    background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
-	background-color:#0061a7;
+    background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+    background-color: #0061a7;
 }
 
 #ban-btn {
-    background:linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
-    background-color:#d0451b;
+    background: linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+    background-color: #d0451b;
     border: 1px solid black;
 }
 
 #ban-btn:hover {
-    background:linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
-	background-color:#bc3315;
+    background: linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+    background-color: #bc3315;
 }
 
 #unban-btn {
-    background:linear-gradient(to bottom, #74ad5a 5%, #68a54b 100%);
-	background-color:#74ad5a;
-	border:1px solid #3b6e22;
+    background: linear-gradient(to bottom, #74ad5a 5%, #68a54b 100%);
+    background-color: #74ad5a;
+    border: 1px solid #3b6e22;
 }
 
 #unban-btn:hover {
-    background:linear-gradient(to bottom, #68a54b 5%, #74ad5a 100%);
-	background-color:#68a54b;
+    background: linear-gradient(to bottom, #68a54b 5%, #74ad5a 100%);
+    background-color: #68a54b;
+}
+
+#pages {
+    display: flex;
+    margin-top: 15px;
+}
+
+#pages .selected {
+    background-color: #007dc1;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+.util-container {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#export-button {
+    margin-left: auto;
 }
 
 @media only screen and (max-width: 767px) {
-    
 
-    .search-container {
-        display: flex;
-        flex-wrap: wrap;
+
+    .util-container {
+        margin: 0;
         flex-direction: column;
+    }
+
+    .util-container button {
+        margin-top: 10px;
+    }
+
+    #export-button {
+        margin-left: 0;
     }
 
     #admin-nav li a {
@@ -160,9 +173,15 @@
         font-size: 15px;
     }
 
-    .admin-content {
-        margin-left: 0;
+    .main-content {
+        float: none;
+        height: auto;
+        width: auto;
         z-index: 2;
+    }
+
+    .admin-box {
+        height: auto;
     }
 }
 

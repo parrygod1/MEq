@@ -1,0 +1,122 @@
+.upload-content {
+    resize: vertical;
+    overflow: auto;
+    font-size: 20px;
+    width: 70%;
+    height: 500px;
+    margin: auto;
+}
+
+.upload-content img {
+    intrinsicsize: "300 x 300"
+}
+
+.button-delete-question {
+    height: 40px;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+
+    font-size: 25px;
+    font-weight: 100;
+    background-color: #000000;
+    border: solid rgb(36, 36, 36) 1px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button-delete-question:hover {
+    background: rgb(167, 167, 167);
+    border: solid #2E343E 1px;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+.button-add-question {
+    height: 40px;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+
+    font-size: 25px;
+    font-weight: 100;
+    background-color: #000000;
+    border: solid rgb(36, 36, 36) 1px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button-add-question:hover {
+    background: rgb(167, 167, 167);
+    border: solid #2E343E 1px;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+.button-upload-file {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+
+    font-size: 20px;
+    font-weight: 100;
+    background-color: #000000;
+    border: solid rgb(36, 36, 36) 1px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button-upload-file:hover {
+    background: rgb(167, 167, 167);
+    border: solid #2E343E 1px;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 500px) {
+    /*500px otherwise it looks like you're playing snake */
+    [class*="button-upload-file"] {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    /* For mobile phones: */
+    [class*="upload-content"] {
+        width: 93%;
+    }
+
+    [class*="button-delete-question"] {
+        height: 27px;
+        margin-right: 10px;
+        font-size: 15px;
+        padding: 5px;
+    }
+
+    [class*="button-add-question"] {
+        height: 27px;
+        margin-right: 10px;
+        font-size: 15px;
+        padding: 5px;
+    }
+}
+
+#quiz-editor-title {
+    margin: 2%;
+    text-align: center;
+    font-size: 30px;
+}
+
+.quiz-upload-entry input {
+    font-size: 20px;
+}

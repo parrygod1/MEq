@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin panel</title>
-    <link rel="stylesheet" type = "text/css" href="css/style_postpage.css" />
-    <link rel="stylesheet" type = "text/css" href="css/style_comment.css" />
-    <link rel="stylesheet" type = "text/css" href="css/style_global.css" />
+    <link rel="stylesheet" type = "text/css" href="css/global.css" />
     <link rel="stylesheet" type = "text/css" href="css/navbar.css" />
     <link rel="stylesheet" type = "text/css" href="css/navpanel.css" />
     <link rel="stylesheet" type = "text/css" href="css/admin.css" />
@@ -24,6 +22,6 @@ include 'php/admin/publications.php';
 <script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script src="js/mathjax-reset.js"></script>
-<script src="js/admin/adminPanel.js"></script>
+<script src="js/sidePanel.js"></script>
 
 </body>

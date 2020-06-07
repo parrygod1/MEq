@@ -1,0 +1,82 @@
+#quiz-title {
+    margin-top: 2%;
+    font-size: 40px;
+    text-align: center;
+}
+
+#question-counter {
+    font-size: 15px;
+    text-align: center;
+}
+
+#question-title {
+    text-align: center;
+    margin-top: 2%;
+    margin-left: 20%;
+    margin-right: 20%;
+    font-size: 30px;
+}
+
+#question-wrapper {
+    margin-top: 3%;
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 20px;
+}
+
+#actual-question {
+    font-weight: bold;
+    text-align: center;
+}
+
+#graphic-wrapper {
+    text-align: center;
+}
+
+.graphic {
+    width: 100%;
+    height: auto;
+    max-width: 720px;
+}
+
+#answer-wrapper {
+    display: none;
+}
+
+.submit-box {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.button-wrapper {
+    text-align: center;
+}
+
+#button-check {
+    width: 30%;
+}
+
+#button-prev {
+    width: 10%;
+}
+
+#button-next {
+    width: 10%;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="content"] {
+        margin: 0 0;
+    }
+
+    #question-wrapper {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    #graphic {
+        width: 100%;
+    }
+}

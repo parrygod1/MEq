@@ -26,7 +26,7 @@
                     if (isset($_SESSION['role']) && $_SESSION['role'] == UserRoles::ADMIN){
                 ?>
                     <li>
-                        <a href="admin.php" class="nav-links" style="color:gold">Admin panel</a>
+                        <a href="adminPublications.php" class="nav-links" style="color:gold">Admin panel</a>
                     </li>
                 <?php } ?>
 

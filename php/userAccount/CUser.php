@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . "/../db_utils/database_conn.php";
 require_once "User.php";
+require_once "MUser.php";
+require_once "VUser.php";
+
     class CUser extends User {
 
         private $model;
@@ -9,14 +12,20 @@ require_once "User.php";
         private $username_err = "", $password_err = "", $confirm_password_err = "", $email_err = "";
         public function __construct($param, $action)
         {
+
             parent::__construct();
             $this->model = new MUser();
+
             if($param === "register")
                 $this->adaugaUser();
             else if($param === "login")
                 $this->autentificaUser();
             else if($param === "reset")
                 $this->resetPassword($action);
+            else if($action == "sendDelEmail")
+                $this->sendDeletionEmail($param);
+            else if($action == "delete")
+                $this->deleteAccount($param);
         }
 
         private function adaugaUser() {
@@ -25,8 +34,8 @@ require_once "User.php";
                 if(isset($_POST["username"]) && empty(trim($_POST["username"]))){
                     $this->username_err = "Please enter a username.";
                 }
-                elseif (isset($_POST["email"]) && empty(trim($_POST["email"]))) {
-                    $this->email_err = "Please enter an email.";
+                elseif (isset($_POST["email"]) && empty(trim($_POST["email"]) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))) {
+                    $this->email_err = "Please enter a valid email.";
                 }
                 else {
                     $sql = "SELECT id FROM users WHERE username = :username";
@@ -189,7 +198,7 @@ require_once "User.php";
                 }
             }
             elseif ($action == "emailSent") {
-                if (isset($_POST["email"]) && empty(trim($_POST["email"]))) {
+                if (isset($_POST["email"]) && empty(trim($_POST["email"])) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                     $this->email_err = "Please enter your email.";
                 } else if (isset($_POST["email"])) {
                     $this->email = trim($_POST["email"]);
@@ -201,6 +210,13 @@ require_once "User.php";
             $this->view->oferaVizualizareReset($action);
         }
 
+        public function sendDeletionEmail($id_user){
+            $this->model->sendDeletionEmail($id_user);
+        }
+        
+        public function deleteAccount($token){
+            $this->model->deleteUser($token);
+        }
     }
 
 ?>

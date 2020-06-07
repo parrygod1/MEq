@@ -52,5 +52,21 @@ class MPostContent{
             header("location: postpage.php?id=" . $id_document);
         }
     }
+
+    public function getPostCount(){
+        $sql = 'select count(*) as postCount from documents';
+        $request = BD::obtine_conexiune()->prepare($sql);
+        $request->execute();
+        return $request->fetch(PDO::FETCH_ASSOC)['postCount'];
+    }
+
+    public function getPostCountByTitle($name){
+        $sql = 'select count(*) as postCount from documents where lower(NAME) like :name and public=true';
+        $request = BD::obtine_conexiune()->prepare($sql);
+        $request->execute([
+            'name' => $name
+        ]);
+        return $request->fetch(PDO::FETCH_ASSOC)['postCount'];
+    }
 }
 ?>

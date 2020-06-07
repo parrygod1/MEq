@@ -1,389 +1,224 @@
-.profile-back {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+body {
     height: 100vh;
+}
+
+.nav-container {
+    height: 10%;
+}
+
+.content-container {
+    display: flex;
+    height: calc(90% - 70px);
+    margin: 0px 5%;
+}
+
+#profile-information {
+    background: #efefef;
+    height: 100%;
+    width: 35%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#profile-information img {
+    margin: 10px auto;
+    max-width: 100%;
+    width: 190px;
+    max-height: 100%;
+    height: 190px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+.modal-close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.profile-choose-button {
+    height: 27px;
+    padding: 5px;
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    font-size: 15px;
+    background-color: #000000;
+    border: solid rgb(36, 36, 36) 1px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}
+
+.profile-choose-button:hover {
+    background: rgb(167, 167, 167);
+    border: solid #2E343E 1px;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+.profile-upload-button {
+    height: 27px;
+    padding: 5px;
+    margin-top: 10%;
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    position: relative;
+    font-size: 15px;
+    background-color: #000000;
+    border: solid rgb(36, 36, 36) 1px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}
+
+.profile-upload-button:hover {
+    background: rgb(167, 167, 167);
+    border: solid #2E343E 1px;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+#profile-information .user-name {
+    background-image: -webkit-linear-gradient(top, #e8e8e8 0, #f5f5f5 100%);
+    text-align: center;
+    border: 1px solid #e3e3e3;
+}
+
+#profile-information .user-info {
+    text-align: center;
+    background: white;
+    border: 2px solid black;
+}
+
+#delete-user-button {
+    margin-top: auto;
+    text-align: center;
+    background: red;
+}
+
+#delete-user-button:hover {
+    background: darkred;
+}
+
+#publications-list {
+    width: 100%;
+    margin-left: 10px;
+}
+
+.publication {
+    background: #efefef;
+    margin-bottom: 10px;
+}
+
+.publication p {
+    padding: 10px;
     margin: 0;
 }
 
-/* We add the wallpaper in body::after in order to change only the wallpaper's opacity*/
-.profile-back::after {
-    content: "";
-    background: url(https://i.pinimg.com/originals/00/51/e4/0051e45929dc5e5782ae94ae9e0d8136.jpg);
-    background-size: cover;
-    opacity: 0.7;
-    top: 0;
-    left: 0;
-    bottom: 35%;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-
-    clip-path: polygon(0 0, 100% 2%, 100% 70%, 0 100%);
-}
-
-.profile-box {
-    background-color: whitesmoke;
-    position: absolute;
-    height: 60%;
-    width: 70%;
-    margin: -10% 0 0 -35%;
-    top: 50%;
-    left: 50%;
-    /*box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.4), 0 10px 10px 0 rgba(0, 0, 0, 0.2);*/
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.6);
-
-}
-
-.profile-photo {
-    border-radius: 100%;
-    position: absolute;
-    height: 80%;
-    width: 50%;
-    top: -10%;
-    left: 25%;
-}
-
-.profile-name {
-    position: relative;
-    font-size: 800%;
-    text-align: center;
-    margin-top: 16%;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    color: #645f61;
-}
-
-.profile-stats {
-    font-size: 250%;
-    position: absolute;
-    top: 10%;
-    left: 5%;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    color: #645f61;
-}
-
-#profile-stats2 {
-    top: 50%;
-}
-
-@media only screen and (max-width: 320px) {
-    /* For mobile phones: */
-    [class*="profile-box"] {
-        top: 30%;
-        height: 290px;
-    }
-}
-
-@media only screen and (max-width: 375px) and (min-width: 321px) {
-    /* For mobile phones: */
-    [class*="profile-box"] {
-        top: 30%;
-        height: 320px;
-    }
-}
-
-@media only screen and (max-width: 425px) and (min-width: 376px) {
-    /* For mobile phones: */
-    [class*="profile-box"] {
-        top: 25%;
-        height: 360px;
-    }
-}
-
-@media only screen and (max-width: 768px) and (min-width: 426px) {
-    /* For mobile phones: */
-    [class*="profile-box"] {
-        top: 25%;
-        height: 500px;
-    }
-}
-
-@media only screen and (max-width: 320px) {
-    /* For mobile phones: */
-    [class*="profile-name"] {
-        top: 30%;
-        font-size: 170%;
-        text-align: center;
-        position: relative;
-    }
-}
-
-@media only screen and (max-width: 375px) and (min-width: 321px) {
-    /* For mobile phones: */
-    [class*="profile-name"] {
-        top: 25%;
-        font-size: 220%;
-        text-align: center;
-        position: relative;
-    }
-}
-
-@media only screen and (max-width: 425px) and (min-width: 376px) {
-    /* For mobile phones: */
-    [class*="profile-name"] {
-        top: 22%;
-        font-size: 300%;
-        text-align: center;
-        position: relative;
-    }
-}
-
-@media only screen and (max-width: 768px) and (min-width: 426px) {
-    /* For mobile phones: */
-    [class*="profile-name"] {
-        top: 17%;
-        font-size: 500%;
-        text-align: center;
-        position: relative;
-    }
-}
-
-@media only screen and (max-width: 425px) {
-    /* For mobile phones: */
-    [class*="profile-photo"] {
-        height: 40%;
-        top: -4%;
-    }
-}
-
-@media only screen and (max-width: 768px) and (min-width: 426px) {
-    /* For mobile phones: */
-    [class*="profile-photo"] {
-        height: 50%;
-        top: -4%;
-    }
-}
-
-@media only screen and (max-width: 425px) {
-    /* For mobile phones: */
-    [class*="profile-stats"] {
-        top: 15%;
-        font-size: 145%;
-    }
-}
-
-@media only screen and (max-width: 768px) and (min-width: 426px) {
-    /* For mobile phones: */
-    [class*="profile-stats"] {
-        top: 15%;
-        font-size: 240%;
-    }
-}
-
-
-
-.profile-choose-button{
-    height:27px;
-    margin-right: 10px;
-    padding: 5px;
-    border-radius: 2px;
-    color: rgb(255, 255, 255);
-    margin-left: 80%;
-    margin-top: 10%;
-    position: absolute;
-    font-size: 15px;
-    font-weight: 100;
-    background-color: #000000;
-    border: solid rgb(36, 36, 36) 1px;
+.publication-title {
     text-decoration: none;
+}
+
+.publication-title:hover {
+    text-decoration: underline;
+}
+
+.publication-title h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px;
+    margin: 0;
+    background: rgba(0,0,0,0.2);
+}
+
+.pages a {
     display: inline-block;
-    cursor: pointer;
-    text-align: center;
+    text-decoration: none;
+    padding: 8px 16px;
+    background: black;
+    color: white;
 }
 
-.profile-choose-button:hover{
+.pages a:hover {
     background: rgb(167, 167, 167);
-    border: solid #2E343E 1px;
-    border-radius: 2px;
-    text-decoration: none;
 }
 
-.profile-upload-button{
-    height:27px;
-    margin-right: 10px;
-    padding: 5px;
-    border-radius: 2px;
-    color: rgb(255, 255, 255);
-    margin-left: 100%;
-    margin-top: 20%;
-    position: relative;
-    font-size: 15px;
-    font-weight: 100;
-    background-color: #000000;
-    border: solid rgb(36, 36, 36) 1px;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    text-align: center;
-}
+@media only screen and (max-width: 768px) {
 
-.profile-upload-button:hover{
-    background: rgb(167, 167, 167);
-    border: solid #2E343E 1px;
-    border-radius: 2px;
-    text-decoration: none;
-}
-
-@media only screen and (max-width: 320px) {
-    /* For mobile phones: */
-    .profile-choose-button {
-        height:15px;
-        margin-right: 10px;
-        font-size: 8px;
-        padding: 5px;
-        margin-left: -25%;
-        margin-top: 150%;
+    .nav-container {
+        height: auto;
     }
-}
 
-@media only screen and (max-width: 375px) and (min-width: 321px) {
-    /* For mobile phones: */
-    .profile-choose-button {
-        height:18px;
-        margin-right: 10px;
-        font-size: 10px;
-        padding: 5px;
-        margin-left: -25%;
-        margin-top: 150%;
+    .content-container {
+        flex-wrap: wrap;
+        flex-direction: row;
+        margin: 0;
     }
-}
 
-@media only screen and (max-width: 425px) and (min-width: 376px) {
-    /* For mobile phones: */
-    .profile-choose-button {
-        height:20px;
-        margin-right: 10px;
-        font-size: 12px;
-        padding: 5px;
-        margin-left: -25%;
-        margin-top: 150%;
+    #profile-information {
+        height: auto;
+        width: 100%;
     }
-}
 
-@media only screen and (max-width: 768px) and (min-width: 426px) {
-    /* For mobile phones: */
-    .profile-choose-button {
-        height:26px;
-        margin-right: 10px;
-        font-size: 18px;
-        padding: 5px;
-        margin-left: -10%;
-        margin-top: 120%;
+    .button-regular {
+        margin: 0;
+        height: 40px;
     }
-}
 
-@media only screen and (max-width: 320px) { /* nu stiu ce sa i mai fac, ma omoara*/
-    /* For mobile phones: */
-    .profile-upload-button {
-        height:18px;
-        font-size: 8px;
-        margin-top: 180%;
+    #delete-user-button {
+        margin: 0;
+    }
+
+    .modal-content {
+        width: 100%;
+    }
+
+    #publications-list {
+        margin: 0;
+    }
+
+    .publication {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .publication p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .pages {
         text-align: center;
-        margin-left: 22%;
-        display: block;
-        position: absolute;
-    }
-}
-
-@media only screen and (max-width: 375px) and (min-width: 321px) { /* nu stiu ce sa i mai fac, ma omoara*/
-    /* For mobile phones: */
-    .profile-upload-button {
-        height:22px;
-        font-size: 10px;
-        margin-top: 180%;
-        text-align: center;
-        margin-left: 23%;
-        display: block;
-        position: absolute;
-    }
-}
-
-@media only screen and (max-width: 425px) and (min-width: 376px) { /* nu stiu ce sa i mai fac, ma omoara*/
-    /* For mobile phones: */
-    .profile-upload-button {
-        height:24px;
-        font-size: 12px;
-        margin-top: 180%;
-        text-align: center;
-        margin-left: 22%;
-        display: block;
-        position: absolute;
-    }
-}
-
-@media only screen and (max-width: 768px) and (min-width: 426px) { /* nu stiu ce sa i mai fac, ma omoara*/
-    /* For mobile phones: */
-    .profile-upload-button {
-        height:30px;
-        font-size: 18px;
-        margin-top: 145%;
-        text-align: center;
-        margin-left: 28%;
-        display: block;
-        position: absolute;
-    }
-}
-
-.delete-button{
-    margin-top: 1%;
-    height:27px;
-    padding: 5px;
-    border-radius: 2px;
-    color: rgb(255, 255, 255);
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    font-size: 15px;
-    font-weight: 100;
-    background-color: #000000;
-    border: solid rgb(36, 36, 36) 1px;
-    text-decoration: none;
-    display: block;
-    cursor: pointer;
-    text-align: center;
-}
-
-.delete-button:hover{
-    background: rgb(167, 167, 167);
-    border: solid #2E343E 1px;
-    border-radius: 2px;
-    text-decoration: none;
-}
-
-@media only screen and (max-width: 320px) {
-    /* For mobile phones: */
-    .delete-button {
-        height:18px;
-        font-size: 8px;
-        padding: 5px;
-        margin-top: 80%;
-    }
-}
-
-@media only screen and (max-width: 375px) and (min-width: 321px) {
-    /* For mobile phones: */
-    .delete-button {
-        height:22px;
-        font-size: 10px;
-        padding: 5px;
-        margin-top: 73%;
-    }
-}
-
-@media only screen and (max-width: 425px) and (min-width: 376px) {
-    /* For mobile phones: */
-    .delete-button {
-        height:24px;
-        font-size: 12px;
-        padding: 5px;
-        margin-top: 68%;
-    }
-}
-
-@media only screen and (max-width: 768px) and (min-width: 426px) {
-    /* For mobile phones: */
-    .delete-button {
-        height:30px;
-        font-size: 18px;
-        padding: 5px;
-        margin-top: 47%;
     }
 }
