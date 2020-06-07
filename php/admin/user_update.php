@@ -20,7 +20,16 @@
             $stmt = BD::obtine_conexiune()->prepare($sql);
             if($stmt -> execute ([
             'id' => $id
-            ])){echo 'Banned user ID=' . $id;};
+            ])){
+                echo 'Banned user ID=' . $id;
+                $sql = 'delete from comments where id_user = :id';
+                $stmt = BD::obtine_conexiune()->prepare($sql);
+                if($stmt -> execute ([
+                'id' => $id
+                ])){
+                    echo 'Deleted user comments for ID=' . $id;
+                }
+            };
         }
         else if($action == "unban") {
             $sql = 'update users set role =' . UserRoles::USER . ' where id = :id';

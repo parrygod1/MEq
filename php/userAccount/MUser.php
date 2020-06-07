@@ -256,11 +256,11 @@ class MUser {
             $msg = wordwrap($msg, 70);
             $mail->Body = $msg;
             $mail->send();
+            header("location: profilepage.php?action=confirmMail");
         }
         catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
-        header("location: profilepage.php?action=confirmMail");
     }
 
     public function deleteUser($token) {
@@ -271,23 +271,27 @@ class MUser {
             'token' => $token
         ]);
         $id_user = $request->fetch(PDO::FETCH_ASSOC)['id'];
-        echo $id_user;
-        $sql = "DELETE from users
-        WHERE token = :token";
-        $request = BD::obtine_conexiune()->prepare($sql);
-        $request->execute([
-            'token' => $token
-        ]);
+        if($id_user > 0){
+            $sql = "DELETE from users
+            WHERE token = :token";
+            $request = BD::obtine_conexiune()->prepare($sql);
+            $request->execute([
+                'token' => $token
+            ]);
 
-        $sql = "UPDATE documents
-        SET id_user = -1, public = 0
-        WHERE id_user = :id_user";
-        $request = BD::obtine_conexiune()->prepare($sql);
-        $request->execute([
-            'id_user' => $id_user
-        ]);
+            $sql = "UPDATE documents
+            SET id_user = -1, public = 0
+            WHERE id_user = :id_user";
+            $request = BD::obtine_conexiune()->prepare($sql);
+            $request->execute([
+                'id_user' => $id_user
+            ]);
 
-        header("location: logout.php");
+            header("location: logout.php");
+        }
+        else {
+            echo 'Invalid token';
+        }
     }
 }
 
