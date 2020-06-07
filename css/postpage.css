@@ -1,9 +1,7 @@
 .MathJax_Display {
-    /*
-    this is done to override mathjax center align
-    sorry
-    */
+    /* this is done to override mathjax center align */
     text-align: inherit !important;
+    overflow: scroll;
 }
 
 #box {
