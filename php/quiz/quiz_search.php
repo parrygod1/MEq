@@ -8,7 +8,7 @@
 
     $sql = null;
     if($quizTitle == '*new*')
-        $sql = 'SELECT ID, QUIZ_TITLE, CONTENT, CREATED_AT from quizzes order by CREATED_AT DESC limit 10';
+        $sql = 'SELECT ID, QUIZ_TITLE, CONTENT, CREATED_AT from quizzes order by CREATED_AT DESC limit 7';
     //else if($postTitle == '*top*')
         //$sql = 'SELECT ID, NAME, DESCRIPTION, VIEWS, CREATED_AT from documents where public=true order by VIEWS DESC limit 10';
     else
