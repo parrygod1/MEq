@@ -217,7 +217,7 @@ class VPostContent
             <div contenteditable class="upload-content" name="docContent" id="docContent" style="border:solid 1px #999; padding:10px; resize: none;"></div>
             <input type="hidden" id="docContent_hidden" name="docContent" required="required" />
 
-            <div style="font-size: 20px; text-align: center; align-content: center;" ,>
+            <div style="font-size: 20px; text-align: center; align-content: center;">
                 <label for="docContent">We recommend you to draw the figure <a href="https://www.drawsvg.org/drawsvg.html" target="_blank">here</a> and save it in svg format.</label><br>
             </div>
             <div style="text-align: center; align-content: center;">

@@ -49,25 +49,27 @@
     </p>
     <p>
         Exista 5 fisiere care apeleaza cu propriul parametru ("login", "register", etc.)
-        controller-ul acestei componente. In functie de parametrul primit, controller-ul apeleaza o functie din cadrul
-        clasei care la randul ei va apela o functie din View pentru interfata paginii, respectiv un functie din Model
-        pentru partea de backend si anume inserare, stergere in baza de date. Tot ce tine de contul unui utilizator este
-        scris in <b>PHP</b>.
+        controller-ul acestei componente. In functie de parametrul primit, controller-ul apeleaza o metoda din cadrul
+        clasei care la randul ei va apela o metoda din View pentru interfata paginii, respectiv o metoda din Model
+        pentru partea de backend si anume inserare, stergere in baza de date.
+    </p>
+    <p>
+        Codul pentru contul unui utilizator este scris in <b>PHP</b>.
     </p>
     <section id="profil" role="doc-profil">
         <h2>Login</h2>
         <p>
             Fisierul login.php creeaza un nou obiect de timp controller trimitand ca parametru "login". In constructorul clasei
-            controllerului acesta apeleaza functia autentificaUser() care verifica integritatea si corectitudinea datelor introduse de
+            controllerului acesta apeleaza metoda autentificaUser() care verifica integritatea si corectitudinea datelor introduse de
             user.
         </p>
         <p>
-            Daca nu exista erori creeaza un obiect de tipul Model (MUser) care va apela functia "autentificaUser($username_, $password_)" din cadrul acestei clase.
-            Aici se face o interogare in baza de date si se verifica existenta userului si concordanta dintre user/email si parola. Functia returneaza
+            Daca nu exista erori creeaza un obiect de tipul Model (MUser) care va apela metoda "autentificaUser($username_, $password_)" din cadrul acestei clase.
+            Aici se face o interogare in baza de date si se verifica existenta userului si concordanta dintre user/email si parola. Metoda returneaza
             "password" sau "username" daca exista probleme cu existenta si corectitudinea acestora.
         </p>
         <p>
-            De asemenea, se creeaza si un obiect de tipul View (VUser) care va apela functia "oferaVizualizareLogin()" ce ofera partea de front-end a
+            De asemenea, se creeaza si un obiect de tipul View (VUser) care va apela metoda "oferaVizualizareLogin()" ce ofera partea de front-end a
             logarii. Aici este un formular in care se introduc datele necesare logarii. Nu se permite logarea daca nu sunt completate campurile obligatorii.
         </p>
         <p>
@@ -78,18 +80,18 @@
         <a href="/../php/userAccount/login.php">Link formular login</a>
     </section>
     <section id="profil" role="doc-profil">
-        <h2>Register</h2>
+        <h2>Inregistrare</h2>
         <p>
             Fisierul register.php creeaza un nou obiect de timp controller trimitand ca parametru "register". In constructorul clasei
-            controllerului acesta apeleaza functia adaugaUser() care va verifica daca au existat omiteri in introducerea datelor (lipsa vreunui camp),
+            controllerului acesta apeleaza metoda adaugaUser() care va verifica daca au existat omiteri in introducerea datelor (lipsa vreunui camp),
             daca parolele nu conincid sau nu contin 6 caractere.
         </p>
         <p>
-            Daca nu exista erori creeaza un obiect de tipul Model (MUser) care va apela functia "adaugaUser($username_, $email_, $password_)" din cadrul acestei clase.
+            Daca nu exista erori creeaza un obiect de tipul Model (MUser) care va apela metoda "adaugaUser($username_, $email_, $password_)" din cadrul acestei clase.
             Aici se face o interogare in baza de date si se introduc date in baza de date.
         </p>
         <p>
-            De asemenea, se creeaza si un obiect de tipul View (VUser) care va apela functia "oferaVizualizareRegister()" ce ofera partea de front-end a
+            De asemenea, se creeaza si un obiect de tipul View (VUser) care va apela metoda "oferaVizualizareRegister()" ce ofera partea de front-end a
             inregistrarii. Aici este un formular in care se introduc datele necesare inregistrarii. Nu se permite inregistrarea daca nu sunt completate campurile obligatorii.
         </p>
         <p>
@@ -98,20 +100,20 @@
         <a href="/../php/userAccount/register.php">Link formular register</a>
     </section>
     <section id="profil" role="doc-profil">
-        <h2>Reset password</h2>
+        <h2>Resetarea parolei</h2>
         <p>
             Fisierul reset.php va primi mereu prin GET actiunea pe care trebuie sa o realizeze. Trimite aceasta actiune controller-ului
-            si in functie de actiune, controller-ul decide ce functie sa apeleze. Poate primi sa realizeze una din cele 3 aciuni:
+            si in functie de actiune, controller-ul decide ce metoda sa apeleze. Poate primi sa realizeze una din cele 3 aciuni:
             sa apeleze view-ul pentru a se afisa formularul de introducere a email-ului prin intermediul caruia se va face resetul, sa
             apeleze view-ul care afiseaza un mesaj conform caruia s-a trimis mail-ul de resetare sau sa afiseze formularul pentru introducerea
             parolei noi.
         </p>
         <p>
-            Daca nu exista erori creeaza un obiect de tipul Model (MUser) care in functie de actiune apeleaza una din functiile:
+            Daca nu exista erori creeaza un obiect de tipul Model (MUser) care in functie de actiune apeleaza una din metodele:
             "resetPassword($token, $password_)" sau "sendEmail($email)".
         </p>
         <p>
-            De asemenea, se creeaza si un obiect de tipul View (VUser) care va apela functia "oferaVizualizareReset($action)" ce ofera partea de front-end a
+            De asemenea, se creeaza si un obiect de tipul View (VUser) care va apela metoda "oferaVizualizareReset($action)" ce ofera partea de front-end a
             resetarii. In functie de parametrul primit, acesta ofera 3 interfete diferite: fie formular pentru introducerea email-ului prin intermediul caruia se va face
             resetarea parolei, fie un text prin care este anuntat user-ul ca s-a trimis mail-ul, fie un formular prin intermediul caruia se vor introduce noua parola si confirmarea
             acesteia.
@@ -122,18 +124,171 @@
     <section id="profil" role="doc-profil">
         <h2>Logout</h2>
         <p>
-            Fisierul logout.php va distruge sesiunea user-ului curent si il va redirectiona catre pagina principala a sit-ului
+            Fisierul logout.php va distruge sesiunea user-ului curent si il va redirectiona catre pagina principala a sit-ului.
         </p>
     </section>
     <section id="profil" role="doc-profil">
-        <h2>Delete account</h2>
+        <h2>Stergere cont</h2>
         <p>
-            Stergerea contului unui utilizator porneste din propilul utilizatorului care prin apasarea butonului "Delete your account"
+            Stergerea contului unui utilizator porneste din profilul utilizatorului care prin apasarea butonului "Delete your account"
             ii va fi trimis un email de confirmare prin care va putea sa isi stearga contul. Prin accesarea link-ului trimis prin email
             acesta va fi redirectionat catre controller-ul CUser care va primi ca actiune parametrul "delete" si token-ul asignat acestui
             user pentru a se sterge contul.
         </p>
         <p>
-            Se apeleaza apoi functia "deleteUser($token)" din Model (MUser) care va sterge user-ul din baza de date.
+            Se apeleaza apoi metoda "deleteUser($token)" din Model (MUser) care va sterge user-ul din baza de date.
         </p>
     </section>
+</section>
+
+<section id="logare" role="doc-logare">
+    <h2>Profilul unui utilizator</h2>
+    <p>
+        Partea a proiectului ce tine de afisarea profilului unui utilizator si stergerea acestuia urmeaza
+        modelul arhitectural Model-View-Controller (MVC).
+    </p>
+    <p>
+        Afisarea profilului utilizatorului se realizeaza prin intermediul fisierului profile.php in care se creeaza un obiect de tip
+        Controller (CProfile) si se apeleaza metodele acestei clase in functie de ce se trimite prin GET.
+    </p>
+    <p>
+        Codul pentru profilul unui utilizator este scris in <b>PHP</b> si <b>JavaScript</b>.
+    </p>
+    <section id="profil" role="doc-profil">
+        <h2>Arata profilul</h2>
+        <p>
+            Pentru a se afisa profilul unui utilizator, nu va fi setat $_GET['action'] si se va apela metoda showProfileInfo($id) din Controller (CProfile). In aceasta metoda, initial,
+            se verifica daca este setat $_POST["subButton"]. In acest caz, s-a incarcat o noua poza de profil si se apeleaza metoda "uploadAvatar($id_user, $avatar_user)" din
+            Model (MProfile) care va realiza un update asupra bazei de date pentru a actualiza noua imagine de profil a utilizatorului curent. Functionalitatea
+            butonului de upload a pozei de profil se realizeaza cu ajutorul unor functii in JavaScript. Acestea se pot gasi in fisierul "avatar-modal.js". Pe scurt, se
+            modifica stilistica div-ului prin care se alege poze de upload prin setarea campului "display = block". Imaginea se va incarca direct in baza de date
+            in format Base64. Am optat pentru aceasta optiune in scopul de a nu incarca folderele serverului cu pozele utilizatorilor si imagini ale paginilor de teorie.
+            La incarcarea pozei de profil se apeleaza alte 2 functii JavaScript "prepareDiv()" si "showFiles()" care preia valoarea pozei pentru a fi scrisa apoi in
+            baza de date, respectiv pentru a transforma poza in format Base64 pentru a putea fi introdusa direct in baza de date. Ulterior se apeleaza
+            doua metode din Model (MProfile): "getProfileInfo($id_user)", respectiv "getUserPublications($id_user)" care vor realiza doua interogari din baza de date cu
+            scopul de a extrage datele utilizatorului curent, respectiv publicatiile acestuia. In cele din urma, se creeaza un obiect de tipul VProfile cu parametrii
+            aferenti "$view = new VProfile(array($info_user, $id_user, $publications, $this->model->maxPerPage));" si se apeleaza metoda "viewProfile()" din cadrul acestei
+            clase care va afisa pagina de profil a user-ului cerut.
+        </p>
+    </section>
+    <section id="profil" role="doc-profil">
+        <h2>Trimitere mail de confirmare a stergerii contului</h2>
+        <p>
+            Pentru a se realiza aceasta actiunea trebuie sa fie setat $_GET['action'] == 'sendDelMail'. Se va crea un obiect de
+            tipul CUser primind in constructor parametrii "new CUser($_SESSION['userid'], "sendDelEmail");".
+            Continuarea actiunii este descrisa mai sus, in subcapitolul "2.5 Delete account".
+        </p>
+    </section>
+    <section id="profil" role="doc-profil">
+        <h2>Afisare mesaj de confirmare a trimiterii email-ului</h2>
+        <p>
+            Daca este setat $_GET['action'] == 'confirmMail' atunci se va afisa mesajul de confirmare a trimiterii email-ului pentru stergerea contului
+            utilizatorului. Se va crea un obiect de tipul CProfile() si se va apela metoda "showMailConfirmation()" din aceasta clasa.
+            In body-ul acestei metode se apeleaza doar o functie View (VProfile) care va afisa mesajul.
+        </p>
+    </section>
+</section>
+
+<section id="logare" role="doc-logare">
+    <h2>Comentariile</h2>
+    <p>
+        Afisarea comentariilor se realizeaza prin intermediul fisierului comments.php, iar in cazul in care utilizatorul este logat se va crea un
+        obiect de tipul Controller (CController) si se va publica comentariul scris. Pentru afisarea comentariilor existente, aceasta se realizeaza
+        indiferent daca un utilizatorul este logat sau nu.
+    </p>
+    <p>
+        Partea a proiectului ce tine de afisarea si publicarea comentariilor urmeaza modelul arhitectural Model-View-Controller (MVC).
+    </p>
+    <section id="profil" role="doc-profil">
+        <h2>Postarea unui comentariu</h2>
+        <p>
+            Pentru un utilizator normal este destul de usor sa posteze un comentariu pe o pagina de teorie. In array-ul $parametri ce va fi trimis in controller-ul
+            clasei CComment se vor afla trei campuri:id-ul paginii curente de teorie, id-ul userului care urmeaza sa posteze comentariul si textul comentariului.
+            De asemenea, pentru adaugarea comentariului se va trimite ca parametru si actiunea aferenta ("adaugaComment"). In constructorul clasei CComment
+            se apeleaza un din metodele "afiseazaComments($id_document)", "adaugaComment($id_document, $id_user, $mesaj)" in functie de ce se trimite ca parametru
+            in campul $actiune. In Model (MComment) se realizeaza interogarile in baza de date prin care sunt obtinute datele dorite pentru afisare
+            sau inserarea comentariului.
+        </p>
+        <p>
+            Un aspect important in ceea ce priveste adaugarea unui comentariu este statusul user-ului. Acesta, in urma unui limbaj sau comportament indecent pe forum,
+            poate avea statutul "BANNED", ceea ce conduce la imposibilitatea publicarii comentariilor. Inainte de a se insera un comentariu in baza de date se verifica
+            daca acel utilizator este "BANNED". In acest caz, nu se realizeaza actiunea.
+        </p>
+    </section>
+
+</section>
+
+<section id="logare" role="doc-logare">
+    <h2>Publicatiile</h2>
+    <p>
+        Pe sit-ul MeQ exista posibilitatea de a vizualiza publicatiile existente sau de a se uploada noi pagini de teorie. Fiecare utilizator are posibilitatea
+        de a publica o pagina de teorie. Acest sit este dedicat pasionatilor de matematica si celor dornici de a invata, de aceea fiecare utilizator este invitat
+        sa contribuie la dezvoltarea acestei comunitati prin aceasta posibilitate de a scrie noi pagini de teorie.
+    </p>
+    <p>
+        Dupa incarcarea publicatiei, aceasta nu va fi direct pusa pe sit-ul MeQ, ci va avea nevoie de aprobarea unuia dintre
+        administratorii sit-ului, aceasta cu scopul de a preveni orice incercare de jignire/gluma/frauda asupra comunitatii noastre.
+        Aidoma sectiunii de comentarii, nu poate fi publicata o pagina de teorie de catre un utilizator care are statusul "BANNED".
+    </p>
+    <p>
+        Codul pentru afisarea si incarcarea paginilor de teorie (publicatiilor) este scris in <b>PHP</b> si <b>JavaScript</b>.
+    </p>
+    <section id="profil" role="doc-profil">
+        <h2>Afisarea publicatiilor</h2>
+        <p>
+            Publicatiile (paginile de teorie) pot fi accesate fie prin sectiunile New/Top din mainpage-ul sit-ului, fie prin cautarea concreta in sectiunea Search a
+            aceleiasi pagini. Afisarea paginilor de teorie se realizeaza in fisierul content_query.php unde se creeaza un nou obiect de tipul CPostContent, reprezentand
+            Controller-ul ce gestioneaza publicatiile. Ca si pana acum, se va trimite ca parametru actiunea care se doreste a fi executata, in acest caz "showPostContent".
+            Celalalt parametru va fi id-ul paginii de teorie. In constructorul clasei CPostContent se va verifica de ce tip este request-ul actual si se creeaza
+            un obiect Model (MPostContent) care va apela metoda "getPostContent($id_document)" pentru a extrage din baza de date pagina dorita. Ulterior este creat si un
+            obiect View care reprezinta componenta Front-end a sectiunii. Aceasta va afisa pagina de teorie prin intermediul metodei "viewPostContent()".
+        </p>
+    </section>
+
+    <section id="profil" role="doc-profil">
+        <h2>Incarcarea unei publicatii</h2>
+        <p>
+            Calea incarcarii unei pagini de teorie este upload_page.php. Se verifica statusul utilizatorului care doreste sa adauge o noua pagina de teorie, urmand sa
+            se extraga continutul noii publicatii trimis prin POST. Se creeaza apoi un nou obiect Controller care va avea a parametrii actiunea dorita, in acest caz
+            "insertContent" si un array care contine textul paginii de teorie. In constructorul clasei CPostContent se verifica actiunea dorita si se creeaza obiectele
+            Model (MPostContent) pentru inserarea documentului in statusul de asteptare, respectiv View (VPostContent) pentru afisarea editorului.
+        </p>
+        <p>
+            Pagina de upload teorie ofera o gama variata de optiuni si setari ajutatoare pentru ca aceasta sa fie cat mai usor de scris, cat mai precisa din punct de vedere
+            matematic si cat mai placuta vizual. Aceasta este un formular care se va trimite prin POST continutul publicatiei catre Controller. Initial este un input pentru
+            inserarea titlului paginii de teorie. Acest camp este obligatoriu si nu se poate face submit fara ca acesta sa fie completat.
+        </p>
+    </section>
+    <section id="profil" role="doc-profil">
+        <h2>Editorul paginii de teorie (WYSIWYG)</h2>
+        <p>
+            Editorul pentru pagina de teorie este un editor de tipul WYSIWYG. Utilizatorul are posibilitatea de a stiliza, formata si aranja pagina de teorie
+            astfel incat sa fie cat mai placuta si usor de parcurs pentru utilizatorii care o vor folosi. Un aspect esential al acestui editor este asistentul
+            de scriere a formulelor matematice. Prin apasarea acestui buton ("Math assistant") se deschide o fereastra prin care user-ul poate adauga diverse functii
+            matematice: de la cele mai simple, la cele mai complexe. Este utilizat enginul MathJax pentru a randa formulele. Pentru functionalitatea tuturor acestor
+            butoane (Ex: bold, italic, inserarea formulelor prin math assistant) am utilizat doua functii JavaScript: "execCmdWithArgument(command, arg)", respectiv
+            "execCmd(command)" care vor executa comenzile primite prin document.execCommand(command, false, arg)/document.execCommand(command, false, null).
+            Editorul este un div contenteditable care permite si atat inserarea in mod direct a imaginilor, cat si o previzualizare a continutului publicatiei.
+            Afisarea live a imaginilor in editorul de text se realizeaza cu ajutorul functiei "showFiles()" care creeaza un nou obiect de tipul Image si o atribuie editorului
+            de text. Preluarea si pregatirea continutului paginii de teorie se realizeaza prin intermediul functiei "prepareDiv()" care va transfera continutul div-ului
+            contenteditable intr-un div de tipul hidden. Aceasta se realizeaza deoarece nu am putut obtine continutul direct de la primul div.
+        </p>
+        <p>
+            Imaginile care se doresc a fi incarcate pe pagina de teorie pot fi alese din calculatorul propriu sau pot fi realizate la recomandarea noastra pe
+            un sit unde se pot crea imagini svg (<a href="https://www.drawsvg.org/drawsvg.html" target="_blank">aici</a>), descarca pe local si apoi incarca pe serverul
+            MeQ (in editor).
+        </p>
+    </section>
+    <section id="profil" role="doc-profil">
+        <h2>Editorul de chestionare</h2>
+        <p>
+            Odata cu introducerea unei pagini de teorie, se poate adauga si un chestionar pentru ca utilizatorii care au parcurs acea lectie sa aiba posibilitatea sa
+            isi verifice cunostintele acumulate. ** AICI TUDOR POTI COMPLETA CU INFORMATII DESPRE QUIZ **.
+        </p>
+
+    </section>
+
+</section>
+
+
+
