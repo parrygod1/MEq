@@ -1,7 +1,6 @@
 .MathJax_Display {
     /* this is done to override mathjax center align */
     text-align: inherit !important;
-    overflow: scroll;
 }
 
 #box {
@@ -114,5 +113,11 @@
 
     [class*="comment-wrapper"] {
         margin: 0;
+    }
+}
+
+@media only screen and (max-width: 1023px){
+    .MathJax_Display {
+        overflow: scroll;
     }
 }

@@ -10,8 +10,12 @@ require_once "CProfile.php";
 
   if(!isset($_GET['action']))
   {
+    $id = 0;
+    if(isset($_GET['id'])) $id = $_GET['id'];
+    else if(isset($_SESSION['userid'])) $id = $_SESSION['userid'];
+    
     $controller = new CProfile();
-    $controller->showProfileInfo($_GET['id']);
+    $controller->showProfileInfo($id);
   }
   else if ($_GET['action'] == 'sendDelMail' && isset($_SESSION['userid']))
   {
