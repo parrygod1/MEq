@@ -1,3 +1,4 @@
+
 <?php
 //class used to determine what domains/paths to use in code
 abstract class DomainPath {

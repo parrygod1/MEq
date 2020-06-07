@@ -1,6 +1,7 @@
 #math-assistant {
     display: none;
     position: fixed;
+    overflow: auto;
     z-index: 1;
     left: 0;
     top: 0;
@@ -11,18 +12,27 @@
     align-content: center;
 }
 
+/*@media only screen and (max-width: 767px) {
+    /* For mobile phones: */
+    /*[class*="math-assistant-content"] {
+        width: calc(100% - 200px);
+    }
+}*/
+
 .math-assistant-content {
+    overflow: auto;
     background-color: #ad75cf;
     position: absolute;
-    height: 470px;
-    width: 540px;
-    margin: -235px 0 0 -270px;
-    top: 50%;
-    left: 50%;
+    height: 75%;
+    width: 40%;
+    /*margin: -235px 0 0 -270px;*/
+    top: 15%;
+    left: 30%;
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.6);
 }
 
 .math-assistant-content input {
+    overflow: auto;
     height: 35px;
     width: 35px;
     background-color: #ffc2e2;
@@ -37,7 +47,31 @@
     font-size: 28px;
     font-weight: bold;
     position: absolute;
-    margin-left: 340px;
+    margin-left: 59%;
+}
+
+@media only screen and (max-width: 980px) {
+    [class*="math-assistant-content"] {
+        width: 60%;
+        left: 20%;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    [class*="math-assistant-content"] {
+        width: 80%;
+        left: 10%;
+    }
+    [class*="assistant-close"] {
+        margin-left: 70%;
+    }
+}
+
+
+@media only screen and (max-width: 374px) {
+    [class*="assistant-close"] {
+        margin-left: 80%;
+    }
 }
 
 .assistant-close:hover,

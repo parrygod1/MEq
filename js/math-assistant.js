@@ -54,9 +54,11 @@ for(let i = 0; i < inputs.length; i++) {
             case 'matrix': execCmdWithArgument('insertText', '\\begin{pmatrix} 1 & x & x^2 \\\\ 1 & y & y^2 \\\\ 1 & z & z^2 \\end{pmatrix}'); break;
             case 'determinant': execCmdWithArgument('insertText', '\\begin{vmatrix} 1 & x & x^2 \\\\ 1 & y & y^2 \\\\ 1 & z & z^2 \\end{vmatrix}'); break;
 
-            case 'degree': execCmdWithArgument('insertText', '\^o'); break;
+            case 'degree': execCmdWithArgument('insertText', '\^\\circ'); break;
             case 'sin': execCmdWithArgument('insertText', '\\sin ()'); break;
             case 'cos': execCmdWithArgument('insertText', '\\cos ()'); break;
+            case 'tg': execCmdWithArgument('insertText', 'tg ()'); break;
+            case 'ctg': execCmdWithArgument('insertText', 'ctg ()'); break;
             case 'angle': execCmdWithArgument('insertText', '\\sphericalangle'); break;
 
             case 'to': execCmdWithArgument('insertText', '\\to'); break;
