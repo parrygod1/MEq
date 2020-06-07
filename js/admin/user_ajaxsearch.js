@@ -85,7 +85,7 @@ function searchForData(valueName, valueId, page) {
 		requestHeader += 'name=*all*' + '&page=' + page; 
 	}
 
-  ajax.open('GET', requestURI + requestHeader , true);
+  	ajax.open('GET', requestURI + requestHeader , true);
 	ajax.send();
 }
 

@@ -18,7 +18,6 @@ p {
     border-radius: 2px;
     color: rgb(255, 255, 255);
     font-size: 25px;
-    font-weight: 100;
     background-color: #000000;
     border: solid rgb(36, 36, 36) 1px;
     text-decoration: none;
@@ -69,8 +68,6 @@ p {
     /* For mobile phones: */
     [class*="content"] {
         margin: 0;
-        margin-left: 0;
-        margin-right: 0;
     }
 }
 

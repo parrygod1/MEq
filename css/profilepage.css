@@ -134,6 +134,16 @@ body {
     margin-left: 10px;
 }
 
+.publication {
+    background: #efefef;
+    margin-bottom: 10px;
+}
+
+.publication p {
+    padding: 10px;
+    margin: 0;
+}
+
 .publication-title {
     text-decoration: none;
 }
@@ -143,7 +153,24 @@ body {
 }
 
 .publication-title h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px;
     margin: 0;
+    background: rgba(0,0,0,0.2);
+}
+
+.pages a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 8px 16px;
+    background: black;
+    color: white;
+}
+
+.pages a:hover {
+    background: rgb(167, 167, 167);
 }
 
 @media only screen and (max-width: 768px) {
@@ -159,6 +186,7 @@ body {
     }
 
     #profile-information {
+        height: auto;
         width: 100%;
     }
 
@@ -167,7 +195,30 @@ body {
         height: 40px;
     }
 
+    #delete-user-button {
+        margin: 0;
+    }
+
     .modal-content {
         width: 100%;
+    }
+
+    #publications-list {
+        margin: 0;
+    }
+
+    .publication {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .publication p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .pages {
+        text-align: center;
     }
 }

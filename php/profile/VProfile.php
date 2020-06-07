@@ -67,9 +67,9 @@ class VProfile {
                 <?php endforeach; ?>
                 <div class="pages">
                     <?php if(!empty($_GET['page']) && $_GET['page'] > 1) { ?>
-                        <a href="?id=<?php echo $this->idUser; ?>&page=<?php echo $_GET['page'] - 1; ?>">&lt;</a>
+                        <a class="previous" href="?id=<?php echo $this->idUser; ?>&page=<?php echo $_GET['page'] - 1; ?>">&lt;</a>
                     <?php } if((empty($_GET['page']) ? 1 : $_GET['page']) < $pages) { ?>
-                        <a href="?id=<?php echo $this->idUser; ?>&page=<?php echo (empty($_GET['page']) ? 1 : $_GET['page']) + 1; ?>">&gt;</a>
+                        <a class="next" href="?id=<?php echo $this->idUser; ?>&page=<?php echo (empty($_GET['page']) ? 1 : $_GET['page']) + 1; ?>">&gt;</a>
                     <?php } ?>
                 </div>
             </div>

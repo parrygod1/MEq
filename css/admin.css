@@ -136,6 +136,12 @@ body {
     margin-top: 15px;
 }
 
+#pages .selected {
+    background-color: #007dc1;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
 .util-container {
     margin-top: 15px;
     display: flex;
