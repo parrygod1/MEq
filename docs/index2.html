@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>MEqX - Documentation</title>
+    <link rel="stylesheet" href="css/scholarly.min.css">
+    <script src="js/scholarly.min.js"></script>
+</head>
+<body prefix="schema: http://schema.org">
+<header>
+    <div class="banner">
+        <a href="/../index.html" class="logo">Main Site</a>
+        <div class="status"><span>M&Sigma;q<sup>x</sup></span> - Documentation</div>
+    </div>
+    <h1>Interfata si arhitectura proiectului</h1>
+</header>
+
+<div role="contentinfo">
+    <dl>
+        <dt>Autori</dt>
+        <dd>
+            Paraschiv Tudor Andrei, Dragoi Stefan, Miron Dorin Marian
+        </dd>
+        <dt>GitHub</dt>
+        <dd>
+            <a href="https://github.com/parrygod1/MEq">Link catre repository-ul proiectului</a>
+        </dd>
+        <dt>Proiect realizat in cadrul cursului Tehnologii Web de la Facultatea de Informatica, Universitatea "Al I. Cuza" Iasi</dt>
+    </dl>
+</div>
+<section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+    <h2>Cerinta</h2>
+    <p>
+        <dt>MEq (Math Equation Web Explorer): </dt>
+        Sa se conceapa o aplicatie Web cu caracter educational capabila sa furnizeze utilizatorilor (autentificati sau nu)
+        o modalitate de a discuta si compara ecuatii matematice specifice – de dorit, notorii – din diverse arii: algebra, analiza,
+        geometrie, trigonometrie. Sursa ecuatiilor poate fi un tratat, un sit Web ori eventual poate proveni
+        de pe calculatorul client (prin operatia de upload). Sistemul va oferi suport pentru includerea de
+        exercitii/probleme referitoare la fiecare ecuatie disponibila. Bonus: recurgerea la formatele MathML si/sau SVG.
+    </p>
+</section>
+
+<section id="logare" role="doc-logare">
+    <h2>Contul unui utilizator</h2>
+    <p>
+        Partea a proiectului ce tine de logare, delogare, inregistrare, resetare a parolei si stergere a contului urmeaza
+        modelul arhitectural Model-View-Controller (MVC).
+    </p>
+    <p>
+        Exista 5 fisiere care apeleaza cu propriul parametru ("login", "register", etc.)
+        controller-ul acestei componente. In functie de parametrul primit, controller-ul apeleaza o functie din cadrul
+        clasei care la randul ei va apela o functie din View pentru interfata paginii, respectiv un functie din Model
+        pentru partea de backend si anume inserare, stergere in baza de date. Tot ce tine de contul unui utilizator este
+        scris in <b>PHP</b>.
+    </p>
+    <section id="profil" role="doc-profil">
+        <h2>Login</h2>
+        <p>
+            Fisierul login.php creeaza un nou obiect de timp controller trimitand ca parametru "login". In constructorul clasei
+            controllerului acesta apeleaza functia autentificaUser() care verifica integritatea si corectitudinea datelor introduse de
+            user.
+        </p>
+        <p>
+            Daca nu exista erori creeaza un obiect de tipul Model (MUser) care va apela functia "autentificaUser($username_, $password_)" din cadrul acestei clase.
+            Aici se face o interogare in baza de date si se verifica existenta userului si concordanta dintre user/email si parola. Functia returneaza
+            "password" sau "username" daca exista probleme cu existenta si corectitudinea acestora.
+        </p>
+        <p>
+            De asemenea, se creeaza si un obiect de tipul View (VUser) care va apela functia "oferaVizualizareLogin()" ce ofera partea de front-end a
+            logarii. Aici este un formular in care se introduc datele necesare logarii. Nu se permite logarea daca nu sunt completate campurile obligatorii.
+        </p>
+        <p>
+            Logarea se poate face si cu una din cele doua retele sociale: Google sau Facebook. Pentru fiecare logare se verifica mai intai
+            daca este setat "$_GET["code"]". Daca este true, se realizeaza autentificarea cu una din retelele sociale si se urmeaza aceiasi pasi
+            ca mai sus.
+        </p>
+        <a href="/../php/userAccount/login.php">Link formular login</a>
+    </section>
+    <section id="profil" role="doc-profil">
+        <h2>Register</h2>
+        <p>
+            Fisierul register.php creeaza un nou obiect de timp controller trimitand ca parametru "register". In constructorul clasei
+            controllerului acesta apeleaza functia adaugaUser() care va verifica daca au existat omiteri in introducerea datelor (lipsa vreunui camp),
+            daca parolele nu conincid sau nu contin 6 caractere.
+        </p>
+        <p>
+            Daca nu exista erori creeaza un obiect de tipul Model (MUser) care va apela functia "adaugaUser($username_, $email_, $password_)" din cadrul acestei clase.
+            Aici se face o interogare in baza de date si se introduc date in baza de date.
+        </p>
+        <p>
+            De asemenea, se creeaza si un obiect de tipul View (VUser) care va apela functia "oferaVizualizareRegister()" ce ofera partea de front-end a
+            inregistrarii. Aici este un formular in care se introduc datele necesare inregistrarii. Nu se permite inregistrarea daca nu sunt completate campurile obligatorii.
+        </p>
+        <p>
+            Inregistrarea se poate face si cu una din cele doua retele sociale: Google sau Facebook. Se urmeaza aceiasi pasi ca mai sus.
+        </p>
+        <a href="/../php/userAccount/register.php">Link formular register</a>
+    </section>
+    <section id="profil" role="doc-profil">
+        <h2>Reset password</h2>
+        <p>
+            Fisierul reset.php va primi mereu prin GET actiunea pe care trebuie sa o realizeze. Trimite aceasta actiune controller-ului
+            si in functie de actiune, controller-ul decide ce functie sa apeleze. Poate primi sa realizeze una din cele 3 aciuni:
+            sa apeleze view-ul pentru a se afisa formularul de introducere a email-ului prin intermediul caruia se va face resetul, sa
+            apeleze view-ul care afiseaza un mesaj conform caruia s-a trimis mail-ul de resetare sau sa afiseze formularul pentru introducerea
+            parolei noi.
+        </p>
+        <p>
+            Daca nu exista erori creeaza un obiect de tipul Model (MUser) care in functie de actiune apeleaza una din functiile:
+            "resetPassword($token, $password_)" sau "sendEmail($email)".
+        </p>
+        <p>
+            De asemenea, se creeaza si un obiect de tipul View (VUser) care va apela functia "oferaVizualizareReset($action)" ce ofera partea de front-end a
+            resetarii. In functie de parametrul primit, acesta ofera 3 interfete diferite: fie formular pentru introducerea email-ului prin intermediul caruia se va face
+            resetarea parolei, fie un text prin care este anuntat user-ul ca s-a trimis mail-ul, fie un formular prin intermediul caruia se vor introduce noua parola si confirmarea
+            acesteia.
+        </p>
+
+        <a href="/../php/userAccount/reset.php?action=prepareReset">Link resetare parola</a>
+    </section>
+    <section id="profil" role="doc-profil">
+        <h2>Logout</h2>
+        <p>
+            Fisierul logout.php va distruge sesiunea user-ului curent si il va redirectiona catre pagina principala a sit-ului
+        </p>
+    </section>
+    <section id="profil" role="doc-profil">
+        <h2>Delete account</h2>
+        <p>
+            Stergerea contului unui utilizator porneste din propilul utilizatorului care prin apasarea butonului "Delete your account"
+            ii va fi trimis un email de confirmare prin care va putea sa isi stearga contul. Prin accesarea link-ului trimis prin email
+            acesta va fi redirectionat catre controller-ul CUser care va primi ca actiune parametrul "delete" si token-ul asignat acestui
+            user pentru a se sterge contul.
+        </p>
+        <p>
+            Se apeleaza apoi functia "deleteUser($token)" din Model (MUser) care va sterge user-ul din baza de date.
+        </p>
+    </section>

@@ -136,7 +136,7 @@ require_once "VUser.php";
 
                     if(!empty($facebook_user_info['id']))
                     {
-                        $this->photo = 'http://graph.facebook.com/'.$facebook_user_info['id'].'/picture';
+                        $this->photo = 'http://graph.facebook.com/'.$facebook_user_info['id'].'/picture?width=300&height=300';
                     }
 
                     if(!empty($facebook_user_info['name']))
