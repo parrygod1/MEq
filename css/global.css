@@ -180,6 +180,10 @@ select:active {
 }
 
 @media only screen and (max-width: 767px) {
+    #content-panel {
+        height: calc(100% - 57px);
+    }
+
     .main-content {
         float: none;
         height: auto;

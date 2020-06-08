@@ -93,7 +93,6 @@ function showPosts(data) {
         createElement(data[i]);   
 	}
 	createPageNumbers();
-	document.getElementById('pages').setAttribute('style', 'display: block');
 	MathJax.Hub.Typeset();
 }
 
@@ -205,6 +204,7 @@ function enableSearch() {
 	disableQuizSearch();
 	textBox.setAttribute('style', 'display: initial');
 	searchContainer.setAttribute('style', 'display: block');
+	document.getElementById('pages').setAttribute('style', 'display: block');
 	clearResult();
 }
 
@@ -216,11 +216,13 @@ function disableSearch(){
 function searchTop(){
 	disableSearch();
 	searchForData('*top*');
+	document.getElementById('pages').setAttribute('style', 'display: none');
 }
 
 function searchNew(){
 	disableSearch();
 	searchForData('*new*');
+	document.getElementById('pages').setAttribute('style', 'display: none');
 }
 
 function enableQuizSearch(){
