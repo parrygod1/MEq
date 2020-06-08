@@ -101,11 +101,11 @@ class MUser {
 
     }
 
-    public function autentificaSocial($username, $photo) {
-        $sql = 'SELECT id FROM users WHERE username = :username';
+    public function autentificaSocial($username, $photo, $email) {
+        $sql = 'SELECT id FROM users WHERE email = :email and username = :username';
         $stmt = BD::obtine_conexiune()->prepare($sql);
         $stmt -> execute ([
-            'username' => $username
+            'email' => $email
         ]);
         if($stmt->fetchColumn() == 0) {
             $query = 'select max(id) as maxid from users';
@@ -116,13 +116,14 @@ class MUser {
 
             $newid = $response["maxid"] + 1;
 
-            $sql = 'INSERT INTO users (id, username, image_path, created_at, updated_at) VALUES (:id, :username, :image_path, sysdate(), sysdate())';
+            $sql = 'INSERT INTO users (id, username, email, image_path, created_at, updated_at) VALUES (:id, :username, :email, :image_path, sysdate(), sysdate())';
             $stmt = BD::obtine_conexiune()->prepare($sql);
 
             if($stmt -> execute ([
                 'id' => $newid,
                 'username' => $username,
-                'image_path' => $photo ])) {
+                'image_path' => $photo,
+                'email' => $email ])) {
 
                 $_SESSION['role'] = 0;
                 $_SESSION["loggedin"] = true;
@@ -221,13 +222,12 @@ class MUser {
         ]);
         $email = $stmt->fetch(PDO::FETCH_ASSOC)['email'];
 
-        $sql = 'UPDATE users SET token = :token WHERE email = :email';
+        $sql = 'UPDATE users SET token = :token WHERE email = :email and email not null';
         $stmt = BD::obtine_conexiune()->prepare($sql);
         $stmt -> execute ([
             'token' => $token,
             'email' => $email
         ]);
-        echo $token;
         $sql = 'SELECT username from users WHERE email = :email';
         $stmt = BD::obtine_conexiune()->prepare($sql);
         $stmt -> execute ([

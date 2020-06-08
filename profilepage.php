@@ -25,7 +25,6 @@ include "navbar.php"; ?>
 <script src="js/navbar.js"></script>
 <script type="text/javascript" src="https://latex.codecogs.com/latexit.js"></script>
 <script src="js/mathjax-reset.js"></script>
-<script src="js/avatar-modal.js"></script>
 
 </body>
 </html>
