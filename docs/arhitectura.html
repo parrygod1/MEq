@@ -63,7 +63,26 @@
     </section>
     <section id="mailer">
         <h2>Configurarea pentru mailer</h2>
-        ** Stefan scrie te rog ce trebuie pentru mailer **
+        <p>
+            In cadrul aplicatiei se trimit mail-uri de la server in doua situatii: resetarea parolei in cazul in care un utilizator
+            o uita sau stergerea contului (confirmarea identitatii).
+        </p>
+        <p>
+            In primul rand, am avut nevoie sa ne configuram un simplu server SMTP pentru a putea trimite mail-urile. Am optat pentru
+            hMailServer. Pentru instalarea si configurarea acesteia astfel incat sa aiba functionalitatea dorita am descarcat installer-ul
+            de pe sit-ul oficial hMailServer si am urmarit <a href="https://medium.com/@coffmans/setup-your-own-simple-smtp-server-how-to-c9159cfc7934">
+            acest tutorial</a>.
+        </p>
+        <p>
+            In al doilea rand, pentru trimiterea concreta a meil-ului am folosit <a href="https://github.com/PHPMailer/PHPMailer">PHPMailer</a> deoarece
+            aceasta este o solutie mai cu o performanta superioara din punct de vedere al trimiterii mail-urilor comparativ cu functia clasica "mail()" din PHP.
+        </p>
+        <p>
+            Cele doua utilizari ale acestei librarii se afla in Modelul contului de utilizator (MUser.php): metodele "sendEmail($email)", respectiv
+            "sendDeletionEmail($id_user)". Se creeaza un obiect de timpul PHPMailer si se seteaza
+            configuratiile necesare (de exemplu: host, port, email-ul si parola de pe care se trimite mail-ul). In cele din urma, se adauga un subiect, un body si
+            se trimite mail-ul.
+        </p>
     </section>
   </section>    
 <section id="logare">
@@ -77,9 +96,6 @@
         controller-ul acestei componente. In functie de parametrul primit, controller-ul apeleaza o metoda din cadrul
         clasei care la randul ei va apela o metoda din View pentru interfata paginii, respectiv o metoda din Model
         pentru partea de backend si anume inserare, stergere in baza de date.
-    </p>
-    <p>
-        Codul pentru contul unui utilizator este scris in <b>PHP</b>.
     </p>
     <section id="login">
         <h2>Login</h2>
@@ -176,9 +192,6 @@
         Afisarea profilului utilizatorului se realizeaza prin intermediul fisierului profile.php in care se creeaza un obiect de tip
         Controller (CProfile) si se apeleaza metodele acestei clase in functie de ce se trimite prin GET.
     </p>
-    <p>
-        Codul pentru profilul unui utilizator este scris in <b>PHP</b> si <b>JavaScript</b>.
-    </p>
     <section id="profil">
         <h2>Vizualizarea profilului</h2>
         <p>
@@ -254,9 +267,6 @@
         Dupa incarcarea publicatiei, aceasta nu va fi direct pusa pe sit-ul MeQ, ci va avea nevoie de aprobarea unuia dintre
         administratorii sit-ului, aceasta cu scopul de a preveni orice incercare de jignire/gluma/frauda asupra comunitatii noastre.
         Aidoma sectiunii de comentarii, nu poate fi publicata o pagina de teorie de catre un utilizator care are statusul "BANNED".
-    </p>
-    <p>
-        Codul pentru afisarea si incarcarea paginilor de teorie (publicatiilor) este scris in <b>PHP</b> si <b>JavaScript</b>.
     </p>
     <section id="docsview">
         <h2>Afisarea publicatiilor</h2>
