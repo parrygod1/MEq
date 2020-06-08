@@ -23,7 +23,7 @@ class VProfile {
             $publications = $this->publications->fetchAll(PDO::FETCH_ASSOC);
             $pages = ceil($row['DOC'] / $this->maxPerPage);
             ?>
-                <img src="<?php echo $row['IMAGE_PATH'] ?>">
+                <img src="<?php echo $row['IMAGE_PATH'] ?>" alt="">
                 <?php if(isset($_SESSION['userid']) && $this->idUser == $_SESSION['userid']) { ?>
                     <button class="button-regular" id="avatar-button">Change avatar</button>
                 <?php } ?>
@@ -108,9 +108,14 @@ class VProfile {
                     }
                 }
             </script>
-
+            
             <?php
         }
+         if(isset($_SESSION['userid']) && $this->idUser == $_SESSION['userid']) { 
+            ?>
+            <script src="js/avatar-modal.js"></script>
+            <?php 
+         }
     }
 
     public function viewMailConfirmation(){

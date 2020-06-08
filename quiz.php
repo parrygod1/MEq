@@ -24,11 +24,12 @@
         <div id="question-wrapper">
             <div id="question-desc"></div>
             <div id="graphic-wrapper">
-                <img id="graphic" src="">
+                <img id="graphic" alt="" src="">
             </div>
             <div id="actual-question"></div>
             <div id="answer-wrapper">
                 <div class="submit-box">
+                    <label for="answer-text">Answer: </label>
                     <input id="answer-text" type="text" value="">
                 </div>
                 <div class="button-wrapper">

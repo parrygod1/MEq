@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__ . "/../configDomain.php";
 class VAdmin
 {
     private $data;
@@ -28,7 +28,7 @@ class VAdmin
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                         <li><a href="adminPublications.php">Publications</a></li>
                         <li><a href="adminUsers.php">Users</a></li>
-                        <li><a href="../Docs/">Docs</a></li>
+                        <li><a href="/../Docs/">Docs</a></li>
                     </ul>
                 </form>
             </div>
@@ -86,7 +86,7 @@ class VAdmin
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                         <li><a href="adminPublications.php">Publications</a></li>
                         <li><a href="adminUsers.php">Users</a></li>
-                        <li><a href="../Docs/">Docs</a></li>
+                        <li><a href="/Docs/">Docs</a></li>
                     </ul>
                 </form>
             </div>

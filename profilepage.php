@@ -14,12 +14,6 @@
 
 <?php
 include "navbar.php"; ?>
-<!-- <div class = "profile-back">
-        <div class = "profile-box">
-
-        </div>
-    </div> -->
-
 <div class="content-container">
     <div id="profile-information">
         <?php
@@ -31,7 +25,6 @@ include "navbar.php"; ?>
 <script src="js/navbar.js"></script>
 <script type="text/javascript" src="https://latex.codecogs.com/latexit.js"></script>
 <script src="js/mathjax-reset.js"></script>
-<script src="js/avatar-modal.js"></script>
 
 </body>
 </html>

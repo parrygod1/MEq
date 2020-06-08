@@ -2,8 +2,13 @@ body {
     background: #f6f6f6;
 }
 
+.main-content {
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 .admin-box {
-    height: 13%;
     margin-top: 15px;
 }
 

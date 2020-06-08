@@ -19,22 +19,25 @@ class VPostContent
         } else {
             $row = $this->data->fetch(PDO::FETCH_ASSOC);
             
-            //show private documents only to admins or the user who posted it
-            if ($row['PUBLIC'] == false && ( !isset($_SESSION['role']) 
-                || $_SESSION['role'] != UserRoles::ADMIN) && $_SESSION['userid'] != $row['ID_USER']){
-                echo '<div class="title-main">Post is private</div><hr class="section-divider-bar">';
-                BD::opreste_conexiune();
-                exit();
+            //show private documents only to admins or the user who posted it            
+            if($row['PUBLIC'] == true || (isset($_SESSION['role']) && $_SESSION['role'] == UserRoles::ADMIN) || 
+            (isset($_SESSION['userid']) && $_SESSION['userid'] == $row['ID_USER'])){
+                echo '<div class="title-main">' . $row['NAME'] . '</div><hr class="section-divider-bar">';
+                echo $row['CONTENT'];
+                if($row['QUIZCONTENT'] != null && $row['QUIZCONTENT'] != '[]'){
+                    echo '<p style="text-align: center; font-size: 30px; margin-top: 2%;">Think you got it? Then try solving the problems! </p>
+                        <div style="text-align: center; align-content: center;">
+                            <button class="button-regular" type="button" onclick="window.location.href=(\'quiz.php?id=' . $row['QUIZID'] . '\');">Practice</button>
+                        </div>';
+                }
             }
-            
-
-            echo '<div class="title-main">' . $row['NAME'] . '</div><hr class="section-divider-bar">';
-            echo $row['CONTENT'];
-            if($row['QUIZCONTENT'] != null && $row['QUIZCONTENT'] != '[]'){
-                echo '<p style="text-align: center; font-size: 30px; margin-top: 2%;">Think you got it? Then try solving the problems! </p>
-                    <div style="text-align: center; align-content: center;">
-                        <button class="button-regular" type="button" onclick="window.location.href=(\'quiz.php?id=' . $row['QUIZID'] . '\');">Practice</button>
-                    </div>';
+            else{
+                if(!isset($_SESSION['userid']) || (!isset($_SESSION['role']) || $_SESSION['role'] != UserRoles::ADMIN)
+                    || $_SESSION['userid'] != $row['ID_USER']){
+                    echo '<div class="title-main">Post is private</div><hr class="section-divider-bar">';
+                    BD::opreste_conexiune();
+                    exit();
+                }
             }
         }
     }
