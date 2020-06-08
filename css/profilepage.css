@@ -180,23 +180,25 @@ body {
     }
 
     .content-container {
+        height: calc(100% - 56px);
         flex-wrap: wrap;
         flex-direction: row;
         margin: 0;
     }
 
     #profile-information {
-        height: auto;
+        height: 100%;
         width: 100%;
+    }
+
+    #profile-information .user-info {
+        border-left: none;
+        border-right: none;
     }
 
     .button-regular {
         margin: 0;
         height: 40px;
-    }
-
-    #delete-user-button {
-        margin: 0;
     }
 
     .modal-content {
