@@ -102,10 +102,11 @@ class MUser {
     }
 
     public function autentificaSocial($username, $photo, $email) {
-        $sql = 'SELECT id FROM users WHERE email = :email and username = :username';
+        $sql = 'SELECT id FROM users WHERE email like :email and username like :username';
         $stmt = BD::obtine_conexiune()->prepare($sql);
         $stmt -> execute ([
-            'email' => $email
+            'email' => $email,
+            'username' => $username
         ]);
         if($stmt->fetchColumn() == 0) {
             $query = 'select max(id) as maxid from users';
@@ -139,10 +140,10 @@ class MUser {
             }
         }
         else {
-            $sql = 'SELECT id, username, role FROM users WHERE username = :username';
-
+            $sql = 'SELECT id, username, role FROM users WHERE email like :email and username like :username';
             $stmt = BD::obtine_conexiune()->prepare($sql);
             $stmt -> execute ([
+                'email' => $email,
                 'username' => $username
             ]);
 
@@ -222,7 +223,7 @@ class MUser {
         ]);
         $email = $stmt->fetch(PDO::FETCH_ASSOC)['email'];
 
-        $sql = 'UPDATE users SET token = :token WHERE email = :email and email not null';
+        $sql = 'UPDATE users SET token = :token WHERE email like :email and email is not null';
         $stmt = BD::obtine_conexiune()->prepare($sql);
         $stmt -> execute ([
             'token' => $token,
