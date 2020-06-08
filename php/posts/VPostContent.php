@@ -61,8 +61,6 @@ class VPostContent
                 <input class="fa fa-align-justify" name="justifyFull" type="button" value="&#xf039" onclick="execCmd('justifyFull')">
                 <input class="fa fa-cut" name="cut" type="button" value="&#xf0c4" onclick="execCmd('cut')">
                 <input class="fa fa-copy" name="copy" type="button" value="&#xf0c5" onclick="execCmd('copy')">
-                <input class="fa fa-subscript" name="subscript" type="button" value="&#xf12c" onclick="execCmd('subscript')">
-                <input class="fa fa-superscript" name="superscript" type="button" value="&#xf12b" onclick="execCmd('superscript')">
                 <input class="fa fa-undo" name="undo" type="button" value="&#xf0e2" onclick="execCmd('undo')">
                 <input class="fa fa-redo" name="redo" type="button" value="&#xf01e" onclick="execCmd('redo')">
                 <input class="fa fa-list-ul" name="insertUnorderedList" type="button" value="&#xf0ca" onclick="execCmd('insertUnorderedList')">
@@ -72,14 +70,6 @@ class VPostContent
                 <input class="fa fa-bold" name="renderLatex" type="button" value="TeX-Render" onclick="MathJax.Hub.Typeset();">
                 <input class="fa fa-bold" name="renderLatex" type="button" value="Reset" onclick="execCmd('removeFormat')">
                 <br>
-                <select onclick="execCmdWithArgument('formatBlock', this.value)">
-                    <option value="H1">H1</option>
-                    <option value="H2">H2</option>
-                    <option value="H3">H3</option>
-                    <option value="H4">H4</option>
-                    <option value="H5">H5</option>
-                    <option value="H6">H6</option>
-                </select>
 
                 <select onclick="execCmdWithArgument('fontName', this.value)">
                     <option value="Arial">Arial</option>
@@ -201,7 +191,6 @@ class VPostContent
                         <input class="fa fa-bold" name="sigma" type="button" value="&#931" >
                         <input class="fa fa-bold" name="product" type="button" value="&#x220F" >
                         <input class="fa fa-bold" name="infinity" type="button" value="&#x223E" >
-                        <input class="fa fa-bold" name="e-constant" type="button" value="e" >
                         <input class="fa fa-bold" name="pi" type="button" value="&#x03D6" >
                         <input class="fa fa-bold" name="delta" type="button" value="&#x0394" >
                         <input class="fa fa-bold" name="epsilon" type="button" value="&#x03B5" >
