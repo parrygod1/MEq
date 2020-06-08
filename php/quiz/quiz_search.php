@@ -8,11 +8,11 @@
 
     $sql = null;
     if($quizTitle == '*new*')
-        $sql = 'SELECT ID, QUIZ_TITLE, CONTENT, CREATED_AT from quizzes order by CREATED_AT DESC limit 7';
+        $sql = 'SELECT ID, QUIZ_TITLE, CONTENT, CREATED_AT from quizzes where LENGTH(CONTENT) > 5 order by CREATED_AT DESC limit 7';
     //else if($postTitle == '*top*')
         //$sql = 'SELECT ID, NAME, DESCRIPTION, VIEWS, CREATED_AT from documents where public=true order by VIEWS DESC limit 10';
     else
-        $sql = 'SELECT ID, QUIZ_TITLE, CONTENT, CREATED_AT from quizzes where lower(QUIZ_TITLE) like :name and CONTENT not like \'[]\' ';
+        $sql = 'SELECT ID, QUIZ_TITLE, CONTENT, CREATED_AT from quizzes where lower(QUIZ_TITLE) like :name and LENGTH(CONTENT) > 5 ';
 
     $stmt = BD::obtine_conexiune()->prepare($sql);
     $stmt -> execute ([

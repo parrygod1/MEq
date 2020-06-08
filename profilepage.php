@@ -14,7 +14,6 @@
 
 <?php
 include "navbar.php"; ?>
-
 <div class="content-container">
     <div id="profile-information">
         <?php
