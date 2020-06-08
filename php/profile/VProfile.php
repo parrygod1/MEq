@@ -108,9 +108,14 @@ class VProfile {
                     }
                 }
             </script>
-
+            
             <?php
         }
+         if(isset($_SESSION['userid']) && $this->idUser == $_SESSION['userid']) { 
+            ?>
+            <script src="js/avatar-modal.js"></script>
+            <?php 
+         }
     }
 
     public function viewMailConfirmation(){

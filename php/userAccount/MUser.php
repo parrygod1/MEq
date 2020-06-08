@@ -101,10 +101,11 @@ class MUser {
 
     }
 
-    public function autentificaSocial($username, $photo) {
-        $sql = 'SELECT id FROM users WHERE username = :username';
+    public function autentificaSocial($username, $photo, $email) {
+        $sql = 'SELECT id FROM users WHERE email like :email and username like :username';
         $stmt = BD::obtine_conexiune()->prepare($sql);
         $stmt -> execute ([
+            'email' => $email,
             'username' => $username
         ]);
         if($stmt->fetchColumn() == 0) {
@@ -116,13 +117,14 @@ class MUser {
 
             $newid = $response["maxid"] + 1;
 
-            $sql = 'INSERT INTO users (id, username, image_path, created_at, updated_at) VALUES (:id, :username, :image_path, sysdate(), sysdate())';
+            $sql = 'INSERT INTO users (id, username, email, image_path, created_at, updated_at) VALUES (:id, :username, :email, :image_path, sysdate(), sysdate())';
             $stmt = BD::obtine_conexiune()->prepare($sql);
 
             if($stmt -> execute ([
                 'id' => $newid,
                 'username' => $username,
-                'image_path' => $photo ])) {
+                'image_path' => $photo,
+                'email' => $email ])) {
 
                 $_SESSION['role'] = 0;
                 $_SESSION["loggedin"] = true;
@@ -138,10 +140,10 @@ class MUser {
             }
         }
         else {
-            $sql = 'SELECT id, username, role FROM users WHERE username = :username';
-
+            $sql = 'SELECT id, username, role FROM users WHERE email like :email and username like :username';
             $stmt = BD::obtine_conexiune()->prepare($sql);
             $stmt -> execute ([
+                'email' => $email,
                 'username' => $username
             ]);
 
@@ -221,13 +223,12 @@ class MUser {
         ]);
         $email = $stmt->fetch(PDO::FETCH_ASSOC)['email'];
 
-        $sql = 'UPDATE users SET token = :token WHERE email = :email';
+        $sql = 'UPDATE users SET token = :token WHERE email like :email and email is not null';
         $stmt = BD::obtine_conexiune()->prepare($sql);
         $stmt -> execute ([
             'token' => $token,
             'email' => $email
         ]);
-        echo $token;
         $sql = 'SELECT username from users WHERE email = :email';
         $stmt = BD::obtine_conexiune()->prepare($sql);
         $stmt -> execute ([

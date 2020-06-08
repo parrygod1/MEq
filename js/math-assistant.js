@@ -87,7 +87,6 @@ for(let i = 0; i < inputs.length; i++) {
             case 'product': execCmdWithArgument('insertText', '\\prod{}'); break;
             case 'infinity': execCmdWithArgument('insertText', '\\infty'); break;
             case 'pi': execCmdWithArgument('insertText', '\\pi'); break;
-            case 'e-constant': execCmdWithArgument('insertText', '\\textestimated'); break;
             case 'delta': execCmdWithArgument('insertText', '\\Delta'); break;
             case 'epsilon': execCmdWithArgument('insertText', '\\epsilon'); break;
             case 'phi': execCmdWithArgument('insertText', '\\phi'); break;
