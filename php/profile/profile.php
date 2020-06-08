@@ -23,7 +23,7 @@ require_once "CProfile.php";
   }
   else if ($_GET['action'] == 'confirmMail'){
     $controller = new CProfile();
-    $controller -> showMailConfirmation();
+    $controller->showMailConfirmation();
   }
   BD::opreste_conexiune();
 ?>

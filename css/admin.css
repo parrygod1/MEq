@@ -68,26 +68,6 @@ body {
     text-decoration: none;
 }
 
-.closebtn {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 30px;
-    cursor: pointer;
-    margin-left: 120px;
-    padding: 7px;
-    margin-top: -10px;
-}
-
-.closebtn:hover {
-    background-color: #352D2D;
-    color: white;
-}
-
-.closebtn.selected {
-    background-color: #2E343E;
-    color: #fb2525;
-}
-
 .actionbtn {
     cursor: pointer;
     color: #ffffff;
@@ -142,27 +122,11 @@ body {
     text-shadow: 1px 1px black;
 }
 
-.util-container {
-    margin-top: 15px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
 #export-button {
     margin-left: auto;
 }
 
 @media only screen and (max-width: 767px) {
-
-
-    .util-container {
-        margin: 0;
-        flex-direction: column;
-    }
-
-    .util-container button {
-        margin-top: 10px;
-    }
 
     #export-button {
         margin-left: 0;
@@ -171,13 +135,6 @@ body {
     #admin-nav li a {
         padding: 8px;
         font-size: 15px;
-    }
-
-    .main-content {
-        float: none;
-        height: auto;
-        width: auto;
-        z-index: 2;
     }
 
     .admin-box {

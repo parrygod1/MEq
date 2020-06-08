@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="project, infoiasi, web">
     <title>Profile</title>
     <link rel="stylesheet" type="text/css" href="css/global.css">
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
@@ -28,7 +29,7 @@ include "navbar.php"; ?>
 </div>
 
 <script src="js/navbar.js"></script>
-<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+<script type="text/javascript" src="https://latex.codecogs.com/latexit.js"></script>
 <script src="js/mathjax-reset.js"></script>
 <script src="js/avatar-modal.js"></script>
 

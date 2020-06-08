@@ -53,6 +53,32 @@
     position: fixed;
 }
 
+.closebtn {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 30px;
+    cursor: pointer;
+    margin-left: 120px;
+    padding: 7px;
+    margin-top: -10px;
+}
+
+.closebtn:hover {
+    background-color: #352D2D;
+    color: white;
+}
+
+.closebtn.selected {
+    background-color: #2E343E;
+    color: #fb2525;
+}
+
+.util-container {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 @media only screen and (max-width: 767px) {
     .side-bar {
         display: none;
@@ -63,10 +89,18 @@
         margin-top: -10px;
 
     }
+
+    .util-container {
+        margin: 0;
+        flex-direction: column;
+    }
+
+    .util-container button {
+        margin-top: 10px;
+    }
 }
 
 @media only screen and (min-width: 768px) {
-
     .side-bar-mobile {
         display: none;
     }

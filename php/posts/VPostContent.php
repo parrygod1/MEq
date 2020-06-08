@@ -247,7 +247,7 @@ class VPostContent
             </div>
             <button class="button-add-question" onclick="addQuestion(); return false;">Add question</button>
             <input name="upload" id="subButton" class="button-regular" type="submit" value="Upload page" />
-                <input name="docQuiz" type="text" style="display:none" id="hidden-quiz-JSON" />
+                <input name="docQuiz" type="text" style="display:none" id="hidden-quiz-JSON"/>
         </div>
         <br>
         </form>

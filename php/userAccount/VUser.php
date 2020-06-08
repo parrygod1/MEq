@@ -25,6 +25,7 @@ require_once "User.php";
             <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="keywords" content="project, infoiasi, web">
             <title>Register</title>
 
             <link rel="stylesheet" href="../../css/signup.css">
@@ -72,6 +73,7 @@ require_once "User.php";
             <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="keywords" content="project, infoiasi, web">
             <title>Login</title>
 
             <link rel="stylesheet" href="../../css/signup.css">
@@ -114,6 +116,7 @@ require_once "User.php";
         <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="project, infoiasi, web">
         <title>Reset Password</title>
 
         <link rel="stylesheet" href="../../css/signup.css">

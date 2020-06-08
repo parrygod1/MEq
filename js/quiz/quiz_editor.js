@@ -73,10 +73,12 @@ class QuestionElement{
         descElem.placeholder = "Question description";
 
         let questionElem = document.createElement('input');
+        questionElem.required = true;
         questionElem.className = "quiz-upload-question";
         questionElem.placeholder = "Question sentence";
 
         let answerElem = document.createElement('input');
+        answerElem.required = true;
         answerElem.className = "quiz-upload-answer";
         answerElem.placeholder = "Answer";
 

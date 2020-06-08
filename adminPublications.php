@@ -1,8 +1,9 @@
 
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="project, infoiasi, web">
     <title>Admin panel</title>
     <link rel="stylesheet" type = "text/css" href="css/global.css" />
     <link rel="stylesheet" type = "text/css" href="css/navbar.css" />
@@ -19,9 +20,7 @@ include 'php/admin/publications.php';
 
 
 <script src="js/navbar.js"></script>
-<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script src="js/mathjax-reset.js"></script>
 <script src="js/sidePanel.js"></script>
 
 </body>
+</html>
