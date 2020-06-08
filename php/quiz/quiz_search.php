@@ -8,11 +8,13 @@
 
     $sql = null;
     if($quizTitle == '*new*')
-        $sql = 'SELECT ID, QUIZ_TITLE, CONTENT, CREATED_AT from quizzes where LENGTH(CONTENT) > 5 order by CREATED_AT DESC limit 7';
-    //else if($postTitle == '*top*')
-        //$sql = 'SELECT ID, NAME, DESCRIPTION, VIEWS, CREATED_AT from documents where public=true order by VIEWS DESC limit 10';
+        $sql = 'SELECT q.ID, q.QUIZ_TITLE, q.CONTENT, q.CREATED_AT from quizzes q join documents d on 
+        q.id_document = d.id
+        where LENGTH(q.CONTENT) > 5 and d.public = 1 order by q.UPDATED_AT DESC limit 7';
     else
-        $sql = 'SELECT ID, QUIZ_TITLE, CONTENT, CREATED_AT from quizzes where lower(QUIZ_TITLE) like :name and LENGTH(CONTENT) > 5 ';
+        $sql = 'SELECT q.ID, q.QUIZ_TITLE, q.CONTENT, q.CREATED_AT from quizzes q join documents d on 
+        q.id_document = d.id
+        where q.QUIZ_TITLE like :name and LENGTH(q.CONTENT) > 5 and d.public = 1 order by q.UPDATED_AT DESC limit 7';
 
     $stmt = BD::obtine_conexiune()->prepare($sql);
     $stmt -> execute ([

@@ -31,7 +31,7 @@ class MPostContent{
         if ($stmt->execute([
             'name' => $title,
             'user_id' => $user_id,
-            'description' => strtok(strip_tags(str_replace("\n", "", $content)), '.'),
+            'description' => strtok(strip_tags(str_replace("\r\n", "", $content)), '.'),
             'content' => $content
         ])) {
             $sql1 = 'SELECT max(id) as maxi from documents';

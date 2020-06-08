@@ -1,5 +1,5 @@
-var requestURI = 'php/quiz/quiz_query.php?id=';
-var postURI = 'php/quiz/quiz_updatescore.php'
+var requestURI = '/meq/php/quiz/quiz_query.php?id=';
+var postURI = '/meq/php/quiz/quiz_updatescore.php'
 
 var questionArray = []
 var questionSize = 0;
@@ -77,12 +77,12 @@ function setCheckAnswer(){
 var currentIndex = 0;
 
 function setQuestionInfo(){
-    questionTitle.innerHTML = questionArray[currentIndex].title;
-    questionDesc.innerHTML = questionArray[currentIndex].description;
-    questionSentence.innerHTML = questionArray[currentIndex].question;
+    questionTitle.innerText = questionArray[currentIndex].title;
+    questionDesc.innerText = questionArray[currentIndex].description;
+    questionSentence.innerText = questionArray[currentIndex].question;
     questionGraphic.src = questionArray[currentIndex].graphicpath;
     questionAnswer = questionArray[currentIndex].answer;
-    counter.innerHTML = "(" + (currentIndex + 1) + "/" + questionSize + ")";
+    counter.innerText = "(" + (currentIndex + 1) + "/" + questionSize + ")";
     let answer = document.getElementById('answer-wrapper');
     answer.setAttribute('style', 'display:block');    
 }
