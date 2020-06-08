@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>MEqX - Documentation</title>
+    <link rel="stylesheet" href="css/scholarly.min.css">
+    <script src="js/scholarly.min.js"></script>
+  </head>
+  <body prefix="schema: http://schema.org">
+    <header>
+      <div class="banner">
+        <a href="/../index.html" class="logo">Main Site</a>
+        <div class="status"><span>M&Sigma;q<sup>x</sup></span> - Documentation</div>
+      </div>
+      <h1>Ghid de utilizare</h1>
+    </header>
+
+    <div role="contentinfo">
+      <dl>
+        <dt>Autori</dt>
+        <dd>
+          Paraschiv Tudor Andrei, Dragoi Stefan, Miron Dorin Marian        
+        </dd>
+        <dt>GitHub</dt>
+        <dd>
+          <a href="https://github.com/parrygod1/MEq">Link catre repository-ul proiectului</a>
+        </dd>
+        <dt>Proiect realizat in cadrul cursului Tehnologii Web de la Facultatea de Informatica, Universitatea "Al I. Cuza" Iasi</dt>
+      </dl>
+    </div>
+    <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+      <h2>Cerinta</h2>
+      <p>
+        <dt>MEq (Math Equation Web Explorer): </dt>
+        Sa se conceapa o aplicatie Web cu caracter educational capabila sa furnizeze utilizatorilor (autentificati sau nu) 
+        o modalitate de a discuta si compara ecuatii matematice specifice – de dorit, notorii – din diverse arii: algebra, analiza,
+        geometrie, trigonometrie. Sursa ecuatiilor poate fi un tratat, un sit Web ori eventual poate proveni 
+        de pe calculatorul client (prin operatia de upload). Sistemul va oferi suport pentru includerea de 
+        exercitii/probleme referitoare la fiecare ecuatie disponibila. Bonus: recurgerea la formatele MathML si/sau SVG.
+      </p>
+    </section>
+    
+    <section id="logare" role="doc-logare">
+      <h2>Contul unui utilizator</h2>
+      <p>
+        Utilizatorii isi pot creea un cont folosind pagina pentru inregistrare. Acestia trebuie sa specifice
+        un username, un email si o parola. De asemena pot sa se conecteze folosind un cont ce apartine uneia dintre
+        platformele sociale Facebook sau Google+.
+      </p>
+      <p>
+        Pentru accesarea contului nou creat, utilizatorii trebuie sa introduca username-ul sau adresa de mail,
+        si parola.
+      </p>  
+      <a href="/../php/userAccount/login.php">Link formular login</a>
+      <section id="profil" role="doc-profil">
+        <h2>Profilul unui utilizator</h2>
+        <p>
+          Utilizatorii inregistrati vor avea un profil ce contine un avatar, numarul de publicatii incarcate
+          si punctajul acumulat in urma completarii chestionarelor. De asemenea sunt prezentate publicatiile incarcate de acestia.
+        </p>
+        <a href="/../php/profile.php">Link pagina profil</a>  
+      </section>
+      <section id="reset" role="doc-profil">
+        <h2>Resetarea parolei</h2>
+        <p>
+          Utilizatorii inregistrati isi pot reseta parola folosind adresa de email. Daca este ceruta resetarea,
+          serverul va trimite un email ce contine un link catre un formular pentru a seta noua parola.  
+        </p>
+        <a href="/../php/userAccount/reset.php?action=prepareReset">Link pagina reset</a>  
+      </section>
+      <section id="profil" role="doc-profil">
+        <h2>Stergerea contului</h2>
+        <p>
+          Utilizatorii inregistrati isi pot sterge contul folosind adresa de email. Daca este ceruta stergerea,
+          serverul va trimite un email ce contine un link pentru confirmarea stergerii. Aceasta cerere poate fi 
+          initata doar din pagina de profil a utilizatorului, mai precis prin apasarea butonului 'Delete your account'.
+        </p>
+        <a href="/../php/profile.php">Link pagina profil</a>  
+      </section>
+      <section id="roles">
+        <h2>Rolurile utilizatorilor</h2>
+        <p>
+          Utilizatorii inregistrati au un rol specific pentru a determina accesul in site. 
+          Rolurile pot fi: USER, ADMIN, BANNED.
+          <ul>
+            <li>USER: Utilizator normal, poate incarca publicatii si poate scrie comentarii</li>
+            <li>ADMIN: Administrator, are acces la modulul de adminstrare a aplicatiei</li>
+            <li>BANNED: Utilizator banat, nu poate incarca pagini sau scrie comentarii 
+              (de asemenea este specificat langa username pe pagina de profil). Comentariile pentru acest utilizator vor fi sterse.</li>
+                
+          </ul>
+        </p>
+      </section>
+    </section>
+    <section id="search">
+      <h2>Exploararea</h2>
+      <p>
+        Utilizatorii pot descoperi publicatii sau chestionare pe pagina principala a site-ului. In panel-ul din stanga pot alege
+        modul de cautare. Sunt disponibile modurile: New, Top, Search, Quizzes.
+        <ul>
+          <li>New: Sorteaza cele mai recente publicatii in functie de data</li>
+          <li>Top: Sorteaza cele mai populare publicatii in functie de numarul de vizualizari</li>
+          <li>Search: Utilizatorul poate scrie in bara de cautare numele unei publicatii specifice</li>
+          <li>Quizzes: Utilizatorul poate scrie in bara de cautare numele unui chestionar pe care doreste sa il rezolve</li>
+        </ul>
+        Nu toate publicatiile au obliagtoriu un chestionar.
+      </p>
+      <a href="/../search.php">Link pagina cautare</a>  
+    </section>
+    <section id="posts">
+      <h2>Publicatii</h2>
+      <p>
+        Dupa alegerea unui link din pagina de cautare, utilizatorii vor fi redirectionati pe pagina specifica publicatiei
+        unde poate fi citita inofmratia. Spre finalul informatiei, daca un chestionar este legat de publicatie, va aparea un buton
+        Practice care va redirectiona utilizatorul pe pagina pentru chestionar.
+      </p>
+      <section id="comments">
+        <h2>Comentarii</h2>
+        <p>
+          In a doua jumatate a paginii vor fi afisate comentariile puse de alti utilizatori care au vizitat aceeasi pagina.
+          Daca utilizatorul curent este logat, atunci poate fi pus un nou comentariu folosind caseta text. 
+          De asemenea butonul Preview va creea o previzualizare a comentariului. Butonul a fost inclus pentru cazul in care 
+          utilizatorul a scris in formatul LaTeX si doreste sa vada daca formatarea este corecta.
+        </p>
+      </section>
+      <a href="/../postpage.php?id=1">Link exemplu publicatie</a>  
+    </section>
+    <section id="quiz">
+      <h2>Chestionare</h2>
+      <p>
+        Utilizatorii pot rezolva teste in legatura cu publicatiile disponibile. Pe aceasta pagina, sunt puse
+        intrebari la care raspunsul trebuie introdus in caseta text. Pagina va notifica utilizatorul daca a raspuns
+        corect sau nu.
+      </p>
+      <p>
+        Daca utilizatorul este logat si a raspuns corect la toate intrebarile, acesta va primi un punct.
+        Punctul nu va fi acordat daca testul a fost rezolvat deja.
+      </p>
+      <a href="/../quiz.php?id=1">Link exemplu chestionar</a>  
+    </section>
+    <section id="upload">
+      <h2>Incarcarea publicatiilor</h2>
+      <p>
+        Utilizatorii pot incarca publicatii noi folosind editorul dedicat.
+      </p>
+      <section id="editor1">
+        <h2>Editorul HTML</h2>
+        <p>
+          Editorul contine un camp pentru titlu, butoane pentru formatarea textului si o caseta
+          in care utilizatorul poate scrie si previzualiza instant pagina ce urmeaza sa fie incarcata. Sub 
+          caseta de mai inainte, se afla un buton care permite incarcarea unei imagini.
+        </p>
+        <p>
+          Paginile publicatiilor permit folosirea formatului MathML. Oricum, acesta poate fi dificil de folosit
+          iar de aceea a fost inclus un convertor pentru formatul LaTeX. Utilizatorii pot insera secvente
+          din LaTeX fie de la tastatura, fie folosind asistentul de formule prin apasarea butonului 'Math assistant'.
+        </p>
+        <p>
+          Pentru utilizarea formatului LaTeX trebuie introdusa secventa '$$' la inceputul formulei cat si la final. <br>
+          Exemplu: <code>$$ \frac{1}{2} = 0.5 $$</code> va fi echivalentul scrierii '1/2 = 0.5'
+        </p>
+      </section>
+      <section id="editor1">
+        <h2>Editorul de chestionare</h2>
+        <p>
+          Pentru adaugarea unei intrebari, utilizatorii pot apasa butonul 'Add question'. Fiecare
+          intrebare va avea casete text unde pot fi specificate detaliile, figura si raspunsul intrebarii.
+          De asemena o intrebare poate fi stearsa.
+        </p>
+      </section>
+      <section id="confirmation">
+        <h2>Aprobarea publicatiei</h2>
+        <p>Daca utilizatorul a terminat editarea publicatiei atunci poate incarca pagina folosind butonul 'Upload page'.</p>
+        <p>
+          Deoarece dorim ca site-ul sa fie cat mai relevant in domeniul matematic, publicatiile trebuie sa fie mai intai 
+          aprobate de un administrator. Odata aprobate, acestea vor fi gasite folosind functionalitatea de cautare.
+        </p>
+      </section>
+      <a href="/../uploadpage.php">Link incarcare publicatie</a>  
+    </section>
+    <section id="admin">
+      <h2>Administrarea aplicatiei</h2>
+      <p>Administratorii vor avea un nou buton in bara de navigare numit 'Admin panel'</p>
+      <section id="adminp">
+        <h2>Administrarea publicatiilor</h2>
+        <p>
+          In sectiunea 'Publications' vor aparea publicatiile incrcate de utilizatori care nu au fost aprobate inca.
+          Administratorii pot vizualiza, aproba sau dezaproba publicatia folosind butoanele din fiecare caseta. 
+          De asemenea, poate fi descarcat un fisier CSV care contine informatiile despre toate publicatiile.
+        </p>
+      </section>
+      <section id="adminu">
+        <h2>Administrarea utilizatorilor</h2>
+        <p>
+          In sectiunea 'Users' administratorii pot cauta un utilizator folosind un ID sau un username.
+          Pentru fiecare utilizator vor aparea butoane ce permit schimbarea rolului.
+          De asemenea, poate fi descarcat un fisier CSV care contine informatiile despre toti userii (mai putin parola).
+        </p>
+      </section>
+      <a href="/../adminPublications.php">Link modul administrare (trebuie sa fiti logat ca admin)</a>  
+    </section>
+  </body>
+</html>

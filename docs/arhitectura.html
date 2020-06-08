@@ -26,6 +26,11 @@
         <dd>
             <a href="https://github.com/parrygod1/MEq">Link catre repository-ul proiectului</a>
         </dd>
+        <dt>Tehnologii folosite</dt>
+        <dd>
+            HTML, CSS, JavaScript, AJAX, PHP, SQL(MySQL), JSON format, Apache (web server), hMailServer (mailer server),
+            Facebook API, Google+ API
+        </dd>
         <dt>Proiect realizat in cadrul cursului Tehnologii Web de la Facultatea de Informatica, Universitatea "Al I. Cuza" Iasi</dt>
     </dl>
 </div>
@@ -40,8 +45,28 @@
         exercitii/probleme referitoare la fiecare ecuatie disponibila. Bonus: recurgerea la formatele MathML si/sau SVG.
     </p>
 </section>
-
-<section id="logare" role="doc-logare">
+<section id="config">
+    <h2>Configurare</h2>
+    <p>
+      In directorul 'php/' sunt incluse doua fisiere 'config.php' si 'configDomain.php'. Pentru a asigura caile de acces in 
+      site sunt corecte, introduceti domeniul pentru baza de date, domeniul sit-ului principal si protocolul pentru domeniu in 'configDomain.php'. 
+      Configuratia pentru baza de date poate fi gasita in 'config.php'. 
+    </p>
+    <p>
+      Daca cautarea nu functioneaza, verificati ca scripturile 'user_ajaxsearch.js', 'doc_ajaxsearch.js' si 'quiz_scroller.js' sa 
+      aiba caile de acces corecte. Pot fi gasite in primele 2 linii ale scripturilor.
+    </p>
+    <section id="bd">
+        <h2>Baza de date</h2>
+        In 'php/sql/' poate fi gasit fisierul 'meq.sql' care contine un exemplu pentru structura bazei de data. De asemenea 
+        contine si exemple pentru utilizatori, documente si chestionare.
+    </section>
+    <section id="mailer">
+        <h2>Configurarea pentru mailer</h2>
+        ** Stefan scrie te rog ce trebuie pentru mailer **
+    </section>
+  </section>    
+<section id="logare">
     <h2>Contul unui utilizator</h2>
     <p>
         Partea a proiectului ce tine de logare, delogare, inregistrare, resetare a parolei si stergere a contului urmeaza
@@ -56,7 +81,7 @@
     <p>
         Codul pentru contul unui utilizator este scris in <b>PHP</b>.
     </p>
-    <section id="profil" role="doc-profil">
+    <section id="login">
         <h2>Login</h2>
         <p>
             Fisierul login.php creeaza un nou obiect de timp controller trimitand ca parametru "login". In constructorul clasei
@@ -79,7 +104,7 @@
         </p>
         <a href="/../php/userAccount/login.php">Link formular login</a>
     </section>
-    <section id="profil" role="doc-profil">
+    <section id="register">
         <h2>Inregistrare</h2>
         <p>
             Fisierul register.php creeaza un nou obiect de timp controller trimitand ca parametru "register". In constructorul clasei
@@ -99,7 +124,7 @@
         </p>
         <a href="/../php/userAccount/register.php">Link formular register</a>
     </section>
-    <section id="profil" role="doc-profil">
+    <section id="reset">
         <h2>Resetarea parolei</h2>
         <p>
             Fisierul reset.php va primi mereu prin GET actiunea pe care trebuie sa o realizeze. Trimite aceasta actiune controller-ului
@@ -121,13 +146,13 @@
 
         <a href="/../php/userAccount/reset.php?action=prepareReset">Link resetare parola</a>
     </section>
-    <section id="profil" role="doc-profil">
+    <section id="logout">
         <h2>Logout</h2>
         <p>
             Fisierul logout.php va distruge sesiunea user-ului curent si il va redirectiona catre pagina principala a sit-ului.
         </p>
     </section>
-    <section id="profil" role="doc-profil">
+    <section id="deletion">
         <h2>Stergere cont</h2>
         <p>
             Stergerea contului unui utilizator porneste din profilul utilizatorului care prin apasarea butonului "Delete your account"
@@ -141,7 +166,7 @@
     </section>
 </section>
 
-<section id="logare" role="doc-logare">
+<section id="logare">
     <h2>Profilul unui utilizator</h2>
     <p>
         Partea a proiectului ce tine de afisarea profilului unui utilizator si stergerea acestuia urmeaza
@@ -154,8 +179,8 @@
     <p>
         Codul pentru profilul unui utilizator este scris in <b>PHP</b> si <b>JavaScript</b>.
     </p>
-    <section id="profil" role="doc-profil">
-        <h2>Arata profilul</h2>
+    <section id="profil">
+        <h2>Vizualizarea profilului</h2>
         <p>
             Pentru a se afisa profilul unui utilizator, nu va fi setat $_GET['action'] si se va apela metoda showProfileInfo($id) din Controller (CProfile). In aceasta metoda, initial,
             se verifica daca este setat $_POST["subButton"]. In acest caz, s-a incarcat o noua poza de profil si se apeleaza metoda "uploadAvatar($id_user, $avatar_user)" din
@@ -171,7 +196,7 @@
             clase care va afisa pagina de profil a user-ului cerut.
         </p>
     </section>
-    <section id="profil" role="doc-profil">
+    <section id="maildeletion">
         <h2>Trimitere mail de confirmare a stergerii contului</h2>
         <p>
             Pentru a se realiza aceasta actiunea trebuie sa fie setat $_GET['action'] == 'sendDelMail'. Se va crea un obiect de
@@ -179,7 +204,7 @@
             Continuarea actiunii este descrisa mai sus, in subcapitolul "2.5 Delete account".
         </p>
     </section>
-    <section id="profil" role="doc-profil">
+    <section id="mailconfirm">
         <h2>Afisare mesaj de confirmare a trimiterii email-ului</h2>
         <p>
             Daca este setat $_GET['action'] == 'confirmMail' atunci se va afisa mesajul de confirmare a trimiterii email-ului pentru stergerea contului
@@ -189,7 +214,7 @@
     </section>
 </section>
 
-<section id="logare" role="doc-logare">
+<section id="comments">
     <h2>Comentariile</h2>
     <p>
         Afisarea comentariilor se realizeaza prin intermediul fisierului comments.php, iar in cazul in care utilizatorul este logat se va crea un
@@ -199,7 +224,7 @@
     <p>
         Partea a proiectului ce tine de afisarea si publicarea comentariilor urmeaza modelul arhitectural Model-View-Controller (MVC).
     </p>
-    <section id="profil" role="doc-profil">
+    <section id="commentpost">
         <h2>Postarea unui comentariu</h2>
         <p>
             Pentru un utilizator normal este destul de usor sa posteze un comentariu pe o pagina de teorie. In array-ul $parametri ce va fi trimis in controller-ul
@@ -218,7 +243,7 @@
 
 </section>
 
-<section id="logare" role="doc-logare">
+<section id="docs">
     <h2>Publicatiile</h2>
     <p>
         Pe sit-ul MeQ exista posibilitatea de a vizualiza publicatiile existente sau de a se uploada noi pagini de teorie. Fiecare utilizator are posibilitatea
@@ -233,19 +258,20 @@
     <p>
         Codul pentru afisarea si incarcarea paginilor de teorie (publicatiilor) este scris in <b>PHP</b> si <b>JavaScript</b>.
     </p>
-    <section id="profil" role="doc-profil">
+    <section id="docsview">
         <h2>Afisarea publicatiilor</h2>
         <p>
-            Publicatiile (paginile de teorie) pot fi accesate fie prin sectiunile New/Top din mainpage-ul sit-ului, fie prin cautarea concreta in sectiunea Search a
+            Publicatiile (paginile de teorie) pot fi accesate fie prin sectiunile New/Top din pagina principala a sit-ului, fie prin cautarea concreta in sectiunea Search a
             aceleiasi pagini. Afisarea paginilor de teorie se realizeaza in fisierul content_query.php unde se creeaza un nou obiect de tipul CPostContent, reprezentand
             Controller-ul ce gestioneaza publicatiile. Ca si pana acum, se va trimite ca parametru actiunea care se doreste a fi executata, in acest caz "showPostContent".
             Celalalt parametru va fi id-ul paginii de teorie. In constructorul clasei CPostContent se va verifica de ce tip este request-ul actual si se creeaza
             un obiect Model (MPostContent) care va apela metoda "getPostContent($id_document)" pentru a extrage din baza de date pagina dorita. Ulterior este creat si un
-            obiect View care reprezinta componenta Front-end a sectiunii. Aceasta va afisa pagina de teorie prin intermediul metodei "viewPostContent()".
+            obiect View care reprezinta componenta Front-end a sectiunii. Aceasta va afisa pagina de teorie prin intermediul metodei "viewPostContent()". La accesarea 
+            paginii, va fi incrementat numarul de vizualizari a acesteia.
         </p>
     </section>
 
-    <section id="profil" role="doc-profil">
+    <section id="docupload">
         <h2>Incarcarea unei publicatii</h2>
         <p>
             Calea incarcarii unei pagini de teorie este upload_page.php. Se verifica statusul utilizatorului care doreste sa adauge o noua pagina de teorie, urmand sa
@@ -259,7 +285,7 @@
             inserarea titlului paginii de teorie. Acest camp este obligatoriu si nu se poate face submit fara ca acesta sa fie completat.
         </p>
     </section>
-    <section id="profil" role="doc-profil">
+    <section id="editor">
         <h2>Editorul paginii de teorie (WYSIWYG)</h2>
         <p>
             Editorul pentru pagina de teorie este un editor de tipul WYSIWYG. Utilizatorul are posibilitatea de a stiliza, formata si aranja pagina de teorie
@@ -279,16 +305,75 @@
             MeQ (in editor).
         </p>
     </section>
-    <section id="profil" role="doc-profil">
+    <section id="quizeditor">
         <h2>Editorul de chestionare</h2>
         <p>
             Odata cu introducerea unei pagini de teorie, se poate adauga si un chestionar pentru ca utilizatorii care au parcurs acea lectie sa aiba posibilitatea sa
-            isi verifice cunostintele acumulate. ** AICI TUDOR POTI COMPLETA CU INFORMATII DESPRE QUIZ **.
+            isi verifice cunostintele acumulate. Pentru a adauga o intrebare, utilizatorul trebuie sa apese butonul 'Add question'. Scriptul 'quiz_editor.js' va creea 
+            un nou set de elemente prin functia 'createHTML()' in care utilizatorul poate introduce informatiile necesare intrebarii.
+            Numarul de intrebari este nelimitat. Odata cu incarcarea paginii, intrebarile vor fi scrise in formatul <b>JSON</b> 
+            folosind functia 'questionsToJSON()' iar apoi puse intr-un element ascuns din pagina numit 'hidden-quiz-JSON'. Informatia 
+            va fi transmisa folosind POST si stocata in tabela 'quizzes' din baza de date.
         </p>
 
     </section>
-
 </section>
+
+<section id="quizzes">
+    <h2>Chestionarele</h2>
+    <p>
+        Paginile de teorie pot avea un chestionar in legatura cu acestea. Un chestionar poate fi accesat folosind
+        butonul din pagina de teorie, poate fi gasit din pagina de cautare sau poate fi direct accesat prin 
+        URL-ul '/quiz.php?id=[id-ul chestinoarului]'. Informatiile din chestionar vor fi descarcate prin apelul
+        '/php/quiz/quiz_query.php?id=[id-ul chestinoarului]'. Informatiile sunt transmise prin formatul JSON iar apoi
+        puse intr-un vector 'questionArray[]' in script-ul 'quiz_scroller.js'. Vor fi create elemente prin care 
+        utilizatorul poate schimba intrebarea si poate verifica raspunsul introdus. Daca toate raspunsurile sunt corecte 
+        iar utilizatorul este logat atunci script-ul va trimite un apel POST catre 'php/quiz/quiz_updatescore.php' care 
+        va acorda un punct utilizatorului. Punctele nu vor fi acordate daca chestionarul a fost rezolvat deja de acelasi utilizator.
+    </p>
+</section>
+
+<section id="search">
+    <h2>Cautarea</h2>
+    <p>
+        Utilizatorii pot cauta publicatii sau chestionare pe pagina principala a site-ului. In panel-ul din stanga pot alege
+        modul de cautare. Sunt disponibile modurile: New, Top, Search, Quizzes.
+    </p>
+    <p>
+        Cautarea foloseste script-ul 'posts/doc_ajaxsearch.js' care utilizeaza technica <b>AJAX</b> pentru manipularea 
+        informatiei. Butoanele 'New' si 'Top' vor apela functia 'searchForData([tip], [pagina])' care va apela 
+        '/php/posts/post_query.php?title=' unde titlul este subsirul care va fi cautat. Pentru new si top subsirul va fi
+        '*new*' respectiv '*top'. Butonul 'Search' va elibera pagina si va arata bara de cautare pentru publicatii. In bara
+        utilizatorul poate introduce titlul pentru publicatia care doresete sa o gaseasca. Daca vor fi gasite publicatii cu un nume
+        similar, script-ul va creea elemente care afiseaza informatiile despre acestea si un link pentru accesarea lor.
+    </p>
+    <p>
+        Daca sunt gasite mai mult de 6 publicatii cu acelasi nume, vor fi create butoane pentru paginare. Fiecare buton va apela 
+        functia 'searchForData([numele cautat], [numarul paginii])' unde numarul paginii va fi un offset pentru interogarea SQL.
+    </p>
+</section>
+
+<section id="admin">
+    <h2>Administrarea aplicatiei</h2>
+    <p>
+        Administratorii vor avea un nou buton in bara de navigare numit 'Admin panel'. Acesta va redirectiona spre 
+        '/adminPublications.php'. 
+    </p>
+    <p>
+        Pagina pentru adminstrarea publicatiilor va interoga baza de date sa afiseze doar publicatiile care au coloana
+        'PUBLIC' = 0. Pentru fiecare astfel de publicatie vor fi create elemente si butoane prin care administratorul
+        decide daca documentul va aprobat sau nu. De asemenea va avea un buton care il va trimite pe pagina publicatiei pentru
+        a o vizualiza. Pe aceasta pagina exista un buton care descarca informatiile despre toate publicatiile in format CSV.
+    </p>
+    <p>
+        Pagina pentru addminstrarea utilizatorilor contine 2 bare pentru cautare prin care administratorii pot filtra utilizatorii.
+        Pentru fiecare utilizator gasit vor fi create butoane prin care administratorul poate schimba rolul si un link catre 
+        pagina de profil a utilizatorului.
+    </p>
+    Cautarea si paginarea functioneaza similar ca in sectiunea <a href='/docs/index2.html#search'>Cautare</a>
+</section>
+
+</body>
 
 
 
