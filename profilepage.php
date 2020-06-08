@@ -14,12 +14,6 @@
 
 <?php
 include "navbar.php"; ?>
-<!-- <div class = "profile-back">
-        <div class = "profile-box">
-
-        </div>
-    </div> -->
-
 <div class="content-container">
     <div id="profile-information">
         <?php
