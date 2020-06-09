@@ -32,6 +32,10 @@
         $sql = 'SELECT ID, NAME, DESCRIPTION, VIEWS, CREATED_AT from documents where public=true order by UPDATED_AT DESC limit 7';
     else if($_GET['title'] == '*top*')
         $sql = 'SELECT ID, NAME, DESCRIPTION, VIEWS, CREATED_AT from documents where public=true order by VIEWS DESC limit 7';
+    else if($_GET['title'] == ''){
+        $postCount = $model->getPostCountByTitle($like);
+        $sql = "SELECT ID, NAME, DESCRIPTION, VIEWS, CREATED_AT from documents where public=true LIMIT {$start}, {$perPage}";
+    }
     else {
         $postCount = $model->getPostCountByTitle($like);
         $sql = "SELECT ID, NAME, DESCRIPTION, VIEWS, CREATED_AT from documents where lower(NAME) like :name and public=true

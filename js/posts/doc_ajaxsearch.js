@@ -206,6 +206,7 @@ function enableSearch() {
 	searchContainer.setAttribute('style', 'display: block');
 	document.getElementById('pages').setAttribute('style', 'display: block');
 	clearResult();
+	searchAll();
 }
 
 function disableSearch(){
@@ -223,6 +224,10 @@ function searchNew(){
 	disableSearch();
 	searchForData('*new*');
 	document.getElementById('pages').setAttribute('style', 'display: none');
+}
+
+function searchAll(){
+	searchForData('', 1);
 }
 
 function enableQuizSearch(){

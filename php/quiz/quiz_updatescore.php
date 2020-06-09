@@ -11,14 +11,13 @@ if(isset($_SESSION['loggedin']) && isset($_SESSION["userid"]) && isset($_SESSION
             'iduser' => $_SESSION["userid"],
             'idquiz' => $_SESSION["currentquizid"]
         ]);
-        if($stmt->rowCount() == 0){
-            $sql = 'insert into completedquizzes values (NULL, :iduser, :idquiz)';
+        if($stmt->rowCount() === 0){
+            $sql = 'insert into completedquizzes values (NULL, :iduser, :idquiz, now(), now())';
             $stmt = BD::obtine_conexiune()->prepare($sql);
-            if ($stmt -> execute ([
+            $stmt -> execute ([
                 'iduser' => $_SESSION["userid"],
                 'idquiz' => $_SESSION["currentquizid"]
-            ]));
-
+            ]);
             $sql = 'update users set score = score + 1 where id = :iduser';
             $stmt = BD::obtine_conexiune()->prepare($sql);
             if ($stmt -> execute ([
@@ -26,10 +25,7 @@ if(isset($_SESSION['loggedin']) && isset($_SESSION["userid"]) && isset($_SESSION
             ])){
                 //header("location: postpage.php?id=" . $_SESSION['currentpageid']);
             }
-            echo "Score updated!";   
-        }
-        else {
-            echo "";
+            echo "Score updated!";      
         }
 }
 BD::opreste_conexiune();
