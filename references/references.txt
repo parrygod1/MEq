@@ -1,3 +1,5 @@
 https://www.youtube.com/watch?v=OWNxUVnY3pg Login form
 https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php Login system
 https://www.mathjax.org/ mathml + latex
+https://stackoverflow.com/questions/4249432/export-to-csv-via-php csv
+https://github.com/w3c/scholarly-html scholarly html
