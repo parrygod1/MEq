@@ -2,6 +2,7 @@ var requestURI = '/meq/php/quiz/quiz_query.php?id=';
 var postURI = '/meq/php/quiz/quiz_updatescore.php'
 
 var questionArray = []
+var correctAnswers = [];
 var questionSize = 0;
 var parentDocumentName = document.getElementById('quiz-title');
 var questionTitle = document.getElementById('question-title');
@@ -54,17 +55,26 @@ function noData(){
 function showData(data){
     questionArray = JSON.parse(data);
     questionSize = questionArray.length;
+    for(i=0; i < questionSize; i++){
+        correctAnswers.push(false);
+    }
     setQuestionInfo();
     setCheckAnswer();
 }
 
-var correctAnswers = 0;
+function checkFinishedQuiz(){
+    for(i=0; i < correctAnswers.length; i++){
+        if(correctAnswers[i]===false)
+            return false;
+    }
+    return true;
+}
 
 function setCheckAnswer(){
     checkButton.addEventListener("click", function(){
         if(answerBox.value == questionAnswer){
-            correctAnswers++;
-            if(correctAnswers == questionArray.length){
+            correctAnswers[currentIndex] = true;
+            if(checkFinishedQuiz()){
                 postData(); //update user score
             }
             alert("Correct");
