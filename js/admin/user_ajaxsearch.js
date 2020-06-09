@@ -1,5 +1,5 @@
-var requestURI = '/meq/php/admin/user_query.php?';
-var postURI = '/meq/php/admin/user_update.php?';
+var requestURI = '/php/admin/user_query.php?';
+var postURI = '/php/admin/user_update.php?';
 
 var textBoxName = document.getElementById('searchbar-name');
 var textBoxId = document.getElementById('searchbar-id');

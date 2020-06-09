@@ -1,5 +1,5 @@
-var requestURI = '/meq/php/posts/post_query.php?title=';
-var requestQuizURI = '/meq/php/quiz/quiz_search.php?title=';
+var requestURI = '/php/posts/post_query.php?title=';
+var requestQuizURI = '/php/quiz/quiz_search.php?title=';
 
 var searchContainer = document.getElementById('search-container');
 var textBox = document.getElementById('searchbar');
